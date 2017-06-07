@@ -1,0 +1,279 @@
+/*****************************************************
+                      Dashboard
+*****************************************************/
+
+.container-dashboard-content{
+  float:right;
+  padding:0px !important;
+  min-height: calc(100vh - 110px);
+}
+
+.dashboard-content{
+  padding:20px;
+}
+
+.container-map-centered{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.map-inspection{
+  min-height: calc(100vh - 164px);
+}
+
+.map-main{
+  min-height: calc(100vh - 275px);
+}
+
+.map-creator-container{
+  min-height: calc(100vh - 164px);
+}
+
+@media only screen and (max-width: 768px) {
+  .map-inspection{
+    min-height:100% !important;
+  } 
+  .map-main{
+    min-height:100% !important;
+  }
+  .map-creator-container{
+    min-height:100% !important;
+  }
+  .container-dashboard-content{
+     float:none;
+     min-height:100% !important;
+   }
+   .profile-sidebar{
+     position:relative !important;
+     height:auto !important;
+     min-height:auto !important;
+   }
+}
+
+.role-requests {
+  list-style-type:none;
+  margin:25px 0 0 0;
+  padding:0;
+}
+
+.role-requests li {
+  float:left;
+  margin:0 5px 0 0;
+  position:relative;
+  text-align:center;
+  width:100px;
+  height:40px;
+}
+
+.role-requests label, .role-requests input {
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+
+.role-requests input[type="radio"] {
+  opacity:0;
+  z-index:100;
+  background-color: #fff;
+  border-color: #ccc;
+  font-size:14px;
+  line-height:42px;
+}
+
+.role-requests input[type="radio"]:checked + label {
+  background-color:#e6e6e6;
+  border-color: #adadad;
+}
+
+.role-requests label {
+  padding:5px;
+  border:1px solid #ccc; 
+  cursor:pointer;
+  z-index:90;
+}
+
+.role-requests label:hover {
+  background-color:#e6e6e6;
+  border-color: #adadad;
+}
+
+
+/****** Menu ******
+ ******************/
+.profile-sidebar {
+  padding: 5px 0 10px 0;
+  background: #F6DDCC;
+  padding-left:0px;
+  padding-right:0px;
+  /*height: calc(100vh - 110px);
+  min-height: calc(100vh - 110px);*/
+  margin-bottom:0px;
+  margin-top:0px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+}
+
+.dashboard-usertitle {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.dashboard-usertitle-name {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.dashboard-usertitle-job {
+  text-transform: uppercase;
+  color: #839192;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+    
+.dashboard-menu {
+  margin-top: 20px;
+}
+
+.dashboard-menu ul li a {
+  color: #839192;
+  font-size: 14px;
+  font-weight: 400;
+  padding-left:20px;
+}
+
+.dashboard-menu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.dashboard-menu ul li a:hover {
+  background-color: #fafcfd;
+  color: #D35400;
+}
+
+.dashboard-menu ul li.active a {
+  color: #D35400;
+  background-color: #f6f9fb;
+}
+
+.btn-mobile-menu{
+  border:1px solid #D35400;
+  background-color:transparent;
+  margin-top:5px;
+}
+
+.dashboard-mobile-menu .collapse{
+  background-color:#F6DDCC;
+}
+
+.dashboard-toolbar{
+  width:100%; 
+  background-color:#F8F9F9;
+  padding:10px;
+}
+
+
+/****** Dashboard ******
+ ***********************/
+.row-account{
+  margin-left:0px; 
+  padding-top:10px; 
+  padding-bottom: 10px; 
+  border-bottom:1px solid #D7DBDD;
+}
+
+.row-account > .col-md-3{
+  padding-left:0px;
+}
+
+.row-account:last-child{
+  border-bottom:0px;
+}
+
+/****** Manage Inspections ******
+ ********************************/
+.map-inspection{
+  display:none;
+}
+
+.list-view{
+  display:none;
+}
+
+.map-view{
+  display:block;
+}
+
+/****** Manage Teams ******
+ **************************/
+.container-add{
+  width:100%;
+  padding:10px;
+  display:none;
+  border-bottom:1px solid #D7DBDD;
+}
+
+.btn-add-cancel{
+  display:inline;
+}
+
+/****** Manage Events ******
+ **************************/
+.event-details{
+  display:none;
+}
+
+.btn-event-status{
+  padding-top:5px;
+  padding-bottom:5px;
+  padding-left:10px;
+  padding-right:10px;
+  margin-left:10px;
+}
+
+.status-red{
+  background-color:#F5B7B1;
+}
+
+.status-green{
+  background-color:#ABEBC6;
+}
+
+.btn-event-manage{
+  padding-top:15px;
+  padding-bottom:15px;
+  padding-left:15px;
+  padding-right:15px;
+  display:block;
+}
+
+.btn-event-manage-text{
+  font-size:18px; 
+  line-height:30px; 
+  vertical-align:middle;
+  margin-left:5px;
+}
+
+.btn-event-manage-icon{
+  font-size:28px; 
+  line-height:30px;
+  vertical-align:middle;
+}
+
+.save-event{
+  display:none;
+}
+
+.editable-event{
+  border:1px dashed #ff0000; 
+  padding:3px;
+}
