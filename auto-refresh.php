@@ -7,7 +7,7 @@
     if (isset($_SESSION['email'])){
         $sessionEmail = $_SESSION['email'];
     }
-    
+    //test
     error_reporting(0);
     $filePath = "http://" . $_SERVER['SERVER_NAME'] . "/peachpits/";
     $currentEvent = $_GET['event'];
