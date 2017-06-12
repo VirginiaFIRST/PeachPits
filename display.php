@@ -144,7 +144,7 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>PeachPits is presented by</h2>
-					<a href="http://www.automationdirect.com/adc/Home/Home"><img src="adc_logo.png" style="width:100%;"></a>
+					<a href="http://www.automationdirect.com/adc/Home/Home"><img src="imgs/adc_logo.png" style="width:100%;"></a>
 				</div>
 			</div>
 		</div>

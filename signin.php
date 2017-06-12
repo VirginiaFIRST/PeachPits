@@ -15,6 +15,9 @@
         body {
             height: calc(100% - 110px);
         }
+        .site-wrapper {
+            height: calc(100% - 50px);
+        }
     </style>
 </head>
 
@@ -22,24 +25,15 @@
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <div class="inner cover" style="color:#000000;">
-                <div class="formbox signin text-center">
-                    <h3>Sign in</h3>
-                    <br>
-                    <center>
+                <div class="formbox signin text-center" style="width:300px; margin:auto;">
+                    <h3>Sign in</h3><br>
                     <fieldset>
                         <form method="post" action="signin.php">
-                            <p>
-                                <input type="text" name="email" placeholder="Email" style="width:300px;border-radius:0px;" class="form-control">
-                            </p>
-                            <p>
-                                <input type="password" name="password" placeholder="Password"style="width: 300px;border-radius:0px;" class="form-control">
-                            </p>   
-                            <p>
-                                <center><input type="submit" name="submit" value="Sign In" class="btn btn-default"/></center>
-                            </p>
+                            <p><input type="text" name="email" placeholder="Email" style="border-radius:0px;" class="form-control"></p>
+                            <p><input type="password" name="password" placeholder="Password"style="border-radius:0px;" class="form-control"></p>   
+                            <p><input type="submit" name="submit" value="Sign In" class="btn btn-default"/></p>
                         </form>
                     </fieldset>
-                    </center>
                     <p>Don't have an account? <a href="signup.php">Sign up</a></p>
                 </div>
             </div>

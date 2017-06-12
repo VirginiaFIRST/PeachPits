@@ -14,6 +14,9 @@
         body {
             height: calc(100% - 110px);
         }
+        .site-wrapper{
+            height:calc(100% - 50px);
+        }
     </style>
 </head>
 
@@ -21,34 +24,18 @@
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <div class="inner cover" style="color:#000000;">
-                <div class="formbox signup text-center">
-                    <h3>Sign up</h3>
-                    <br>
-                    <center>
+                <div class="formbox signup text-center" style="width:300px; margin:auto;">
+                    <h3>Sign up</h3><br>
                     <fieldset>
                         <form method="post" action="signup.php" id="registerForm">
-                            <p>
-                                <input type="text" name="firstname" placeholder="First Name"style="width: 300px;border-radius:0px;" class="form-control">
-                            </p>
-                            <p>
-                                <input type="text" name="lastname" placeholder="Last Name"style="width: 300px;border-radius:0px;" class="form-control">
-                            </p>
-                            <p>
-                                <input type="text" name="email" placeholder="Email" style="width:300px;border-radius:0px;" class="form-control">
-                            </p>
-                            <p>
-                                <input type="password" name="password" placeholder="Password"style="width: 300px;border-radius:0px;" class="form-control">
-                            </p>
-                            <p>
-                                <input type="password" name="repeatPassword" placeholder="Repeat Password"style="width: 300px;border-radius:0px;" class="form-control">
-                            </p>
-                            <p>
-                                <center><input type="submit" name="submit" value="Sign Up" class="btn btn-default"/></center>
-                            </p>
+                            <p><input type="text" name="firstname" placeholder="First Name"style="border-radius:0px;" class="form-control"></p>
+                            <p><input type="text" name="lastname" placeholder="Last Name"style="border-radius:0px;" class="form-control"></p>
+                            <p><input type="text" name="email" placeholder="Email" style="border-radius:0px;" class="form-control"></p>
+                            <p><input type="password" name="password" placeholder="Password"style="border-radius:0px;" class="form-control"></p>
+                            <p><input type="password" name="repeatPassword" placeholder="Repeat Password"style="border-radius:0px;" class="form-control"></p>
+                            <p><input type="submit" name="submit" value="Sign Up" class="btn btn-default"/></p>
                         </form>
-                    </fieldset>
-                    </center>
-                        
+                    </fieldset>                       
                     <p>Already have an account? <a href="signin.php">Sign in</a></p>
                 </div>
             </div>
