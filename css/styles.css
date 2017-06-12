@@ -11,10 +11,6 @@ body {
   border-radius:0px;
 }
 
-.admin-login, .admin-login:hover, .admin-login:focus{
-  color:#000000;
-}
-
 .modal-content{
   border-radius:0px !important;
 }
@@ -144,19 +140,37 @@ body {
                       Footer
 *****************************************************/
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    margin-bottom: 90px;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #EAEDED;
-  color:#000000;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+}
+
+.top-footer {
+    height: 60px;
+    background-color: #313131;
+    color: #ffffff;
+}
+
+.bottom-footer {
+    background-color: #DC7633;
+    height: 30px;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 6px;
+    color: #ffffff;
+    -webkit-box-shadow: inset 0px 7px 5px -5px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow: inset 0px 7px 5px -5px rgba(50, 50, 50, 0.5);
+    box-shadow: inset 0px 5px 7px -5px rgba(50, 50, 50, 0.5);
+}
+
+.admin-login, .admin-login:hover, .admin-login:focus {
+    color: #ffffff;
 }

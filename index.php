@@ -93,7 +93,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<img src ="screen_mockups-temp.png" style="width:100%;">
+					<img src ="imgs/screen_mockups-temp.png" style="width:100%;">
 				</div>
 			</div>
 			<div class="row">
@@ -110,7 +110,7 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>PeachPits is presented by</h2>
-					<a href="http://www.automationdirect.com/adc/Home/Home"><img src="adc_logo.png" style="width:100%;"></a>
+					<a href="http://www.automationdirect.com/adc/Home/Home"><img src="imgs/adc_logo.png" style="width:100%;"></a>
 				</div>
 			</div>
 		</div>

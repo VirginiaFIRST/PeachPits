@@ -3,3 +3,5 @@ includes/config.php
 includes/password.php
 PeachPits.phpproj
 PeachPits.sln
+.vs/PeachPits/v15/.suo
+vs/
