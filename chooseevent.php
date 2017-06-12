@@ -79,6 +79,7 @@
         <title>PeachPits</title>
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet"/>
+        <link href="css/footer.css" rel="stylesheet" />
 		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<style>
 			html,
@@ -86,28 +87,16 @@
 				height: calc(100% - 110px);
 			}
 			body{
-				background-image:url(peaches.jpg);
+				background-image:url(imgs/peaches.jpg);
 			}
 			@media screen and (min-width: 768px) {
 				body{
-					background-image:url(peaches.jpg);
+					background-image:url(imgs/peaches.jpg);
 					background-size:100%;
 				}
 			}
 			.navbar{
 				background-color:transparent;
-			}
-			.footer {
-				position: absolute;
-				bottom: 0;
-				width: 100%;
-				/* Set the fixed height of the footer here */
-				height: 60px;
-				background-color: transparent;
-				color:#ffffff;
-			}
-			.admin-login, .admin-login:hover, .admin-login:focus{
-				color:#ffffff;
 			}
 		</style>
 	</head>
@@ -133,7 +122,4 @@
 		</div>
 	</body>
 </html>
-<?php
-	}
-	include "footer.php";
-?>
+<?php }	include "footer.php"; ?>

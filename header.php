@@ -87,6 +87,7 @@
         <link href="css/admin.css" rel="stylesheet"/>
         <link href="css/home.css" rel="stylesheet"/>
         <link href="css/map.css" rel="stylesheet"/>
+        <link href="css/footer.css" rel="stylesheet" />
         <link href="css/bootstrap-sortable.css" rel="stylesheet"/>
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="js/bootstrap-sortable.js"></script>
