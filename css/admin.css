@@ -8,10 +8,6 @@
   min-height: calc(100vh - 110px);
 }
 
-.dashboard-content{
-  padding:20px;
-}
-
 .container-map-centered{
   display:flex;
   justify-content:center;

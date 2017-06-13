@@ -23,19 +23,19 @@
         @media screen and (max-width: 768px) {
           .request-role-field{
             display: block;
-            width: 55%;
-            min-width: 175px;
+            width: calc(100% - 15px);
+            min-width: 250px;
           }
           .request-event-field{
             display: block;
-            width: 55%;
-            min-width: 175px;
+            width: calc(100% - 15px);
+            min-width: 250px;
           }
           
           #btn-submit-request{
             border-radius: 0px;
-            width: 55%;
-            min-width: 175px;
+            width: calc(100% - 15px);
+            min-width: 250px;
           }
         }
       </style>
