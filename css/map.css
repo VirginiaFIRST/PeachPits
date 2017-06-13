@@ -20,6 +20,14 @@
   .sm-vs{
     display:none;
   }
+  .display-hd{
+      display:none;
+  }
+  .display-vs{
+      display:initial;
+      margin-top:0px !important;
+      margin-bottom:10px;
+  }
   .pitmap-btn-container{
     padding-left:0px !important;
     padding-right:0px !important; 
@@ -58,8 +66,7 @@
 
 .container-map-outer{
   height:auto; 
-  width:auto; 
-  padding:3px;
+  width:auto;
   margin-left:auto;
   margin-right:auto;
   background-color:#D7DBDD;
@@ -206,7 +213,9 @@
   margin-bottom:10px;
 }
 
-/*Elements*/
+/*****************************************************
+                      Elements
+*****************************************************/
 
 .tables{
   background-color:#99A3A4;

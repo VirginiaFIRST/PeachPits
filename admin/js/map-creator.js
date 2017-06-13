@@ -264,6 +264,6 @@ $(document).ready(function() {
 		width = Math.ceil(width * 4);
 		height = Math.ceil(height * 4);
 		$('#frame').css('width', width);
-		$('#frame').css('height', height);
+        $('#frame').css('height', height);
 	});
 });

@@ -63,6 +63,14 @@ function clearInspectionStatus(){
 	$('#frame .levelSix').removeClass('levelSix');
 	$('#frame .levelSix').removeClass('levelSeven');
 }
+function resizeMap(viewportWidth) {
+    var widthFrame = $('#frame').width();
+    var heightFrame = $('#frame').height();
+    var scale = viewportWidth / widthFrame;
+    var translateX = widthFrame / 2;
+    var translateY = ((heightFrame * scale) - heightFrame) / 2;
+    $('.map-page').css({ 'transform': 'scale(' + scale + ',' + scale + ')', 'transform-origin': ''+translateX+'px 0px'});
+}
 $(document).ready(function() {		
 	$('#frame').html(mapCode);
 	if((frameWidth && frameWidth != 0) && (frameHeight && frameHeight !=0)){
@@ -93,7 +101,14 @@ $(document).ready(function() {
 	$(b2).addClass('blue');
 	$(b3).addClass('blue');
 	$(team).addClass('blue');
-	
+
+
+    var viewportWidth = $(window).width();
+    if (viewportWidth < 768) {
+        resizeMap(viewportWidth);
+    }
+
+
 	$('.select-teams').on('click',function(e){
 		e.preventDefault();
 		clear();
@@ -131,8 +146,8 @@ $(document).ready(function() {
 		$(b3).addClass('blue');
 		$('.btn-inspection').css('display','block');
 		$('.btn-inspection-hide').css('display','none');
-		var currTeamId = $('.btn-st').html().replace(/\D/g,'');
-		$('.status-text').html('Viewing Alliance Partners, ' + currTeamId + ', ' + $('.btn-m').html());
+        var currTeamId = $('.btn-st').html().replace(/\D/g, '');
+        $('.status-text').html('Viewing Alliance Partners, ' + currTeamId + ', ' + $('.a-sm').html());
 	});
 	
 	//Shows/hides inspection statuses on the map
