@@ -24,18 +24,18 @@
           .request-role-field{
             display: block;
             width: calc(100% - 15px);
-            min-width: 250px;
+            min-width: 200px;
           }
           .request-event-field{
             display: block;
             width: calc(100% - 15px);
-            min-width: 250px;
+            min-width: 200px;
           }
           
           #btn-submit-request{
             border-radius: 0px;
             width: calc(100% - 15px);
-            min-width: 250px;
+            min-width: 200px;
           }
         }
       </style>
