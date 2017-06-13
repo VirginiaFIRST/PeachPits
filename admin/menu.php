@@ -1,7 +1,6 @@
 <script>
     function filterEvents() {
 			  var input, filter, table, tr, td, i;
-              var vis = $('#events-all tr:visible').length;
 			  input = document.getElementById("event-filter-field");
 			  filter = input.value.toUpperCase();
 			  table = document.getElementById("events-all");
