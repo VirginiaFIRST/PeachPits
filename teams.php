@@ -22,9 +22,9 @@
 			<thead>
 				<th><strong>Team #</strong></th>
 				<th><strong>Team Name</strong></th>
-				<th><strong>Inspection Status</strong></th>
-				<th><strong>Pit Location</strong></th>
-				<th class="text-right"></th>
+				<th><strong>Status</strong></th>
+				<th><strong>Pit</strong></th>
+				<th><strong>Info</strong></th>
 			</thead>
 			<tbody>
 			<?php 
@@ -35,8 +35,8 @@
 					echo "<td id='teamid'>". $row['teamid'] ."</td>";
 					echo "<td id='teamname'>". $row['teamname'] ."</td>";
 					echo "<td id='inspectionstatus'>". $row['inspectionstatus'] ."</td>";
-					echo '<td><a href="pitmap.php?event='.$currentEvent. '&team='. $row['teamid'] .'">Pit Location ></a></td>';
-					echo "<td class='text-right'><a href='team.php?team=". $row['teamid'] ."&event=".$currentEvent."'>More Info</a></td>";
+					echo '<td><a href="pitmap.php?event='.$currentEvent. '&team='. $row['teamid'] .'"><span class="glyphicon glyphicon-map-marker"></span></a></td>';
+					echo "<td allign=justify'><a href='team.php?team=". $row['teamid'] ."&event=".$currentEvent."'><span class='glyphicon glyphicon-info-sign'</span></a></td>";
 					echo "</tr>";
 				}	
 			?>
@@ -44,5 +44,18 @@
 		</table>
 	</div>
 </div>
+
+<style>
+  
+  @media screen and (max-width:768px){
+    #teamname{
+    max-width: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+</style>
+
 
 <?php } include "footer.php"; ?>
