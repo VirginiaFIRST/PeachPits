@@ -52,7 +52,7 @@
                 <p style="margin-left:10px;"><a href="#" data-toggle="modal" data-target="#newPasswordBox">Change Your Password</a></p>
               </div>
             </div>       
-            <div class="row row-account" style="white-space: nowrap;">
+            <div class="row row-account">
               <div class="col-md-2"><h3 class="dashboard-usertitle-name" style="margin:0px 0px 10px 0px;">Roles</h3></div>
                 <div class="col-md-10">
                   <p class="dashboard-usertitle-name">Your Current Role</p>

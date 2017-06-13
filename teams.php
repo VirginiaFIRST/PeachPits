@@ -35,8 +35,8 @@
 					echo "<td id='teamid'>". $row['teamid'] ."</td>";
 					echo "<td id='teamname'>". $row['teamname'] ."</td>";
 					echo "<td id='inspectionstatus'>". $row['inspectionstatus'] ."</td>";
-					echo '<td><a href="pitmap.php?event='.$currentEvent. '&team='. $row['teamid'] .'"><span class="glyphicon glyphicon-map-marker"></span></a></td>';
-					echo "<td allign=justify'><a href='team.php?team=". $row['teamid'] ."&event=".$currentEvent."'><span class='glyphicon glyphicon-info-sign'</span></a></td>";
+					echo '<td id="pitmap"><a href="pitmap.php?event='.$currentEvent. '&team='. $row['teamid'] .'"><span class="glyphicon glyphicon-map-marker"></span></a></td>';
+					echo "<td id='teaminfo'><a href='team.php?team=". $row['teamid'] ."&event=".$currentEvent."'><span class='glyphicon glyphicon-info-sign'</span></a></td>";
 					echo "</tr>";
 				}	
 			?>
