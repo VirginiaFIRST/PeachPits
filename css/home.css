@@ -9,7 +9,7 @@
 }
 .site-wrapper-inner {
   display: table-cell;
-  vertical-align: top;
+  vertical-align: middle;
 }
 .site-wrapper-container{
   margin-top:-60px;
