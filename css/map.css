@@ -57,6 +57,10 @@
   }*/
 }
 
+.display-vs{
+    display:none;
+}
+
 .container-map{
   height:526px; 
   width:316px;

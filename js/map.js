@@ -69,7 +69,8 @@ function resizeMap(viewportWidth) {
     var scale = viewportWidth / widthFrame;
     var translateX = widthFrame / 2;
     var translateY = ((heightFrame * scale) - heightFrame) / 2;
-    $('.map-page').css({ 'transform': 'scale(' + scale + ',' + scale + ')', 'transform-origin': ''+translateX+'px 0px'});
+    $('.map-page').css({ 'transform': 'scale(' + scale + ',' + scale + ')', 'transform-origin': '' + translateX + 'px 0px' });
+    $('.container-map-outer').css('height', heightFrame*scale)
 }
 $(document).ready(function() {		
 	$('#frame').html(mapCode);
