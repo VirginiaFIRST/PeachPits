@@ -43,8 +43,7 @@
     margin-right:auto;
   } 
   .map-page{
-    margin-left:auto;
-    margin-right:auto;
+      margin:0px !important;
   } 
   .map-page-team{
     width:100% !important;
@@ -68,9 +67,12 @@
   position:relative;
 }
 
+.map-main {
+    min-height: calc(100vh - 305px);
+}
+
 .container-map-outer{
   height:auto; 
-  width:auto;
   margin-left:auto;
   margin-right:auto;
   background-color:#D7DBDD;

@@ -22,10 +22,6 @@
   min-height: calc(100vh - 164px);
 }
 
-.map-main{
-  min-height: calc(100vh - 305px);
-}
-
 .map-creator-container{
   min-height: calc(100vh - 164px);
 }

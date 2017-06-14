@@ -3,13 +3,15 @@
 		<style>
 			html,
 			body {
-        position: relative;
 				height: calc(100% - 50px);
 			}
 			.navbar{
 				background-color:transparent;
 				z-index:1000;
 			}
+            .footer{
+                position:relative; /* page specific positioning */
+            }
             @media only screen and (max-width: 766px) {
                 .navbar{background-color:#DC7633;}
                 .collapsing, .in {background-color: #DC7633;}

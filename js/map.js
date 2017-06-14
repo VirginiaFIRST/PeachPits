@@ -64,16 +64,19 @@ function clearInspectionStatus(){
 	$('#frame .levelSix').removeClass('levelSeven');
 }
 function resizeMap(viewportWidth) {
-    var widthFrame = $('#frame').width();
-    var heightFrame = $('#frame').height();
+    var widthFrame = frameWidth;
+    var heightFrame = frameHeight;
     var scale = viewportWidth / widthFrame;
-    var translateX = widthFrame / 2;
+    console.log("Viewport: " + viewportWidth);
+    console.log("Frame: " + widthFrame);
+    console.log("Scale: " + scale);
+    var translateX = ((widthFrame * scale) - widthFrame) / 2;
     var translateY = ((heightFrame * scale) - heightFrame) / 2;
-    $('.map-page').css({ 'transform': 'scale(' + scale + ',' + scale + ')', 'transform-origin': '' + translateX + 'px 0px' });
-    $('.container-map-outer').css('height', heightFrame*scale)
+    $('.map-page').css({ 'transform': 'translate('+translateX+'px, '+translateY+'px) scale(' + scale + ',' + scale + ')', 'margin-right': '0px !important'  });
+    $('.container-map-outer').css({ 'height': heightFrame * scale+'px', 'width':widthFrame*scale+'px'});
 }
 $(document).ready(function() {		
-	$('#frame').html(mapCode);
+    $('#frame').html(mapCode);
 	if((frameWidth && frameWidth != 0) && (frameHeight && frameHeight !=0)){
 		$('#frame').css('width', frameWidth);
 		$('#frame').css('height', frameHeight);
