@@ -41,7 +41,7 @@
 	<p style="margin-left:10px;"><a href="pitmap.php?event=<?php echo $currentEvent ?>&team=<?php echo $teamid ?>">Pit Location ></a></p>
 	
 	<div class="table-responsive">
-		<table class="table table-hover">
+		<table id="table-team-matches" class="table table-hover">
 			<thead>
 				<td><b>Match #</b></td>
 				<td><b>Start Time</b></td>
@@ -66,8 +66,46 @@
 						if($teamid == $row['blue1']){echo "<td id='blue1' class='blue text-center'><b>". $row['blue1'] ."</b></td>";} else {echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";}
 						if($teamid == $row['blue2']){echo "<td id='blue2' class='blue text-center'><b>". $row['blue2'] ."</b></td>";} else {echo "<td id='blue2' class='blue text-center'>". $row['blue2'] ."</td>";}
 						if($teamid == $row['blue3']){echo "<td id='blue3' class='blue text-center'><b>". $row['blue3'] ."</b></td>";} else {echo "<td id='blue3' class='blue text-center'>". $row['blue3'] ."</td>";}
-						echo "<td class='text-center'><a href='pitmap.php?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'>View Map</a></td>";
+						echo "<td class='text-center'><a href='pitmap.php?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
 						echo "</tr>";
+					}		
+				}
+				else{
+					echo '<div class="container-fluid" style="background-color:#F5B7B1; padding:10px;margin:20px;"><h2 class="text-center" style="margin-top:10px;">There\'s no match schedule yet! Please check back soon.</h2></div>';
+				}
+				
+			?>
+		</table>
+    <table id="table-team-matches-mobile" class="table">
+			<thead>
+        <tr>
+				  <td rowspan="2" style="vertical-align: middle"><b>Match</b></td>
+				  <td rowspan="2" style="vertical-align: middle; width: 10%"><b>Time</b></td>
+          <td colspan="3" class="text-center"><b>Driver's Station</b></td>
+          <td rowspan="2" style="vertical-align: middle" class="text-center"><b>Pit</b></td>
+        </tr>
+        <tr>
+				  <td class="text-center"><b>1</b></td>
+				  <td class="text-center"><b>2</b></td>
+				  <td class="text-center"><b>3</b></td>
+        </tr>
+			</thead>
+			<?php 
+				$sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qm' AND `red1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red3` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND`blue1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue3` LIKE '$teamid' ORDER BY matchnumber ASC");
+				if(mysqli_num_rows($sql) != 0){
+					while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+						echo "<tr id='". $row['matchid'] ."'>";
+						echo "<td rowspan='2' style='width:7%; padding-left: 15px; vertical-align:middle;' id='matchnumber'>". $row['matchnumber'] ."</td>";
+						echo "<td rowspan='2' style='width:7%; vertical-align: middle;' id='starttime'>". $row['start'] ."</td>";
+						if($teamid == $row['red1']){echo "<td id='red1' class='red text-center'><b>". $row['red1'] ."</b></td>";} else {echo "<td id='red1' class='red text-center'>". $row['red1'] ."</td>";}
+						if($teamid == $row['red2']){echo "<td id='red2' class='red text-center'><b>". $row['red2'] ."</b></td>";} else {echo "<td id='red2' class='red text-center'>". $row['red2'] ."</td>";}
+						if($teamid == $row['red3']){echo "<td id='red3' class='red text-center'><b>". $row['red3'] ."</b></td>";} else {echo "<td id='red3' class='red text-center'>". $row['red3'] ."</td>";}
+						echo "<td rowspan='2' class='text-center' style='vertical-align:middle'><a href='pitmap.php?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
+						echo "</tr>";
+            echo "<tr id='". $row['mactchid'] ."'>";
+           	if($teamid == $row['blue1']){echo "<td id='blue1' class='blue text-center'><b>". $row['blue1'] ."</b></td>";} else {echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";}
+						if($teamid == $row['blue2']){echo "<td id='blue2' class='blue text-center'><b>". $row['blue2'] ."</b></td>";} else {echo "<td id='blue2' class='blue text-center'>". $row['blue2'] ."</td>";}
+						if($teamid == $row['blue3']){echo "<td id='blue3' class='blue text-center'><b>". $row['blue3'] ."</b></td>";} else {echo "<td id='blue3' class='blue text-center'>". $row['blue3'] ."</td>";}
 					}		
 				}
 				else{
@@ -78,6 +116,26 @@
 		</table>
 	</div>
 </div>
+
+<style>
+  #table-team-matches{
+    display: table;
+    margin: auto;
+    border: 1px solid lightgray;
+    padding: 10px;
+  }
+  #table-team-matches-mobile{
+    display: none;
+  }
+  @media screen and (max-width: 768px){
+    #table-team-matches{
+      display: none;
+    }
+    #table-team-matches-mobile{
+      display: table;
+    }
+  }
+</style>
 
 
 <?php include "footer.php"; ?>

@@ -57,7 +57,7 @@
 		<table id="table-matches-mobile" class="table">
 			<thead>
         <tr>
-          <td rowspan="2" style="vertical-align:middle"><b>Match #</b></td>
+          <td rowspan="2" style="vertical-align:middle"><b>Match</b></td>
 				  <td rowspan="2" class="text-center" style="vertical-align:middle"><b>Time</b></td>
 				  <td colspan="3" class="text-center"><b>Driver's Station</b></td>
           <td rowspan="2" rowclass="text-center" class="text-center" style="vertical-align:middle"><b>Pit</b></td>
@@ -118,7 +118,6 @@
     }
     #table-matches-mobile{
       display: table;
-      background-color: white !important;
     }
   }
 </style>
