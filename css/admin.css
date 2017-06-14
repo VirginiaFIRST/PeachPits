@@ -273,3 +273,15 @@
   border:1px dashed #ff0000; 
   padding:3px;
 }
+
+.btn-year-filter{
+    float:right;
+    margin-left:10px;
+}
+
+.year-showing, .year-showing:hover, .year-showing:visited, .year-showing:focus {
+    border: 1px solid #DC7633;
+    background-color: #F6DDCC;
+    color: #DC7633;
+    outline:0;
+}

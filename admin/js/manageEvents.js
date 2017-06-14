@@ -1,8 +1,41 @@
 $(document).ready(function() {
 	$(".nav li").removeClass("active");
 	$('#events').addClass('active');
-	
-	
+
+
+    var yearsArr = eventsArr.map(function (value, index) { return value[8]; }); //get all years (column 8)
+    var years = yearsArr.filter(function (elem, index, self) { return (index == self.indexOf(elem) && elem.length == 4); });
+    years = years.sort(function (a, b) { return b - a });
+    console.log(years);
+    var date = new Date();
+    var currentYear = date.getFullYear();
+    jQuery.each(years, function (index, item) {
+        $('.year-filter').append('<button id="'+item+'" class="btn btn-default btn-year-filter">' + item + '</button>');
+        if (currentYear == parseInt(item)) {
+            $("#"+item).addClass('year-showing');
+        }
+    });
+
+    $('.not-live .event-info').each(function () {
+        if ($(this).attr('id').indexOf(currentYear) < 0) {
+            $(this).css('display', 'none'); 
+        }
+    });
+
+    $('.btn-year-filter').on('click', function (e) {
+        currentYear = $(this).attr('id');
+        $('.not-live .event-info').each(function () {
+            if ($(this).attr('id').indexOf(currentYear) < 0) {
+                $(this).css('display', 'none');
+            }
+            else {
+                $(this).css('display', '');
+            }
+        });
+        $('.year-showing').removeClass('year-showing');
+        $(this).addClass('year-showing');
+    });
+
 	$('.event-details-link').on('click', function(e){
 		e.preventDefault();
 		$('.event-details').css('display','block');

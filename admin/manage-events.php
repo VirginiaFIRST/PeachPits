@@ -30,7 +30,8 @@
 			}
 			$jsArr = json_encode($eventData);
 			echo "var eventsArr = ". $jsArr . ";\n";				
-		?>
+        ?>
+
 	</script>
 	<script src="admin/js/manageEvents.js"></script>
 </head>
@@ -89,9 +90,17 @@
 						?>
 					</table>
 				</div>
-				<h2>Not Live Events</h2>
+                <div class="row">
+                    <div class="col-md-9">
+                        <h2 style="margin-top:0px;">Not Live Events</h2>
+                    </div>
+				    <div class="col-md-3 year-filter">
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
 				<div class="table-responsive">
-					<table class="table table-hover sortable">
+					<table class="table table-hover sortable not-live">
 						<thead>
 							<th><strong>Event Id</strong></th>
 							<th><strong>Name</strong></th>
@@ -115,6 +124,7 @@
 								echo "<td id='eventstart'>". $row['eventstart'] ."</td>";
 								echo "<td id='eventend'>". $row['eventend'] ."</td>";
 								echo "<td id='eventstatus' style='display:none;'>". $row['eventstatus'] ."</td>";
+                                echo "<td id='eventyear' style='display:none;'>". $row['eventyear'] ."</td>";
 								echo "<td><a href='#' class='event-details-link'>Details</a>";
 								echo "</tr>";
 							}	
