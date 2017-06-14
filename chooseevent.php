@@ -1,19 +1,19 @@
 <?php
 	require_once ("includes/session.php");
-    
+
     global $sessionEmail;
-    
+
     if (isset($_SESSION['email'])){
         $sessionEmail = $_SESSION['email'];
     }
-    
+
     error_reporting(0);
-    
+
     //Fetch some general information about the user from the database for later use
     $sql="SELECT * FROM `users` WHERE `email`='$sessionEmail'";
     $query= $mysqli->query($sql);
     $row = mysqli_fetch_assoc($query);
-    
+
     $firstname = $row['firstname'];
     $lastname = $row['lastname'];
     $username = $row['username'];
@@ -22,53 +22,27 @@
     $event2 = $row['event2'];
     $event3 = $row['event3'];
     $event4 = $row['event4'];
-    
+
     //Checks if a user is a super admin when called
     function isSuperAdmin($role){
         if($role == "Super Admin"){
             return true;
         }
     }
-    
+
     //Checks if a user is an event admin when called
     function isEventAdmin($role){
         if($role == "Event Admin"){
             return true;
         }
     }
-    
+
     //Checks if a user is an inspector when called
     function isInspector($role){
         if($role == "Inspector"){
             return true;
         }
     }
-	
-	if (!isset($_POST['lastPageVal'])) {
-?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script>
-		var lastPage = document.referrer;
-		
-		window.onload = function(){
-			document.getElementById("lastPage").value = lastPage;
-			document.forms['lastPageForm'].submit();
-		}
-		</script>
-	</head>
-	<body>
-		<form action="chooseevent.php" method="post" name="lastPageForm">
-			<input type="hidden" name="lastPageVal" id="lastPage">
-		</form>
-	</body>
-</html>
-<?php
-	}
-	else {
-		$lastPage = $_POST['lastPageVal'];
 ?>
 <html>
 	<head>
@@ -109,12 +83,12 @@
 						<button class="btn-dropdown-nav btn-lg dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select an Event<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu pull-center" aria-labelledby="dropdownMenu1">
-						<?php 
+                            <?php
 							$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live'");
 							while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-								echo '<li><a href="' . $lastPage . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
-							}	 
-						?>
+								echo '<li><a href="' . $_SERVER['HTTP_REFERER'] . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+							}
+                            ?>
 						</ul>
 					</div>
 				</div>
@@ -122,4 +96,4 @@
 		</div>
 	</body>
 </html>
-<?php }	include "footer.php"; ?>
+<?php 	include "footer.php"; ?>
