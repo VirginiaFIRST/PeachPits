@@ -75,6 +75,18 @@ function resizeMap(viewportWidth) {
     $('.map-page').css({ 'transform': 'translate('+translateX+'px, '+translateY+'px) scale(' + scale + ',' + scale + ')', 'margin-right': '0px !important'  });
     $('.container-map-outer').css({ 'height': heightFrame * scale+'px', 'width':widthFrame*scale+'px'});
 }
+function resizeMapDesktop(viewportHeight) {
+  var widthFrame = frameWidth;
+  var heightFrame = frameHeight;
+  var scale = viewportHeight / heightFrame;
+  console.log("Viewport: " + viewportHeight);
+  console.log("Frame: " + heightFrame);
+  console.log("Scale: " + scale);
+  var translateX = ((widthFrame * scale) - widthFrame) / 2;
+  var translateY = ((heightFrame * scale) - heightFrame) / 2;
+  $('.map-page').css({ 'transform': 'translate(' + translateX + 'px, ' + translateY + 'px) scale(' + scale + ',' + scale + ')', 'margin-right': '0px !important' });
+  $('.container-map-outer').css({ 'height': heightFrame * scale + 'px', 'width': widthFrame * scale + 'px' });
+}
 $(document).ready(function() {		
     $('#frame').html(mapCode);
 	if((frameWidth && frameWidth != 0) && (frameHeight && frameHeight !=0)){
@@ -108,8 +120,11 @@ $(document).ready(function() {
 
 
     var viewportWidth = $(window).width();
+    var viewportHeight = $(window).height()-325;
     if (viewportWidth < 768) {
         resizeMap(viewportWidth);
+    } else{
+        resizeMapDesktop(viewportHeight);
     }
 
 
