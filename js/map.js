@@ -1,4 +1,10 @@
 //Adds inspection status color to each box
+if (!String.prototype.includes) {
+  String.prototype.includes = function () {
+    'use strict';
+    return String.prototype.indexOf.apply(this, arguments) !== -1;
+  };
+}
 function boxColor() {
     console.log('boxColor run');
 	for (var i=0; i < teamsArr.length; i++){

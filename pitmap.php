@@ -1,5 +1,6 @@
 <?php 
 	include "header.php"; 
+
 	
 	if (empty($currentEvent)) {
 		echo '<script>window.location="chooseevent.php"</script>';
