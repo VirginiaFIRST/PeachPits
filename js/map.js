@@ -177,6 +177,7 @@ $(document).ready(function() {
 	$('.box').on('click',function(){ 
 
     $('.status-text-container').css('display', 'none');
+    $('.pitmap-btn-container').css('display', 'none');
 
 		$('.levelFive').removeClass('levelFive');
 		$('.levelFour').removeClass('levelFour');
@@ -223,10 +224,13 @@ $(document).ready(function() {
 		$('#inspectionstatus option[value="'+teamsArr[index][3]+'"]').prop('selected',true);
 	});
 	$('.return').on('click',function(){
+    $('.pitmap-btn-container').css('display', 'block');
 		$('.map-page-team').css('display','none');
 		$('.container-map-outer').css('display','block');
     $('.status-text-container').css('display', 'block');
-		boxColor();
+    if($('.btn-inspection-hide').css('display') == 'block'){
+      boxColor();
+    }
 	});
 	$(".inspect").click(function() {
 		var team = $(".map-teamnum").text();  

@@ -80,7 +80,7 @@
 			<div class="col-xs-2 btn-back"></div>
 			<div class="col-xs-8">
 				<div class="dropdown dropdown-teams">
-					<button class="btn btn-default dropdown-toggle btn-st" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					<button class="btn btn-default dropdown-toggle btn-st btn-pitmap" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 						Select a Team <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu pull-center dropdown-scrollable" aria-labelledby="dropdownMenu1">
@@ -93,7 +93,7 @@
 					</ul>
 				</div>				
 				<div class="dropdown dropdown-matches">
-					<button class="btn btn-default dropdown-toggle btn-m" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					<button class="btn btn-default dropdown-toggle btn-m btn-pitmap" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 						Select a Match <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu pull-center dropdown-scrollable" aria-labelledby="dropdownMenu1">
@@ -106,8 +106,8 @@
 				</div>
 			</div>
 			<div class="col-xs-2">
-				<button class="btn btn-default btn-inspection pull-right">View Status</button>
-				<button class="btn btn-default btn-inspection-hide pull-right">Hide Status</button>
+				<button class="btn btn-default btn-inspection pull-right btn-pitmap">View Status</button>
+				<button class="btn btn-default btn-inspection-hide pull-right btn-pitmap">Hide Status</button>
 			</div>
 		</div>
 	</div>
