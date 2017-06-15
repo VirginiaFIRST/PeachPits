@@ -112,14 +112,45 @@
   padding:10px;
   padding-left:20px;
   background-color:#F6DDCC;
-  cursor:pointer;
   line-height:30px;
   overflow:hidden;
   white-space: nowrap;
 }
+.team-tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
 
-.team-info{
-  padding:10px 20px 20px 20px;
+/* Style the buttons inside the tab */
+.tablinks {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 13px 16px;
+    width: 33.3333333%;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+/* Change background color of buttons on hover */
+.tablinks:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tablinks.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
 
 .map-inspectstatus{
@@ -457,10 +488,6 @@
 
 .landscape-view{
     transform:rotate(90deg);
-}
-
-.portrait-view{
-
 }
 
 .rotate{

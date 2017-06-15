@@ -175,6 +175,9 @@ $(document).ready(function() {
 	
 	//Fires when a team pit is clicked, shows detailed team info
 	$('.box').on('click',function(){ 
+
+    $('.status-text-container').css('display', 'none');
+
 		$('.levelFive').removeClass('levelFive');
 		$('.levelFour').removeClass('levelFour');
 		$('.levelThree').removeClass('levelThree');
@@ -183,6 +186,14 @@ $(document).ready(function() {
         $('.levelSix').removeClass('levelSix');
 		
 		$('.map-page-team').css('display','block');
+    
+    $('#tabinfo').removeClass('active')
+    $('#tabmatches').removeClass('active');
+    $('#tabinspection').addClass('active');
+
+    $('#teaminspection').css('display', 'block');
+    $('#teaminfo').css('display', 'none');
+    $('#teammatches').css('display', 'none');
 		$('.container-map-outer').css('display','none');
 		
 		var index;
@@ -196,6 +207,7 @@ $(document).ready(function() {
 		$('.map-teamnum').html("Team " + teamsArr[index][0]);
 		$('.map-teamname').html(teamsArr[index][1].substr(0,22));
 		$('.map-teamlocation').html(teamsArr[index][2]);
+    $('.map-schoolname').html(teamsArr[index][8]);
 		$('.map-inspectstatus').html(teamsArr[index][3]);
 		$('.map-inspectnotes').html(teamsArr[index][4]);
 		$('.map-initialinspector').html(teamsArr[index][5]);
@@ -213,6 +225,7 @@ $(document).ready(function() {
 	$('.return').on('click',function(){
 		$('.map-page-team').css('display','none');
 		$('.container-map-outer').css('display','block');
+    $('.status-text-container').css('display', 'block');
 		boxColor();
 	});
 	$(".inspect").click(function() {
