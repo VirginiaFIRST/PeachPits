@@ -170,10 +170,11 @@
 						<option value="Ok to unbag">Ok to unbag</option>
 						<option value="Not Started">Not Started</option>
 					</select>
-					<button type="submit" class="btn btn-default pull-right change-status" name="submit">Change Status</button>
+          <button  type="submit" class="btn btn-default change-status pull-right" name="submit">Change Status</button>
+					
 				  <div class="clearfix"></div>
 				  <h4><b>Inspection Notes: </b></h4>
-					<textarea class="form-control map-inspectnotes" style="width:100%; resize:none; height:70px; margin-bottom:5px;" name="inspectionnotes"></textarea><br/>
+					<textarea class="form-control map-inspectnotes" style="width:100%; resize:none; height:150px; margin-bottom:5px;" name="inspectionnotes"></textarea><br/>
 					<button type="submit" class="btn btn-default pull-right save-note" name="submit">Save Note</button>
 				  <div class="clearfix"></div>
 				    <h4><b>Initial Inspector: </b></h4><p class="map-initialinspector"></p>

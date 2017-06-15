@@ -127,6 +127,9 @@ $(document).ready(function() {
         resizeMapDesktop(viewportHeight);
     }
 
+  $('.map-main').css('height', viewportHeight+90);
+  $('.tabcontent').css('height', viewportHeight-94);
+
 
 	$('.select-teams').on('click',function(e){
 		e.preventDefault();
@@ -193,6 +196,8 @@ $(document).ready(function() {
 
     $('.status-text-container').css('display', 'none');
     $('.pitmap-btn-container').css('display', 'none');
+    
+
 
 		$('.levelFive').removeClass('levelFive');
 		$('.levelFour').removeClass('levelFour');
@@ -206,6 +211,10 @@ $(document).ready(function() {
     $('#tabinfo').removeClass('active')
     $('#tabmatches').removeClass('active');
     $('#tabinspection').addClass('active');
+
+    $('#teaminspection').scrollTop(0);
+    $('#teaminfo').scrollTop(0);
+    $('#teammatches').scrollTop(0);
 
     $('#teaminspection').css('display', 'block');
     $('#teaminfo').css('display', 'none');

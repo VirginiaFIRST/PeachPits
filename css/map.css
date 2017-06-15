@@ -69,6 +69,8 @@
 
 .map-main {
     min-height: calc(100vh - 305px);
+    padding-top: 10px;
+    height: 100%;
 }
 
 .container-map-outer{
@@ -84,11 +86,12 @@
 }
 
 .map-page-team{
-  min-height:546px;
-  width:336px;
+  border: 1px solid black;
+  height:100%;
+  width:100%;
   margin-left:auto;
   margin-right:auto;
-  background-color:#D7DBDD;
+  background-color: #D7DBDD;
   display:none;
 }
 
@@ -148,6 +151,8 @@
 /* Style the tab content */
 .tabcontent {
     display: none;
+    height: 300px;
+    overflow: auto;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
