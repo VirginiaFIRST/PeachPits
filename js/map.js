@@ -35,6 +35,7 @@ function boxColor() {
 }
 //Adds inspection status color to team detail
 function mapTeamInspectStatus(index){
+  
 	if (teamsArr[index][3] == 'Complete'){
 		$('.map-inspectstatus').addClass('levelFive');
 	}
@@ -60,7 +61,7 @@ function mapTeamInspectStatus(index){
 function clear(){
 	$('.red').removeClass('red');
 	$('.blue').removeClass('blue');
-	$('.key').css('display','none');
+	$('key').css('display','none');
 }
 function clearInspectionStatus(){
 	$('#frame .levelFive').removeClass('levelFive');
@@ -69,7 +70,7 @@ function clearInspectionStatus(){
 	$('#frame .levelTwo').removeClass('levelTwo');
 	$('#frame .levelOne').removeClass('levelOne');
 	$('#frame .levelSix').removeClass('levelSix');
-	$('#frame .levelSix').removeClass('levelSeven');
+	$('#frame .levelSeven').removeClass('levelSeven');
 }
 function openTab(evt, tab) {
     // Declare all variables
@@ -100,6 +101,8 @@ function resizeMap(viewportWidth) {
     var translateY = ((heightFrame * scale) - heightFrame) / 2;
     $('.map-page').css({ 'transform': 'translate('+translateX+'px, '+translateY+'px) scale(' + scale + ',' + scale + ')', 'margin-right': '0px !important'  });
     $('.container-map-outer').css({ 'height': heightFrame * scale+'px', 'width':widthFrame*scale+'px'});
+    $('.table-text').css('-webkit-user-modify', 'read-only');
+    $('.table-text').css('cursor', 'default');
 }
 function resizeMapDesktop(viewportHeight) {
   var widthFrame = frameWidth;
@@ -112,9 +115,11 @@ function resizeMapDesktop(viewportHeight) {
   var translateY = ((heightFrame * scale) - heightFrame) / 2;
   $('.map-page').css({ 'transform': 'translate(' + translateX + 'px, ' + translateY + 'px) scale(' + scale + ',' + scale + ')', 'margin-right': '0px !important' });
   $('.container-map-outer').css({ 'height': heightFrame * scale + 'px', 'width': widthFrame * scale + 'px' });
+  $('.table-text').css('-webkit-user-modify', 'read-only');
+  $('.table-text').css('cursor', 'default');
 }
 
-$(document).ready(function() {		
+$(document).ready(function() {
     $('#frame').html(mapCode);
 	if((frameWidth && frameWidth != 0) && (frameHeight && frameHeight !=0)){
 		$('#frame').css('width', frameWidth);
@@ -155,14 +160,9 @@ $(document).ready(function() {
         resizeMapDesktop(viewportHeight);
     }
 
-      //$('.map-main').css('height', viewportHeight+90);
-      //$('.tabcontent').css('height', viewportHeight-94);
-
-
 	$('.select-teams').on('click',function(e){
 		e.preventDefault();
 		clear();
-		boxColor();
 		$('.selected-team').removeClass('selected-team');
 		$('.btn-m').html('Select a Match <span class="caret"></span>');
 		var id = $(this).attr('id');
@@ -312,13 +312,13 @@ $(document).ready(function() {
 		$('#inspectionstatus option[value="'+teamsArr[index][3]+'"]').prop('selected',true);
 	});
 	$('.return').on('click',function(){
-        $('.pitmap-btn-container').css('display', '');
+    $('.pitmap-btn-container').css('display', '');
 		$('.map-page-team').css('display','none');
 		$('.container-map-centered').css('display','');
-        $('.status-text-container').css('display', '');
-        if($('.btn-inspection-hide').css('display') == 'block'){
-          boxColor();
-        }
+    $('.status-text-container').css('display', '');
+    if($('.btn-inspection-hide').css('display') == 'block'){
+       boxColor();
+    }
 	});
 	$(".inspect").click(function() {
 		var team = $(".map-teamnum").text();  

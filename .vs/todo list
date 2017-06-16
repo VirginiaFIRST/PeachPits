@@ -1,0 +1,9 @@
+To-Dos
+
+- Inspectors can make changes to any event, not just the one they are assigned to.
+- For inspectors, admin dashboard dropdown not displaying correct events
+- Admin dashboard event dropdown sizing is off
+- On mobile, the navbar dropdown for the event list needs style adjustments
+- On mobile, pitmap now overlaps header when a certain size (possibly revert a recent change by me to fix this?)
+- The "line" to rezise odd shaped pits
+- Maybe add the pitmap key to the regular pitmap screen
