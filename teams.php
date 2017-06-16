@@ -17,7 +17,7 @@
 	</div>
 </div>
 <div class="container content">
-	<div class="table-responsive">
+	<div class="table-responsive table-teams">
 		<table class="table table-hover sortable">
 			<thead>
 				<th><strong>Team #</strong></th>
@@ -44,18 +44,6 @@
 		</table>
 	</div>
 </div>
-
-<style>
-  
-  @media screen and (max-width:768px){
-    #teamname{
-    max-width: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-</style>
 
 
 <?php } include "footer.php"; ?>

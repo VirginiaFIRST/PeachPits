@@ -1,6 +1,5 @@
 <?php 
 	include "header.php"; 
-
 	
 	if (empty($currentEvent)) {
 		echo '<script>window.location="chooseevent.php"</script>';
@@ -10,7 +9,7 @@
 		$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
 		$row = mysqli_fetch_assoc($sql);
 		$eventName = $row['eventname'];
-    $teamid = $row['teamid'];
+        $teamid = $row['teamid'];
 		
 		$eventMatches = $currentEvent."_matches";
 		$sqlMatches = $mysqli->query("SELECT * FROM `".$eventMatches."` WHERE `matchtype` LIKE 'qm' ORDER BY matchnumber ASC");
@@ -50,7 +49,7 @@
 				$inspectStatuses[$i][5] = $rowTeams['initial_inspector']; 
 				$inspectStatuses[$i][6] = $rowTeams['last_modified_by']; 
 				$inspectStatuses[$i][7] = $rowTeams['last_modified_time']; 
-        $inspectStatuses[$i][8] = $rowTeams['schoolname'];
+                $inspectStatuses[$i][8] = $rowTeams['schoolname'];
 				$i = $i + 1;
 			}
 			$jsArr = json_encode($inspectStatuses);
@@ -102,7 +101,7 @@
 						while($row = mysqli_fetch_array($sqlMatches, MYSQLI_BOTH)){
 							echo '<li id="'.$row['red1'].'-'.$row['red2'].'-'.$row['red3'].'-'.$row['blue1'].'-'.$row['blue2'].'-'.$row['blue3'].'-" class="select-matches"><a href="#" class="a-sm">#' . $row['matchnumber'] . '<span class="sm-vs">:</span> <span class="sm-red">'.$row['red1'].'|'.$row['red2'].'|'.$row['red3'].'</span> <span class="sm-vs">vs.</span> <span class="sm-blue">'.$row['blue1'].'|'.$row['blue2'].'|'.$row['blue3'].'</span></a></li>';
 						}	 
-					?>	
+                    ?>	
 					</ul>
 				</div>
 			</div>
@@ -120,112 +119,82 @@
 </div>
 <div class="container" style="padding:0px !important;">
 	<div class="container-map-centered map-main">
-		<div class="container-map-outer"><div id="frame" class="container-map map-page"></div></div>
-		<div class="map-page-team">
-			<div style="padding-top: 6px; padding-bottom: 6px;"><a class="return btn btn-default" style="width:75%; 50; display: block; margin: 0 auto;"><span class="glyphicon glyphicon-chevron-left"></span> Return to Map</a></div>
-			<div class="team-title">
-				<h3 style="margin-top:0px;"><span class="map-teamnum"></span> <small class="map-teamname"></small></h3>
-			</div>
-      <script>
-        function openTab(evt, tab) {
-          // Declare all variables
-          var i, tabcontent, tablinks;
-          // Get all elements with class="tabcontent" and hide them
-          tabcontent = document.getElementsByClassName("tabcontent");
-          for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-          }
-          // Get all elements with class="tablinks" and remove the class "active"
-          tablinks = document.getElementsByClassName("tablinks");
-          for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-            tablinks[i].id
-          }
-          // Show the current tab, and add an "active" class to the button that opened the tab
-          document.getElementById(tab).style.display = "block";
-          evt.currentTarget.className += " active";
-        }
-      </script>
-
-      <div class="team-tab">
-        <input type="button" class="tablinks"        id="tabinfo"       onclick="openTab(event, 'teaminfo')"        value="Team Info" >
-        <input type="button" class="tablinks active" id="tabinspection" onclick="openTab(event, 'teaminspection' )" value="Inspection">
-        <input type="button" class="tablinks"        id="tabmatches"    onclick="openTab(event, 'teammatches')"     value="Matches">
-      </div>
-      <div id="teaminfo" class="tabcontent">
-        <h4><b>Location: </b></h4><p class="pull-left map-teamlocation"></p>
-				<div class="clearfix"></div>
-        <h4><b>School Name: </b></h4><p class="map-schoolname" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical;"></p>
-      </div>
-
-      <div id="teaminspection" class="tabcontent">
-        <h4><b>Inspection Status: </b></h4><p class="map-inspectstatus text-center"></p>
-				<?php if(isInspector($role) || isLeadInspector($role) || isSuperAdmin($role)){ ?>
-				  <input type="hidden" name="teamid" id="inspectNumInline">
-					<select name="inspectionstatus" id="inspectionstatus" class="form-control pull-left">
-						<option value="Complete">Complete</option>
-						<option value="Major Issue">Major Issue</option>
-						<option value="Minor Issue">Minor Issue</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Weighed and Sized">Weighed and Sized</option>
-						<option value="Ok to unbag">Ok to unbag</option>
-						<option value="Not Started">Not Started</option>
-					</select>
-          <button  type="submit" class="btn btn-default change-status pull-right" name="submit">Change Status</button>
-					
-				  <div class="clearfix"></div>
-				  <h4><b>Inspection Notes: </b></h4>
-					<textarea class="form-control map-inspectnotes" style="width:100%; resize:none; height:150px; margin-bottom:5px;" name="inspectionnotes"></textarea><br/>
-					<button type="submit" class="btn btn-default pull-right save-note" name="submit">Save Note</button>
-				  <div class="clearfix"></div>
-				    <h4><b>Initial Inspector: </b></h4><p class="map-initialinspector"></p>
-				    <h4><b>Last Modified By: </b></h4><p class="map-inspectmodifiedby"></p>
-				    <h4><b>Last Modified Time: </b></h4><p class="map-inspectmodifiedtime"></p>
-				<?php } ?>
-      </div>
-
-      <div id="teammatches" class="tabcontent">
-        <table id="table-team-matches-mobile" class="table">
-			    <?php
-             
-				    $sql = $mysqli->query("SELECT * FROM `".$events."'");//"` WHERE `matchtype` LIKE 'qm' AND `red1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red3` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND`blue1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue3` LIKE '$teamid' ORDER BY matchnumber ASC");
-				    if(mysqli_num_rows($sql) != 0){
-              echo '<thead>';
-              echo   '<tr>';
-              echo     '<td rowspan="2" style="vertical-align:middle"><b>Match</b></td>';
-              echo     '<td rowspan="2" class="text-center" style="vertical-align:middle"><b>Time</b></td>';
-              echo     '<td colspan="3" class="text-center"><b>Driver\'s Station</b></td>';
-              echo     '<td rowspan="2" rowclass="text-center" class="text-center" style="vertical-align:middle"><b>Pit</b></td>';
-              echo   '</tr>';
-              echo   '<tr>';
-              echo     '<td class="text-center"><b>1</b></td>';
-              echo     '<td class="text-center"><b>2</b></td>';
-              echo     '<td class="text-center"><b>3</b></td>';
-              echo   '</tr>';
-              echo '</thead>';
-					    while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-					  	  echo "<tr id='". $row['matchid'] ."'>";
-					  	  echo "<td rowspan='2' style='width:7%; padding-left: 15px; vertical-align:middle;' id='matchnumber'>". $row['matchnumber'] ."</td>";
-					  	  echo "<td rowspan='2' style='width:7%; vertical-align: middle;' id='starttime'>". $row['start'] ."</td>";
-					  	  if($teamid == $row['red1']){echo "<td id='red1' class='red text-center'><b>". $row['red1'] ."</b></td>";} else {echo "<td id='red1' class='red text-center'>". $row['red1'] ."</td>";}
-					  	  if($teamid == $row['red2']){echo "<td id='red2' class='red text-center'><b>". $row['red2'] ."</b></td>";} else {echo "<td id='red2' class='red text-center'>". $row['red2'] ."</td>";}
-					  	  if($teamid == $row['red3']){echo "<td id='red3' class='red text-center'><b>". $row['red3'] ."</b></td>";} else {echo "<td id='red3' class='red text-center'>". $row['red3'] ."</td>";}
-					    	echo "<td rowspan='2' class='text-center' style='vertical-align:middle'><a href='pitmap.php?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
-					  	  echo "</tr>";
-                echo "<tr id='". $row['mactchid'] ."'>";
-             	  if($teamid == $row['blue1']){echo "<td id='blue1' class='blue text-center'><b>". $row['blue1'] ."</b></td>";} else {echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";}
-					  	  if($teamid == $row['blue2']){echo "<td id='blue2' class='blue text-center'><b>". $row['blue2'] ."</b></td>";} else {echo "<td id='blue2' class='blue text-center'>". $row['blue2'] ."</td>";}
-					  	  if($teamid == $row['blue3']){echo "<td id='blue3' class='blue text-center'><b>". $row['blue3'] ."</b></td>";} else {echo "<td id='blue3' class='blue text-center'>". $row['blue3'] ."</td>";}
-					    }		
-				    }
-				    else{
-					    echo '<div class="container-fluid" style="background-color:#F5B7B1; padding:10px;margin:20px;"><h2 class="text-center" style="margin-top:10px;">There\'s no match schedule yet! Please check back soon.</h2></div>';
-				    }	
-			    ?>
-		    </table>
-      </div>
-		</div>
+		<div class="container-map-outer"><div id="frame" class="container-map map-page"></div></div>     
 	</div>
+    <div class="map-page-team">
+            <a class="return btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Return to Map</a>
+            <div class="team-title">
+                <h3 style="margin-top:0px;"><span class="map-teamnum"></span> <small class="map-teamname"></small></h3>
+            </div>
+            <div class="team-tab">
+                <input type="button" class="tablinks" id="tabinfo" onclick="openTab(event, 'teaminfo')" value="Team Info">
+                <input type="button" class="tablinks active" id="tabinspection" onclick="openTab(event, 'teaminspection' )" value="Inspection">
+                <input type="button" class="tablinks" id="tabmatches" onclick="openTab(event, 'teammatches')" value="Matches">
+            </div>
+            <div id="teaminfo" class="tabcontent">
+                <h4><b>Location: </b></h4><p class="pull-left map-teamlocation"></p>
+                <div class="clearfix"></div>
+                <h4><b>School Name: </b></h4><p class="map-schoolname" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical;"></p>
+            </div>
+
+            <div id="teaminspection" class="tabcontent">
+                <h4><b>Inspection Status: </b></h4><p class="map-inspectstatus text-center"></p>
+                <?php if(isInspector($role) || isLeadInspector($role) || isSuperAdmin($role)){ ?>
+                    <input type="hidden" name="teamid" id="inspectNumInline">
+                    <select name="inspectionstatus" id="inspectionstatus" class="form-control pull-left">
+                        <option value="Complete">Complete</option>
+                        <option value="Major Issue">Major Issue</option>
+                        <option value="Minor Issue">Minor Issue</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Weighed and Sized">Weighed and Sized</option>
+                        <option value="Ok to unbag">Ok to unbag</option>
+                        <option value="Not Started">Not Started</option>
+                    </select>
+                    <button type="submit" class="btn btn-default change-status pull-right" name="submit">Change Status</button>
+
+                    <div class="clearfix"></div>
+                    <h4><b>Inspection Notes: </b></h4>
+                    <textarea class="form-control map-inspectnotes" name="inspectionnotes"></textarea>
+                    <button type="submit" class="btn btn-default pull-right save-note" name="submit">Save Note</button>
+                    <div class="clearfix"></div>
+                    <h4><b>Initial Inspector: </b></h4><p class="map-initialinspector"></p>
+                    <h4><b>Last Modified By: </b></h4><p class="map-inspectmodifiedby"></p>
+                    <h4><b>Last Modified Time: </b></h4><p class="map-inspectmodifiedtime"></p>
+                <?php } ?>
+            </div>
+
+            <div id="teammatches" class="tabcontent">
+                <table id="table-team-matches" class="table table-hover" style="margin-top:20px;">
+                    <thead>
+                        <tr>
+                            <td class="text-center"><b>Match #</b></td>
+                            <td class="text-center"><b>Start Time</b></td>
+                            <td class="text-center"><b>Red 1</b></td>
+                            <td class="text-center"><b>Red 2</b></td>
+                            <td class="text-center"><b>Red 3</b></td>
+                            <td class="text-center"><b>Red 1</b></td>
+                            <td class="text-center"><b>Red 2</b></td>
+                            <td class="text-center"><b>Red 3</b></td>
+                        </tr>
+                    </thead>
+                </table>
+                <table id="table-team-matches-mobile" class="table">
+                    <thead>
+                        <tr>
+                            <td rowspan="2" style="vertical-align:middle"><b>Match</b></td>
+                            <td rowspan="2" class="text-center" style="vertical-align:middle"><b>Time</b></td>
+                            <td colspan="3" class="text-center"><b>Driver's Station</b></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><b>1</b></td>
+                            <td class="text-center"><b>2</b></td>
+                            <td class="text-center"><b>3</b></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    
 </div>
 
 <?php } include "footer.php"; ?>

@@ -136,3 +136,73 @@ body {
     margin-bottom:10px;
   }
 }
+
+
+/*****************************************************
+                        Matches
+*****************************************************/
+
+#table-team-matches {
+    display: table;
+    border: 1px solid lightgray;
+    padding: 10px;
+}
+
+#table-team-matches-mobile {
+    display: none;
+}
+
+#team-matches-none {
+    display: block;
+}
+
+#team-matches-none-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    #table-team-matches {
+        display: none;
+    }
+
+    #table-team-matches-mobile {
+        word-wrap: break-word;
+        display: table;
+    }
+
+    #team-matches-none {
+        display: none;
+    }
+
+    #team-matches-none-mobile {
+        display: block;
+    }
+}
+
+#table-team-matches-mobile #matchnumber {
+    width: 7%;
+    padding-left: 15px;
+    vertical-align: middle;
+}
+
+#table-team-matches-mobile #starttime {
+    width: 7%;
+    vertical-align: middle;
+}
+
+/*****************************************************
+                        Teams
+*****************************************************/
+
+.table-teams {
+    border: 1px solid #ddd;
+}
+
+@media screen and (max-width:768px) {
+    #teamname {
+        max-width: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

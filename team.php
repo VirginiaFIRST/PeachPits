@@ -116,38 +116,5 @@
 	</div>
 </div>
 
-<style>
-  #table-team-matches{
-    display: table;
-    border: 1px solid lightgray;
-    padding: 10px;
-  }
-  #table-team-matches-mobile{
-    display: none;
-  }
-  #team-matches-none{
-      display: block;
-  }
-  #team-matches-none-mobile{
-      display: none;
-  }
-  
-  @media screen and (max-width: 768px){
-    #table-team-matches{
-      display: none;
-    }
-    #table-team-matches-mobile{
-      word-wrap: break-word;
-      display: table;
-    }
-    #team-matches-none{
-      display: none;
-    }
-    #team-matches-none-mobile{
-      display: block;
-    }
-  }
-</style>
-
 
 <?php include "footer.php"; ?>
