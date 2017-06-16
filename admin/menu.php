@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 <script src="admin/js/dashboard.js"></script>
 
+=======
+>>>>>>> 1169245432cde1911366a50b6da66edc29cbc04b
 <div class="container-fluid" style="padding-left:0px; padding-right:0px; min-height:100%; position:relative;height: auto !important; height: 100%;">
     <!-- Dashboard Sidebar -->
     <div class="col-md-2 profile-sidebar">
@@ -16,6 +19,7 @@
               ?>
               <span class="caret"></span>
             </button>
+<<<<<<< HEAD
             <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">             		    
 			    <?php                       
                     if(isSuperAdmin($role)){
@@ -48,6 +52,38 @@
                         }
                     }
                 ?> 
+=======
+            <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
+              <li class="disabled"><a href="#"><b>Current: </b><?php echo $row['eventname']; ?></a></li>
+              <li role="separator" class="divider"></li>
+              <?php 
+                if (isSuperAdmin($role)){
+                  $sql = $mysqli->query("SELECT * FROM `events`");
+                  while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                    if($row['eventid'] != $currentEvent){
+                      echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                    }
+                  }
+                }
+                else{
+                  $sqlEventsStr;
+                  $index = 0;
+                  foreach($eventsArr as $singleEvent){
+                      $str = $eventsArr[$index];
+                      $arr = explode('@',$str);
+                      $singleEvent = $arr[1];
+                      $sqlEventsStr[] = "`eventname` LIKE '".$singleEvent."'";
+                      $index++;
+                  }
+                  $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
+                  while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                    if($row['eventid'] != $currentEvent){
+                      echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                    }
+                  }
+                }
+              ?>
+>>>>>>> 1169245432cde1911366a50b6da66edc29cbc04b
             </ul>
           </div>
         </div>
