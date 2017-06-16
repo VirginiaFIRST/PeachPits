@@ -1,10 +1,12 @@
-//Adds inspection status color to each box
+
+//Allows use of .includes on IE11
 if (!String.prototype.includes) {
   String.prototype.includes = function () {
     'use strict';
     return String.prototype.indexOf.apply(this, arguments) !== -1;
   };
 }
+//Adds inspection status color to each box
 function boxColor() {
     console.log('boxColor run');
 	for (var i=0; i < teamsArr.length; i++){
@@ -69,6 +71,24 @@ function clearInspectionStatus(){
 	$('#frame .levelSix').removeClass('levelSix');
 	$('#frame .levelSix').removeClass('levelSeven');
 }
+function openTab(evt, tab) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        tablinks[i].id
+    }
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tab).style.display = "block";
+    evt.currentTarget.className += " active";
+}
 function resizeMap(viewportWidth) {
     var widthFrame = frameWidth;
     var heightFrame = frameHeight;
@@ -93,6 +113,7 @@ function resizeMapDesktop(viewportHeight) {
   $('.map-page').css({ 'transform': 'translate(' + translateX + 'px, ' + translateY + 'px) scale(' + scale + ',' + scale + ')', 'margin-right': '0px !important' });
   $('.container-map-outer').css({ 'height': heightFrame * scale + 'px', 'width': widthFrame * scale + 'px' });
 }
+
 $(document).ready(function() {		
     $('#frame').html(mapCode);
 	if((frameWidth && frameWidth != 0) && (frameHeight && frameHeight !=0)){
@@ -127,14 +148,15 @@ $(document).ready(function() {
 
     var viewportWidth = $(window).width();
     var viewportHeight = $(window).height()-325;
-    if (viewportWidth < 768) {
+    if (viewportWidth <= 768) {
         resizeMap(viewportWidth);
-    } else{
+    }
+    else {
         resizeMapDesktop(viewportHeight);
     }
 
-  $('.map-main').css('height', viewportHeight+90);
-  $('.tabcontent').css('height', viewportHeight-94);
+      //$('.map-main').css('height', viewportHeight+90);
+      //$('.tabcontent').css('height', viewportHeight-94);
 
 
 	$('.select-teams').on('click',function(e){
@@ -199,11 +221,48 @@ $(document).ready(function() {
 	
 	//Fires when a team pit is clicked, shows detailed team info
 	$('.box').on('click',function(){ 
+        var id = $(this).children('.box-num').attr('id');
+        $('.status-text-container').css('display', 'none');
+        $('.pitmap-btn-container').css('display', 'none');
 
-    $('.status-text-container').css('display', 'none');
-    $('.pitmap-btn-container').css('display', 'none');
-    
+        $('#table-team-matches-mobile .matchrow').remove();
+        $('#table-team-matches .matchrow').remove();
+        var teamSchd;
+        $.ajax({
+            url: 'getTeamSchedule.php?event=' + currentEvent + '&team=' + id,
+            type: 'POST',
+            success: function (data) {
+                teamSchd = [];
+                teamSchd = data;
+                for (var i = 0; i < teamSchd.length; i++) {
+                    //Mobile Table
+                    var row = '';
+                    row = '<tr class="matchrow"><td rowspan="2" id="matchnumber">' + teamSchd[i]['matchnumber'] + '</td><td rowspan="2" id="starttime">' + teamSchd[i]['start'] + '</td>';
+                    if (id == teamSchd[i]['red1']) { row = row + '<td id="red1" class="red text-center"><b>' + teamSchd[i]['red1'] + '</b></td>' } else { row = row + '<td id="red1" class="red text-center">' + teamSchd[i]['red1']+'</td>' }
+                    if (id == teamSchd[i]['red2']) { row = row + '<td id="red2" class="red text-center"><b>' + teamSchd[i]['red2'] + '</b></td>' } else { row = row + '<td id="red2" class="red text-center">' + teamSchd[i]['red2'] + '</td>' }
+                    if (id == teamSchd[i]['red3']) { row = row + '<td id="red3" class="red text-center"><b>' + teamSchd[i]['red3'] + '</b></td>' } else { row = row + '<td id="red3" class="red text-center">' + teamSchd[i]['red3'] + '</td>' }
+                    row = row + '</tr><tr class="matchrow">';
+                    if (id == teamSchd[i]['blue1']) { row = row + '<td id="blue1" class="blue text-center"><b>' + teamSchd[i]['blue1'] + '</b></td>' } else { row = row + '<td id="blue1" class="blue text-center">' + teamSchd[i]['blue1'] + '</td>' }
+                    if (id == teamSchd[i]['blue2']) { row = row + '<td id="blue2" class="blue text-center"><b>' + teamSchd[i]['blue2'] + '</b></td>' } else { row = row + '<td id="blue2" class="blue text-center">' + teamSchd[i]['blue2'] + '</td>' }
+                    if (id == teamSchd[i]['blue3']) { row = row + '<td id="blue3" class="blue text-center"><b>' + teamSchd[i]['blue3'] + '</b></td>' } else { row = row + '<td id="blue3" class="blue text-center">' + teamSchd[i]['blue3'] + '</td>' }
+                    row = row + '</tr>';
+                    $('#table-team-matches-mobile').append(row);
 
+                    //Desktop Table
+                    var row = '';
+                    row = '<tr class="matchrow"><td id="matchnumber" class="text-center">' + teamSchd[i]['matchnumber'] + '</td><td id="starttime" class="text-center">' + teamSchd[i]['start'] + '</td>';
+                    if (id == teamSchd[i]['red1']) { row = row + '<td id="red1" class="red text-center"><b>' + teamSchd[i]['red1'] + '</b></td>' } else { row = row + '<td id="red1" class="red text-center">' + teamSchd[i]['red1'] + '</td>' }
+                    if (id == teamSchd[i]['red2']) { row = row + '<td id="red2" class="red text-center"><b>' + teamSchd[i]['red2'] + '</b></td>' } else { row = row + '<td id="red2" class="red text-center">' + teamSchd[i]['red2'] + '</td>' }
+                    if (id == teamSchd[i]['red3']) { row = row + '<td id="red3" class="red text-center"><b>' + teamSchd[i]['red3'] + '</b></td>' } else { row = row + '<td id="red3" class="red text-center">' + teamSchd[i]['red3'] + '</td>' }
+                    if (id == teamSchd[i]['blue1']) { row = row + '<td id="blue1" class="blue text-center"><b>' + teamSchd[i]['blue1'] + '</b></td>' } else { row = row + '<td id="blue1" class="blue text-center">' + teamSchd[i]['blue1'] + '</td>' }
+                    if (id == teamSchd[i]['blue2']) { row = row + '<td id="blue2" class="blue text-center"><b>' + teamSchd[i]['blue2'] + '</b></td>' } else { row = row + '<td id="blue2" class="blue text-center">' + teamSchd[i]['blue2'] + '</td>' }
+                    if (id == teamSchd[i]['blue3']) { row = row + '<td id="blue3" class="blue text-center"><b>' + teamSchd[i]['blue3'] + '</b></td>' } else { row = row + '<td id="blue3" class="blue text-center">' + teamSchd[i]['blue3'] + '</td>' }
+                    row = row + '</tr>';
+                    $('#table-team-matches').append(row);
+                }
+            },
+            dataType: 'json'
+        });
 
 		$('.levelFive').removeClass('levelFive');
 		$('.levelFour').removeClass('levelFour');
@@ -214,21 +273,20 @@ $(document).ready(function() {
 		
 		$('.map-page-team').css('display','block');
     
-    $('#tabinfo').removeClass('active')
-    $('#tabmatches').removeClass('active');
-    $('#tabinspection').addClass('active');
+        $('#tabinfo').removeClass('active')
+        $('#tabmatches').removeClass('active');
+        $('#tabinspection').addClass('active');
 
-    $('#teaminspection').scrollTop(0);
-    $('#teaminfo').scrollTop(0);
-    $('#teammatches').scrollTop(0);
+        $('#teaminspection').scrollTop(0);
+        $('#teaminfo').scrollTop(0);
+        $('#teammatches').scrollTop(0);
 
-    $('#teaminspection').css('display', 'block');
-    $('#teaminfo').css('display', 'none');
-    $('#teammatches').css('display', 'none');
-		$('.container-map-outer').css('display','none');
+        $('#teaminspection').css('display', 'block');
+        $('#teaminfo').css('display', 'none');
+        $('#teammatches').css('display', 'none');
+		$('.container-map-centered').css('display','none');
 		
 		var index;
-		var id = $(this).children('.box-num').attr('id');
 		for(var j = 0; j < teamsArr.length; j++) {
 			if(teamsArr[j][0] == id) {
 				index = j;
@@ -254,13 +312,13 @@ $(document).ready(function() {
 		$('#inspectionstatus option[value="'+teamsArr[index][3]+'"]').prop('selected',true);
 	});
 	$('.return').on('click',function(){
-    $('.pitmap-btn-container').css('display', 'block');
+        $('.pitmap-btn-container').css('display', '');
 		$('.map-page-team').css('display','none');
-		$('.container-map-outer').css('display','block');
-    $('.status-text-container').css('display', 'block');
-    if($('.btn-inspection-hide').css('display') == 'block'){
-      boxColor();
-    }
+		$('.container-map-centered').css('display','');
+        $('.status-text-container').css('display', '');
+        if($('.btn-inspection-hide').css('display') == 'block'){
+          boxColor();
+        }
 	});
 	$(".inspect").click(function() {
 		var team = $(".map-teamnum").text();  
