@@ -61,7 +61,7 @@ function mapTeamInspectStatus(index){
 function clear(){
 	$('.red').removeClass('red');
 	$('.blue').removeClass('blue');
-	$('key').css('display','none');
+	$('.key').css('display','none');
 }
 function clearInspectionStatus(){
 	$('#frame .levelFive').removeClass('levelFive');
@@ -269,21 +269,22 @@ $(document).ready(function() {
 		$('.levelThree').removeClass('levelThree');
 		$('.levelTwo').removeClass('levelTwo');
 		$('.levelOne').removeClass('levelOne');
-        $('.levelSix').removeClass('levelSix');
+    $('.levelSix').removeClass('levelSix');
 		
 		$('.map-page-team').css('display','block');
     
-        $('#tabinfo').removeClass('active')
-        $('#tabmatches').removeClass('active');
-        $('#tabinspection').addClass('active');
+    $('#tabinfo').removeClass('active')
+    $('#tabmatches').removeClass('active');
+    $('#tabinspection').addClass('active');
 
-        $('#teaminspection').scrollTop(0);
-        $('#teaminfo').scrollTop(0);
-        $('#teammatches').scrollTop(0);
+    $('#teaminspection').scrollTop(0);
+    $('#teaminfo').scrollTop(0);
+    $('#teammatches').scrollTop(0);
 
-        $('#teaminspection').css('display', 'block');
-        $('#teaminfo').css('display', 'none');
-        $('#teammatches').css('display', 'none');
+    $('#teaminspection').css('display', 'block');
+    $('#teaminfo').css('display', 'none');
+    $('#teammatches').css('display', 'none');
+    
 		$('.container-map-centered').css('display','none');
 		
 		var index;
