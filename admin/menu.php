@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 <script src="admin/js/dashboard.js"></script>
 
-=======
->>>>>>> 1169245432cde1911366a50b6da66edc29cbc04b
 <div class="container-fluid" style="padding-left:0px; padding-right:0px; min-height:100%; position:relative;height: auto !important; height: 100%;">
     <!-- Dashboard Sidebar -->
     <div class="col-md-2 profile-sidebar">
@@ -13,77 +10,44 @@
           <div class="dropdown">     
             <button class="btn btn-default dropdown-toggle" style="max-width:90%; white-space:normal;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <?php
-                $sql = $mysqli->query("SELECT `eventname` FROM `events` WHERE `eventid` LIKE '$currentEvent'");
-                $row = mysqli_fetch_assoc($sql);
-                echo $row['eventname'];
+              $sql = $mysqli->query("SELECT `eventname` FROM `events` WHERE `eventid` LIKE '$currentEvent'");
+              $row = mysqli_fetch_assoc($sql);
+              echo $row['eventname'];
               ?>
               <span class="caret"></span>
             </button>
-<<<<<<< HEAD
             <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">             		    
 			    <?php                       
-                    if(isSuperAdmin($role)){
-                        echo '<li><input type="text" id="event-filter-field" class="form-control" placeholder="Search All Events"></li><li class="divider"></li>';	
-                        echo '<div class="dropdown-events-all"><table id="events-all">';
-                        $sql = $mysqli->query("SELECT * FROM `events`");      
-                        //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
-				        while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-					        echo '<tr href="admin/dashboard.php?event=' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
-					    }
-					    echo '<tr href="admin/manage-events.php?event="><td><font color= red> Manage Events </font></td></tr>';
-                        echo '</table></div>';
+                if(isSuperAdmin($role)){
+                    echo '<li><input type="text" id="event-filter-field" class="form-control" placeholder="Search All Events"></li><li class="divider"></li>';	
+                    echo '<div class="dropdown-events-all"><table id="events-all">';
+                    $sql = $mysqli->query("SELECT * FROM `events`");      
+                    //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
+                    while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                        echo '<tr href="admin/dashboard.php?event=' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
                     }
-                    else{
-                        echo '<li class="disabled"><a href="#"><b>Current: </b>'.$row['eventname'].'</a></li><li role="separator" class="divider"></li>';
-                        $sqlEventsStr;
-                        $index = 0;
-                        foreach($eventsArr as $singleEvent){
-                            $str = $eventsArr[$index];
-                            $arr = explode('@',$str);
-                            $singleEvent = $arr[1];
-                            $sqlEventsStr[] = "`eventname` LIKE '".$singleEvent."'";
-                            $index++;
-                        }
-                        $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
-                        while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                            if($row['eventid'] != $currentEvent){
-                                echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
-                            }
-                        }
-                    }
-                ?> 
-=======
-            <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
-              <li class="disabled"><a href="#"><b>Current: </b><?php echo $row['eventname']; ?></a></li>
-              <li role="separator" class="divider"></li>
-              <?php 
-                if (isSuperAdmin($role)){
-                  $sql = $mysqli->query("SELECT * FROM `events`");
-                  while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                    if($row['eventid'] != $currentEvent){
-                      echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
-                    }
-                  }
+                    echo '<tr href="admin/manage-events.php?event="><td><font color= red> Manage Events </font></td></tr>';
+                    echo '</table></div>';
                 }
                 else{
-                  $sqlEventsStr;
-                  $index = 0;
-                  foreach($eventsArr as $singleEvent){
-                      $str = $eventsArr[$index];
-                      $arr = explode('@',$str);
-                      $singleEvent = $arr[1];
-                      $sqlEventsStr[] = "`eventname` LIKE '".$singleEvent."'";
-                      $index++;
-                  }
-                  $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
-                  while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                    if($row['eventid'] != $currentEvent){
-                      echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                    echo '<li class="disabled"><a href="#"><b>Current: </b>'.$row['eventname'].'</a></li><li role="separator" class="divider"></li>';
+                    $sqlEventsStr;
+                    $index = 0;
+                    foreach($eventsArr as $singleEvent){
+                        $str = $eventsArr[$index];
+                        $arr = explode('@',$str);
+                        $singleEvent = $arr[1];
+                        $sqlEventsStr[] = "`eventname` LIKE '".$singleEvent."'";
+                        $index++;
                     }
-                  }
+                    $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
+                    while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                        if($row['eventid'] != $currentEvent){
+                            echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                        }
+                    }
                 }
-              ?>
->>>>>>> 1169245432cde1911366a50b6da66edc29cbc04b
+                ?> 
             </ul>
           </div>
         </div>
@@ -112,43 +76,43 @@
             <div class="dropdown">     
               <button class="btn btn-default dropdown-toggle" style="max-width:90%; white-space:normal;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <?php
-                  $sql = $mysqli->query("SELECT `eventname` FROM `events` WHERE `eventid` LIKE '$currentEvent'");
-                  $row = mysqli_fetch_assoc($sql);
-                  echo $row['eventname'];
+                $sql = $mysqli->query("SELECT `eventname` FROM `events` WHERE `eventid` LIKE '$currentEvent'");
+                $row = mysqli_fetch_assoc($sql);
+                echo $row['eventname'];
                 ?>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
 			    <?php                       
-                    if(isSuperAdmin($role)){
-                        echo '<li><input type="text" id="event-filter-field" class="form-control" placeholder="Search All Events"></li><li class="divider"></li>';	
-                        echo '<div class="dropdown-events-all"><table id="events-all">';
-                        $sql = $mysqli->query("SELECT * FROM `events`");      
-                        //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
-                        while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                            echo '<tr href="admin/dashboard.php?event=' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
-                        }
-                        echo '<tr href="admin/manage-events.php?event="><td><font color= red> Manage Events </font></td></tr>';
-                        echo '</table></div>';
+                if(isSuperAdmin($role)){
+                    echo '<li><input type="text" id="event-filter-field" class="form-control" placeholder="Search All Events"></li><li class="divider"></li>';	
+                    echo '<div class="dropdown-events-all"><table id="events-all">';
+                    $sql = $mysqli->query("SELECT * FROM `events`");      
+                    //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
+                    while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                        echo '<tr href="admin/dashboard.php?event=' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
                     }
-                    else{
-                        echo '<li class="disabled"><a href="#"><b>Current: </b>'.$row['eventname'].'</a></li><li role="separator" class="divider"></li>';
-                        $sqlEventsStr;
-                        $index = 0;
-                        foreach($eventsArr as $singleEvent){
-                            $str = $eventsArr[$index];
-                            $arr = explode('@',$str);
-                            $singleEvent = $arr[1];
-                            $sqlEventsStr[] = "`eventname` LIKE '".$singleEvent."'";
-                            $index++;
-                        }
-                        $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
-                        while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                            if($row['eventid'] != $currentEvent){
-                                echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
-                            }
+                    echo '<tr href="admin/manage-events.php?event="><td><font color= red> Manage Events </font></td></tr>';
+                    echo '</table></div>';
+                }
+                else{
+                    echo '<li class="disabled"><a href="#"><b>Current: </b>'.$row['eventname'].'</a></li><li role="separator" class="divider"></li>';
+                    $sqlEventsStr;
+                    $index = 0;
+                    foreach($eventsArr as $singleEvent){
+                        $str = $eventsArr[$index];
+                        $arr = explode('@',$str);
+                        $singleEvent = $arr[1];
+                        $sqlEventsStr[] = "`eventname` LIKE '".$singleEvent."'";
+                        $index++;
+                    }
+                    $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
+                    while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                        if($row['eventid'] != $currentEvent){
+                            echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
                         }
                     }
+                }
                 ?> 
               </ul>
             </div>

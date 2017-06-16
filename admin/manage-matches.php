@@ -62,30 +62,30 @@
 				<div class="table-responsive">
 					<table class="table table-hover">
 						<thead>
-							<td><b>Match #</b></td>
-							<td><b>Start Time</b></td>
-							<td><b>Red 1</b></td>
-							<td><b>Red 2</b></td>
-							<td><b>Red 3</b></td>
-							<td><b>Blue 1</b></td>
-							<td><b>Blue 2</b></td>
-							<td><b>Blue 3</b></td>
-							<td></td>
+							<td class="text-center"><b>Match #</b></td>
+							<td class="text-center"><b>Start Time</b></td>
+							<td class="text-center"><b>Red 1</b></td>
+							<td class="text-center"><b>Red 2</b></td>
+							<td class="text-center"><b>Red 3</b></td>
+							<td class="text-center"><b>Blue 1</b></td>
+							<td class="text-center"><b>Blue 2</b></td>
+							<td class="text-center"><b>Blue 3</b></td>
+							<td class="text-center"></td>
 						</thead>
 						<?php 
 							//Fetch all messages and display
 							$sql = $mysqli->query("SELECT * FROM `".$currentEvent."_matches` WHERE `matchtype` LIKE 'qm' ORDER BY matchnumber ASC");
 							while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
 								echo "<tr id='". $row['matchid'] ."'>";
-								echo "<td id='matchnumber'>". $row['matchnumber'] ."</td>";
-								echo "<td id='starttime'>". $row['start'] ."</td>";
-								echo "<td id='red1'>". $row['red1'] ."</td>";
-								echo "<td id='red2'>". $row['red2'] ."</td>";
-								echo "<td id='red3'>". $row['red3'] ."</td>";
-								echo "<td id='blue1'>". $row['blue1'] ."</td>";
-								echo "<td id='blue2'>". $row['blue2'] ."</td>";
-								echo "<td id='blue3'>". $row['blue3'] ."</td>";
-								echo "<td><a href='#' class='edit' data-toggle='modal' data-target='#editMatch'>Edit</a>"; //Edit match link
+								echo "<td id='matchnumber' class='text-center'>". $row['matchnumber'] ."</td>";
+								echo "<td id='starttime' class='text-center'>". $row['start'] ."</td>";
+								echo "<td id='red1' class='text-center'>". $row['red1'] ."</td>";
+								echo "<td id='red2' class='text-center'>". $row['red2'] ."</td>";
+								echo "<td id='red3' class='text-center'>". $row['red3'] ."</td>";
+								echo "<td id='blue1' class='text-center'>". $row['blue1'] ."</td>";
+								echo "<td id='blue2' class='text-center'>". $row['blue2'] ."</td>";
+								echo "<td id='blue3' class='text-center'>". $row['blue3'] ."</td>";
+								echo "<td class='text-center'><a href='#' class='edit' data-toggle='modal' data-target='#editMatch'>Edit</a>"; //Edit match link
 								echo "</tr>";
 							}	
 						?>
