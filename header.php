@@ -10,7 +10,7 @@
         $sessionEmail = $_SESSION['email'];
     }
     
-    error_reporting(0);
+    //error_reporting(0);
     $filePath = "http://" . $_SERVER['SERVER_NAME'] . "/peachpits/";
     $currentEvent = $_GET['event'];
     

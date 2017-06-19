@@ -6,6 +6,7 @@
 	 
 	if(loggedOn()) {
     	include "menu.php";
+        $event = $currentEvent . "_matches";
 ?>
 <head><script src="admin/js/manageMatches.js"></script></head>
 
@@ -59,38 +60,71 @@
 				</form>
 			</div>
 			<div class="dashboard-content">
-				<div class="table-responsive">
-					<table class="table table-hover">
-						<thead>
-							<td class="text-center"><b>Match #</b></td>
-							<td class="text-center"><b>Start Time</b></td>
-							<td class="text-center"><b>Red 1</b></td>
-							<td class="text-center"><b>Red 2</b></td>
-							<td class="text-center"><b>Red 3</b></td>
-							<td class="text-center"><b>Blue 1</b></td>
-							<td class="text-center"><b>Blue 2</b></td>
-							<td class="text-center"><b>Blue 3</b></td>
-							<td class="text-center"></td>
-						</thead>
-						<?php 
-							//Fetch all messages and display
-							$sql = $mysqli->query("SELECT * FROM `".$currentEvent."_matches` WHERE `matchtype` LIKE 'qm' ORDER BY matchnumber ASC");
-							while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-								echo "<tr id='". $row['matchid'] ."'>";
-								echo "<td id='matchnumber' class='text-center'>". $row['matchnumber'] ."</td>";
-								echo "<td id='starttime' class='text-center'>". $row['start'] ."</td>";
-								echo "<td id='red1' class='text-center'>". $row['red1'] ."</td>";
-								echo "<td id='red2' class='text-center'>". $row['red2'] ."</td>";
-								echo "<td id='red3' class='text-center'>". $row['red3'] ."</td>";
-								echo "<td id='blue1' class='text-center'>". $row['blue1'] ."</td>";
-								echo "<td id='blue2' class='text-center'>". $row['blue2'] ."</td>";
-								echo "<td id='blue3' class='text-center'>". $row['blue3'] ."</td>";
-								echo "<td class='text-center'><a href='#' class='edit' data-toggle='modal' data-target='#editMatch'>Edit</a>"; //Edit match link
-								echo "</tr>";
-							}	
-						?>
-					</table>
-				</div>
+                <div id="tables-matches" class="table-responsive">
+                    <table id="table-team-matches" class="table table-hover">
+			            <?php 
+                        //Goes to the databse and fetches all matches in order
+                        $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qm' ORDER BY matchnumber ASC");
+                        echo '<thead>';
+                        echo '  <td class="text-center"><b>Match #</b></td>';
+                        echo '  <td class="text-center"><b>Start Time</b></td>';
+                        echo '  <td class="text-center"><b>Red 1</b></td>';
+                        echo '  <td class="text-center"><b>Red 2</b></td>';
+                        echo '  <td class="text-center"><b>Red 3</b></td>';
+                        echo '  <td class="text-center"><b>Red 1</b></td>';
+                        echo '  <td class="text-center"><b>Red 2</b></td>';
+                        echo '  <td class="text-center"><b>Red 3</b></td>';
+                        echo '  <td class="text-center"><b>Pit</b></td>';
+                        echo '</thead>';
+                        while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                            echo "<tr id='". $row['matchid'] ."'>";
+                            echo "<td style='width:8%; padding-left: 15px;' class='text-center' id='matchnumber'>". $row['matchnumber'] ."</td>";
+                            echo "<td class='text-center' id='starttime'>". $row['start'] ."</td>";
+                            echo "<td id='red1' class='red text-center'>". $row['red1'] ."</td>";
+                            echo "<td id='red2' class='red text-center'>". $row['red2'] ."</td>";
+                            echo "<td id='red3' class='red text-center'>". $row['red3'] ."</td>";
+                            echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";
+                            echo "<td id='blue2' class='blue text-center'>". $row['blue2'] ."</td>";
+                            echo "<td id='blue3' class='blue text-center'>". $row['blue3'] ."</td>";
+                            echo "<td class='text-center'><a href='#' class='edit' data-toggle='modal' data-target='#editMatch'>Edit</a>";
+                        }	
+                        ?>
+		            </table>
+		            <table id="table-team-matches-mobile" class="table">
+			            <?php 
+                        //Goes to the databse and fetches all matches in order
+                        $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qm' ORDER BY matchnumber ASC");
+                        echo '<thead>';
+                        echo   '<tr>';
+                        echo     '<td rowspan="2" style="vertical-align:middle"><b>Match</b></td>';
+                        echo     '<td rowspan="2" class="text-center" style="vertical-align:middle"><b>Time</b></td>';
+                        echo     '<td colspan="3" class="text-center"><b>Driver\'s Station</b></td>';
+                        echo     '<td rowspan="2" rowclass="text-center" class="text-center" style="vertical-align:middle"><b>Pit</b></td>';
+                        echo   '</tr>';
+                        echo   '<tr>';
+                        echo     '<td class="text-center"><b>1</b></td>';
+                        echo     '<td class="text-center"><b>2</b></td>';
+                        echo     '<td class="text-center"><b>3</b></td>';
+                        echo   '</tr>';
+                        echo '</thead>';
+                        while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                            echo "<tr id='". $row['matchid'] ."'>";
+                            echo "<td rowspan='2' style='width:8%; padding-left: 15px; vertical-align:middle;' class='text-left' id='matchnumber'>". $row['matchnumber'] ."</td>";
+                            echo "<td rowspan='2' 'class='text-center' style='vertical-align:middle' id='starttime'>". $row['start'] ."</td>";
+                            echo "<td id='red1' class='red text-center'>". $row['red1'] ."</td>";
+                            echo "<td id='red2' class='red text-center'>". $row['red2'] ."</td>";
+                            echo "<td id='red3' class='red text-center'>". $row['red3'] ."</td>";
+                            echo "<td rowspan='2' style='vertical-align:middle;' class='text-center'><a href='#' class='edit' data-toggle='modal' data-target='#editMatch'>Edit</a>";
+                            echo "</tr>";
+                            echo "<tr id='". $row['matchid'] ."'>";
+                            echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";
+                            echo "<td id='blue2' class='blue text-center'>". $row['blue2'] ."</td>";
+                            echo "<td id='blue3' class='blue text-center'>". $row['blue3'] ."</td>";
+                            echo "</tr>";
+                        }	
+                        ?>
+		            </table>
+	            </div>
 			</div>
 		</div>
 	</div>
