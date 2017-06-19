@@ -41,7 +41,7 @@
 	<p style="margin-left:10px;"><a href="pitmap.php?event=<?php echo $currentEvent ?>&team=<?php echo $teamid ?>">Pit Location ></a></p>
 	
 	<div class="table-responsive">
-		<table id="table-team-matches" class="table table-hover">
+		<table id="table-team-matches" class="table">
 			<?php 
 				$sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qm' AND `red1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red3` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND`blue1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue3` LIKE '$teamid' ORDER BY matchnumber ASC");
 				if(mysqli_num_rows($sql) != 0){
