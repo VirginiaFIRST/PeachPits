@@ -178,33 +178,29 @@
 }
 
 /*** Search Function ***/
-#event-filter-field {
+.event-filter-field {
     margin-left: 3%;
     margin-right: 3%;
     width: 94%;
 }
 
-#events-all {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.events-all {
+
     width: 100%;
     font-size: 14px;
 }
 
-#events-all tr {
+.events-all tr {
     font-size: 14px;
     cursor: pointer;
 }
 
-#events-all td {
+.events-all td {
     text-align: left;
     padding: 12px;
 }
 
-#events-all tr:hover {
+.events-all tr:hover {
     background-color: #f1f1f1;
 }
 
@@ -218,125 +214,135 @@
     overflow: auto;
 }
 
+@media only screen and (max-width: 768px) {
+    .dropdown-events-all {
+        max-height: 300px;
+        overflow: auto;
+    }
+    .dropdown-menu{
+        width:90%;
+    }
+}
+
 
 /****** Dashboard ******
  ***********************/
-.row-account{
-  margin-left:0px; 
-  padding-top:10px; 
-  padding-bottom: 10px; 
-  border-bottom:1px solid #D7DBDD;
+.row-account {
+    margin-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #D7DBDD;
 }
 
-.row-account > .col-md-3{
-  padding-left:0px;
+.row-account > .col-md-3 {
+    padding-left: 0px;
 }
 
-.row-account:last-child{
-  border-bottom:0px;
+.row-account:last-child {
+    border-bottom: 0px;
 }
 
 /****** Manage Inspections ******
  ********************************/
-.map-inspection{
-  display:none;
-}
+    .map-inspection {
+        display: none;
+    }
 
-.list-view{
-  display:none;
-}
+    .list-view {
+        display: none;
+    }
 
-.map-view{
-  display:block;
-}
+    .map-view {
+        display: block;
+    }
 
-.map-inspectnotes {
-    width: 100%;
-    height: 150px !important;
-    resize:none;
-}
+    .map-inspectnotes {
+        width: 100%;
+        height: 150px !important;
+        resize: none;
+    }
 
-.change-status{
-    margin-top:10px;
-}
+    .change-status {
+        margin-top: 10px;
+    }
 
-.save-note{
-    margin-top:10px;
-}
+    .save-note {
+        margin-top: 10px;
+    }
 
 /****** Manage Teams ******
  **************************/
-.container-add{
-  width:100%;
-  padding:10px;
-  display:none;
-  border-bottom:1px solid #D7DBDD;
+.container-add {
+    width: 100%;
+    padding: 10px;
+    display: none;
+    border-bottom: 1px solid #D7DBDD;
 }
 
-.btn-add-cancel{
-  display:inline;
+.btn-add-cancel {
+    display: inline;
 }
 
 /****** Manage Events ******
  **************************/
-.event-details{
-  display:none;
+.event-details {
+    display: none;
 }
 
-.btn-event-status{
-  padding-top:5px;
-  padding-bottom:5px;
-  padding-left:10px;
-  padding-right:10px;
-  margin-left:10px;
+.btn-event-status {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
 }
 
-.status-red{
-  background-color:#F5B7B1;
+.status-red {
+    background-color: #F5B7B1;
 }
 
-.status-green{
-  background-color:#ABEBC6;
+.status-green {
+    background-color: #ABEBC6;
 }
 
-.btn-event-manage{
-  padding-top:15px;
-  padding-bottom:15px;
-  padding-left:15px;
-  padding-right:15px;
-  display:block;
+.btn-event-manage {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: block;
 }
 
-.btn-event-manage-text{
-  font-size:18px; 
-  line-height:30px; 
-  vertical-align:middle;
-  margin-left:5px;
+.btn-event-manage-text {
+    font-size: 18px;
+    line-height: 30px;
+    vertical-align: middle;
+    margin-left: 5px;
 }
 
-.btn-event-manage-icon{
-  font-size:28px; 
-  line-height:30px;
-  vertical-align:middle;
+.btn-event-manage-icon {
+    font-size: 28px;
+    line-height: 30px;
+    vertical-align: middle;
 }
 
-.save-event{
-  display:none;
+.save-event {
+    display: none;
 }
 
-.editable-event{
-  border:1px dashed #ff0000; 
-  padding:3px;
+.editable-event {
+    border: 1px dashed #ff0000;
+    padding: 3px;
 }
 
-.btn-year-filter{
-    float:right;
-    margin-left:10px;
+.btn-year-filter {
+    float: right;
+    margin-left: 10px;
 }
 
 .year-showing, .year-showing:hover, .year-showing:visited, .year-showing:focus {
     border: 1px solid #DC7633;
     background-color: #F6DDCC;
     color: #DC7633;
-    outline:0;
+    outline: 0;
 }

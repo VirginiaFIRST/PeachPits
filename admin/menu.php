@@ -19,8 +19,8 @@
             <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">             		    
 			    <?php                       
                 if(isSuperAdmin($role)){
-                    echo '<li><input type="text" id="event-filter-field" class="form-control" placeholder="Search All Events"></li><li class="divider"></li>';	
-                    echo '<div class="dropdown-events-all"><table id="events-all">';
+                    echo '<li><input type="text" id="event-filter-field" class="form-control event-filter-field" placeholder="Search All Events"></li><li class="divider"></li>';	
+                    echo '<div class="dropdown-events-all"><table id="events-all" class="events-all">';
                     $sql = $mysqli->query("SELECT * FROM `events`");      
                     //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
                     while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
@@ -85,8 +85,8 @@
               <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
 			    <?php                       
                 if(isSuperAdmin($role)){
-                    echo '<li><input type="text" id="event-filter-field" class="form-control" placeholder="Search All Events"></li><li class="divider"></li>';	
-                    echo '<div class="dropdown-events-all"><table id="events-all">';
+                    echo '<li><input type="text" id="event-filter-field-m" class="form-control event-filter-field" placeholder="Search All Events"></li><li class="divider"></li>';	
+                    echo '<div class="dropdown-events-all"><table id="events-all-m" class="events-all">';
                     $sql = $mysqli->query("SELECT * FROM `events`");      
                     //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
                     while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
