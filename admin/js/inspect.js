@@ -18,13 +18,13 @@ $(document).ready(function() {
 	$('.list-view').click(function() {
 		$('.list-view').css('display','none');
 		$('.map-view').css('display','block');
-		$('.container-map-centered').css('display','none');
+		$('.inspection-map-view').css('display','none');
 		$('.inspection-list-view').css('display','initial');
 	});
 	$('.map-view').click(function() {
 		$('.list-view').css('display','block');
 		$('.map-view').css('display','none');
-		$('.container-map-centered').css('display','flex');
+		$('.inspection-map-view').css('display','initial');
 		$('.inspection-list-view').css('display','none');
-	});
+    });
 });

@@ -244,8 +244,13 @@
 
 /****** Manage Inspections ******
  ********************************/
-    .map-inspection {
-        display: none;
+    .inspection-map-view{
+        display:none;
+    }
+
+    .inspection-map-view .map-page-team{
+        padding-left:20px;
+        padding-right:20px;
     }
 
     .list-view {

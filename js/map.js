@@ -269,21 +269,21 @@ $(document).ready(function() {
 		$('.levelThree').removeClass('levelThree');
 		$('.levelTwo').removeClass('levelTwo');
 		$('.levelOne').removeClass('levelOne');
-    $('.levelSix').removeClass('levelSix');
+        $('.levelSix').removeClass('levelSix');
 		
 		$('.map-page-team').css('display','block');
     
-    $('#tabinfo').removeClass('active')
-    $('#tabmatches').removeClass('active');
-    $('#tabinspection').addClass('active');
+        $('#tabinfo').removeClass('active')
+        $('#tabmatches').removeClass('active');
+        $('#tabinspection').addClass('active');
 
-    $('#teaminspection').scrollTop(0);
-    $('#teaminfo').scrollTop(0);
-    $('#teammatches').scrollTop(0);
+        $('#teaminspection').scrollTop(0);
+        $('#teaminfo').scrollTop(0);
+        $('#teammatches').scrollTop(0);
 
-    $('#teaminspection').css('display', 'block');
-    $('#teaminfo').css('display', 'none');
-    $('#teammatches').css('display', 'none');
+        $('#teaminspection').css('display', 'block');
+        $('#teaminfo').css('display', 'none');
+        $('#teammatches').css('display', 'none');
     
 		$('.container-map-centered').css('display','none');
 		
@@ -297,7 +297,7 @@ $(document).ready(function() {
 		$('.map-teamnum').html("Team " + teamsArr[index][0]);
 		$('.map-teamname').html(teamsArr[index][1].substr(0,22));
 		$('.map-teamlocation').html(teamsArr[index][2]);
-    $('.map-schoolname').html(teamsArr[index][8]);
+        $('.map-schoolname').html(teamsArr[index][8]);
 		$('.map-inspectstatus').html(teamsArr[index][3]);
 		$('.map-inspectnotes').html(teamsArr[index][4]);
 		$('.map-initialinspector').html(teamsArr[index][5]);
@@ -313,13 +313,13 @@ $(document).ready(function() {
 		$('#inspectionstatus option[value="'+teamsArr[index][3]+'"]').prop('selected',true);
 	});
 	$('.return').on('click',function(){
-    $('.pitmap-btn-container').css('display', '');
-		$('.map-page-team').css('display','none');
-		$('.container-map-centered').css('display','');
-    $('.status-text-container').css('display', '');
-    if($('.btn-inspection-hide').css('display') == 'block'){
-       boxColor();
-    }
+        $('.pitmap-btn-container').css('display', '');
+		    $('.map-page-team').css('display','none');
+		    $('.container-map-centered').css('display','');
+        $('.status-text-container').css('display', '');
+        if($('.btn-inspection-hide').css('display') == 'block' || $(this).attr('id') == 'return-map-inspect'){
+           boxColor();
+        }
 	});
 	$(".inspect").click(function() {
 		var team = $(".map-teamnum").text();  

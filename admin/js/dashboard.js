@@ -1,20 +1,3 @@
-//function filterEvents() {
-//    var input, filter, table, tr, td, i;
-//    input = document.getElementById("event-filter-field");
-//    filter = input.value.toUpperCase();
-//    table = document.getElementById("events-all");
-//    tr = table.getElementsByTagName("tr");
-//    for (i = 0; i < tr.length - 1; i++) { // un-comment when adding search all events button
-//        td = tr[i].getElementsByTagName("td")[0];
-//        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-//            tr[i].style.display = "";
-//        } else {
-//            tr[i].style.display = "none";
-//            console.log(tr[i]);
-//        }
-//    }
-//}
-
 function filterEvents() {
     var filter = $("#event-filter-field").val().toUpperCase();
     $("#events-all tr").each(function (item) {
@@ -56,8 +39,6 @@ $(document).ready(function() {
             filterEventsM();
         }
     });
-
-
 
     $('.deleteall').on('click', function(e) {
 		var confirmDelete = confirm("Are you sure you want to DELETE ALL events? This cannot be undone.");
