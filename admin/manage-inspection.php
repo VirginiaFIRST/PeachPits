@@ -117,7 +117,7 @@
 			<div class="inspection-list-view">
 				<div class="dashboard-content">
 					<div class="table-responsive">
-						<table class="table table-hover">
+						<table class="table table-hover" style="border:1px solid #ddd;">
 							<thead>
 								<td><b>Team #</b></td>
 								<td><b>Team Name</b></td>
