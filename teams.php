@@ -1,3 +1,4 @@
+<title>PeachPits - Teams</title>
 <?php 
 	include "header.php"; 
 	

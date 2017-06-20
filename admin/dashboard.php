@@ -1,3 +1,4 @@
+<title>PeachPits - Admin</title>
 <?php 
   //Include the header file IMPORTANT
 	include dirname(__DIR__) . "/header.php";

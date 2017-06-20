@@ -1,3 +1,4 @@
+<title>PeachPits - Signup</title>
 <?php
     /*********************
     Signup page

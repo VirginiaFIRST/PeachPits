@@ -1,3 +1,4 @@
+<title>PeachPits - Signin</title>
 <?php
     include "header.php"; 
     include "includes/password.php";

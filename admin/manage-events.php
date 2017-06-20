@@ -1,3 +1,4 @@
+<title>PeachPits - Events</title>
 <?php 
 	/*********************
     Allows event admins to create and edit matches

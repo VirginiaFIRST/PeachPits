@@ -1,3 +1,4 @@
+<title>PeachPits - Pitmap</title>
 <?php 
 	include "header.php"; 
 	

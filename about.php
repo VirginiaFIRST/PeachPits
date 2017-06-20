@@ -1,3 +1,4 @@
+<title>PeachPits - About</title>
 <?php include "header.php"; ?>
 
 <div class="page-head">

@@ -1,3 +1,4 @@
+<title>PeachPits - Teams</title>
 <?php 
 	/*********************
     Allows an event admin to create and edit teams

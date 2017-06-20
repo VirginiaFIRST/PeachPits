@@ -1,3 +1,4 @@
+<title>PeachPits - Matches</title>
 <?php 
 	include "header.php"; 
 	
