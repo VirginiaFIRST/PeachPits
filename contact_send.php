@@ -16,7 +16,7 @@
 <?php
   if(isset($_POST['email'])) {
 
-    $email_to = "derek@comella.net";//"cmcdaniel@automationdirect.com,derek@comella.net,gabrielarkanum@byomes.com";
+    $email_to = "cmcdaniel@automationdirect.com,derek@comella.net,gabrielarkanum@byomes.com";
 
     function died($error) {
       // your error code can go here

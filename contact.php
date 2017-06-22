@@ -12,7 +12,7 @@
 </div>
 <div id="startchange" class="container">
 	<div class="page-header" style="margin-top: 0px">
-		<h1><small>Can't find your event? Need help or have a question? Fill out the form below and we'll get back in touch with you as soon as possible.</small></h1>
+		<h1 class="text-center"><small>Can't find your event? Need help or have a question?<br><br>Fill out the form below and we'll get back in touch with you as soon as possible.</small></h1>
   </div>
   <br>
   <form name="htmlform" method="post" action="contact_send.php">
