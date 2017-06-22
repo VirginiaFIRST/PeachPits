@@ -1,0 +1,63 @@
+.who{
+    font-size: 17px;
+  }
+  @media screen and (max-width: 370px){
+    .who{
+      font-size: 13px;
+    }
+  }
+  @media screen and (max-width: 768px){
+    .special{
+      height: 50px;
+    }
+  }
+  .event{
+    display: none;
+  }
+  .event-who{
+    display: none;
+  }
+  .bug{
+    display: none;
+  }
+  .other{
+    display: none;
+  }
+  .contact-btn, .contact-btn:hover, .contact-btn:visited, .contact-btn:focus {
+    border: 1px solid #DC7633;
+    background-color: #F6DDCC;
+    color: #DC7633;
+    outline: 0;
+  }
+  /* enable absolute positioning */
+  .inner-addon { 
+    position: relative; 
+  }
+
+/* style icon */
+  .inner-addon .glyphicon {
+    position: absolute;
+    padding: 20px;
+    pointer-events: none;
+    font-size: 17;
+  }
+
+  /* align icon */
+  .left-addon .glyphicon  { 
+    left:  0px;
+  }
+  .right-addon .glyphicon { 
+    right: 0px;
+  }
+
+  /* add padding  */
+  .left-addon input  { 
+    padding-left:  42px;
+  }
+  .right-addon input { 
+    padding-right: 42px;
+  }
+
+  .missing{
+    border: 1px solid red;
+  }
