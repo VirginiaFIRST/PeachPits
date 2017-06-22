@@ -2,7 +2,7 @@
 	include "header.php"; 
 	
 	if (empty($currentEvent)) {
-		echo '<script>window.location="chooseevent.php"</script>';
+		echo '<script>window.location="chooseevent"</script>';
 	}
 	else {
 		$event = $currentEvent."_teams";

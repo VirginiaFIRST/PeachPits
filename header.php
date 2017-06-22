@@ -128,11 +128,11 @@
                             <?php 
                                 $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live'");
                                 while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                                    echo '<li><a href="pitmap.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                                    echo '<li><a href="pitmap?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
                                 }	 
                             ?>
                             <!--<li class="divider"></li>
-				            <li><a href="" style="color:red;">Don't see your event? Click Here -REPLACE THIS-</a></li>-->
+				            <li><a href="contact" style="color:red;">Don't see your event? Click Here -REPLACE THIS-</a></li>-->
                         </ul>
                     </li>
                     <?php } else { ?>
