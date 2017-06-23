@@ -31,7 +31,7 @@
     min-height:100% !important;
   } 
   .map-main{
-    min-height:100% !important;
+    height: auto !important;
   }
   .map-creator-container{
     min-height:100% !important;
