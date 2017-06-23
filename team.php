@@ -51,9 +51,9 @@
           echo '  <td class="text-center"><b>Red 1</b></td>';
           echo '  <td class="text-center"><b>Red 2</b></td>';
           echo '  <td class="text-center"><b>Red 3</b></td>';
-          echo '  <td class="text-center"><b>Red 1</b></td>';
-          echo '  <td class="text-center"><b>Red 2</b></td>';
-          echo '  <td class="text-center"><b>Red 3</b></td>';
+          echo '  <td class="text-center"><b>Blue 1</b></td>';
+          echo '  <td class="text-center"><b>Blue 2</b></td>';
+          echo '  <td class="text-center"><b>Blue 3</b></td>';
           echo '  <td class="text-center"><b>Pit</b></td>';
           echo '</thead>';
 					while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
@@ -103,7 +103,7 @@
 						echo "<td rowspan='2' class='text-center' style='vertical-align:middle'><a href='pitmap?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
 						echo "</tr>";
             echo "<tr id='". $row['mactchid'] ."'>";
-           	if($teamid == $row['blue1']){echo "<td id='blue1' class='blue text-center'><b>". $row['blue1'] ."</b></td>";} else {echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";}
+           	if($teamid == $row['blue1']){echo "<td id='blue1' class='blue text-center' style='font-weight:900'>". $row['blue1'] ."</td>";} else {echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";}
 						if($teamid == $row['blue2']){echo "<td id='blue2' class='blue text-center'><b>". $row['blue2'] ."</b></td>";} else {echo "<td id='blue2' class='blue text-center'>". $row['blue2'] ."</td>";}
 						if($teamid == $row['blue3']){echo "<td id='blue3' class='blue text-center'><b>". $row['blue3'] ."</b></td>";} else {echo "<td id='blue3' class='blue text-center'>". $row['blue3'] ."</td>";}
 					}		

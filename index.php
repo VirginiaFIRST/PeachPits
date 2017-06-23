@@ -48,7 +48,7 @@
 								}	 
 							?>
 							<li class="divider"></li>
-							<li><a href="contact?topic=event" style="color:red;">Don't see your event?</a></li>
+							<li><a href="contact?topic=event" style="color:red; font-weight: 900;">Don't see your event?</a></li>
 							</ul>
 						</div>
 						<?php } else { ?>
