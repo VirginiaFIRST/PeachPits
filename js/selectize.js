@@ -3142,7 +3142,6 @@
 			self.isDisabled = false;
 			self.unlock();
 		},
-	
 		/**
 		 * Completely destroys the control and
 		 * unbinds all event listeners so that it can
