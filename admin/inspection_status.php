@@ -26,7 +26,7 @@
         $sql = $mysqli->query("UPDATE `".$eventDB."` SET `initial_inspector` = '$lastModifiedBy' WHERE `teamid` = '$teamid';");
     }
     if ($refer = 'manageinspect'){
-        echo '<script>window.location="admin/manage-inspection.php?event='.$currentEvent.'"</script>';
+        echo '<script>window.location="admin/manage-inspection?event='.$currentEvent.'"</script>';
     }
 
     //if($type == 'changestatus'){

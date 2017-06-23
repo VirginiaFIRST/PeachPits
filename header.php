@@ -117,7 +117,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="index.php?event=<?php echo $currentEvent; ?>" class="navbar-brand">PeachPits</a>
+                <a href="index?event=<?php echo $currentEvent; ?>" class="navbar-brand">PeachPits</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-1" style="margin-left:0px !important;">
                 <ul class="nav navbar-nav navbar-right cl-effect-4">
@@ -152,7 +152,7 @@
                                 $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live'");
                                 while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                                     if($row['eventid'] != $currentEvent){
-                                        echo '<li><a href="pitmap.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                                        echo '<li><a href="pitmap?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
                                     }
                                 }	 
                             ?>
@@ -161,9 +161,9 @@
                         </ul>
                     </li>
                     <?php } ?>
-                    <li><a href="teams.php?event=<?php echo $currentEvent; ?>">Team List</a></li>
-                    <li><a href="matches.php?event=<?php echo $currentEvent; ?>">Match Schedule</a></li>
-                    <li><a href="pitmap.php?event=<?php echo $currentEvent; ?>">Pit Map</a></li>
+                    <li><a href="teams?event=<?php echo $currentEvent; ?>">Team List</a></li>
+                    <li><a href="matches?event=<?php echo $currentEvent; ?>">Match Schedule</a></li>
+                    <li><a href="pitmap?event=<?php echo $currentEvent; ?>">Pit Map</a></li>
                 </ul>
             </div>
         </div>      
@@ -189,7 +189,7 @@
         }
         $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
         while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-            echo '<li><a href="admin/dashboard.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+            echo '<li><a href="admin/dashboard?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
         }
     ?>
       </div>

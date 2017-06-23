@@ -54,7 +54,7 @@ $(document).ready(function() {
 				for (i=0; i < length; i++){
 					var pos = (data[i].key).indexOf("_");
 					var key = (data[i].key).substring(pos+1);
-					$.post("admin/add_match.php", {
+					$.post("admin/add_match", {
 						eventid: eventid,
 						matchid: key,
 						matchnumber: data[i].match_number,

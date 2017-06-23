@@ -48,7 +48,7 @@
 								}	 
 							?>
 							<li class="divider"></li>
-							<li><a href="" style="color:red;">Don't see your event? Click Here -REPLACE THIS-</a></li>
+							<li><a href="contact" style="color:red;">Don't see your event?</a></li>
 							</ul>
 						</div>
 						<?php } else { ?>
@@ -68,7 +68,7 @@
 								$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live'");
 								while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
 									if($row['eventid'] != $currentEvent){
-										echo '<li><a href="pitmap.php?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+										echo '<li><a href="pitmap?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
 									}
 								}	 
 							?>
@@ -99,7 +99,7 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<p class="lead">Ready to use PeachPits at your event?</p>
-					<a href="signup.php?event=<?php echo $currentEvent ?>" class="btn btn-default btn-lg">Create an Account <span class="glyphicon glyphicon-chevron-right"></span></a>
+					<a href="signup?event=<?php echo $currentEvent ?>" class="btn btn-default btn-lg">Create an Account <span class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 			</div>
 		</div>

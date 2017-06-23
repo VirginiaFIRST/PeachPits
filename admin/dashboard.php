@@ -61,7 +61,7 @@
                   <?php if(!isSuperAdmin($role)){ ?>
                   <p class="dashboard-usertitle-name">Request a Role</p>
                   <p style="margin-left:10px;">
-                  <form class="form-inline" action="admin/change_role.php?event=<?php echo $currentEvent ?>" method="post">
+                  <form class="form-inline" action="admin/change_role?event=<?php echo $currentEvent ?>" method="post">
                     <div class="request-role-field">
                       <select name="roleChange" style="" id="roleChange">
                         <option value="">Your Role</option>
@@ -125,11 +125,11 @@
                             while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                               if(in_array($row['event'],$eventsArr)){
                                 if($row['type']=='Event'){
-                                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to join your event, <b>'. $row['event'] .'</b> as a </b>'. $row['existingrole'] .' <a href="admin/approve_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Approve</a> | <a href="admin/deny_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Deny</a></p>';
+                                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to join your event, <b>'. $row['event'] .'</b> as a </b>'. $row['existingrole'] .' <a href="admin/approve_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Approve</a> | <a href="admin/deny_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Deny</a></p>';
                                   $check = true;
                                 }
                                 else if($row['type']=='Role'){
-                                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to be promoted to </b>'. $row['requestedrole'] .' and join your event <b>'. $row['event'] .'</b> <a href="admin/approve_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Approve</a> | <a href="admin/deny_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Deny</a></p>';
+                                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to be promoted to </b>'. $row['requestedrole'] .' and join your event <b>'. $row['event'] .'</b> <a href="admin/approve_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Approve</a> | <a href="admin/deny_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Deny</a></p>';
                                   $check = true;
                                 }
                               }
@@ -156,10 +156,10 @@
           if(mysqli_num_rows($sql) != 0){
             while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                 if($row['type']=='Event'){
-                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to join the event, <b>'. $row['event'] .'</b> as a </b>'. $row['existingrole'] .' <a href="admin/approve_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Approve</a> | <a href="admin/deny_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Deny</a></p>';
+                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to join the event, <b>'. $row['event'] .'</b> as a </b>'. $row['existingrole'] .' <a href="admin/approve_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Approve</a> | <a href="admin/deny_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Deny</a></p>';
                 }
                 else if($row['type']=='Role'){
-                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to be promoted to </b>'. $row['requestedrole'] .' and join the event <b>'. $row['event'] .'</b> <a href="admin/approve_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Approve</a> | <a href="admin/deny_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Deny</a></p>';
+                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to be promoted to </b>'. $row['requestedrole'] .' and join the event <b>'. $row['event'] .'</b> <a href="admin/approve_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Approve</a> | <a href="admin/deny_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Deny</a></p>';
                 }
             }	
             echo '</p></div></div>';
@@ -183,11 +183,11 @@
             while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
               if(strpos($new_arr,$row['event']) == true){
                 if($row['type']=='Event'){
-                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to join your event, <b>'. $row['event'] .'</b> as a </b>'. $row['existingrole'] .' <a href="admin/approve_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Approve</a> | <a href="admin/deny_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Deny</a></p>';
+                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to join your event, <b>'. $row['event'] .'</b> as a </b>'. $row['existingrole'] .' <a href="admin/approve_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Approve</a> | <a href="admin/deny_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['existingrole'] .'">Deny</a></p>';
                   $check = true;
                 }
                 else if($row['type']=='Role'){
-                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to be promoted to </b>'. $row['requestedrole'] .' and join your event <b>'. $row['event'] .'</b> <a href="admin/approve_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Approve</a> | <a href="admin/deny_request.php?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Deny</a></p>';
+                  echo '<p><b>'. $row['firstname'] .' '. $row['lastname'] . '</b> has requested to be promoted to </b>'. $row['requestedrole'] .' and join your event <b>'. $row['event'] .'</b> <a href="admin/approve_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Approve</a> | <a href="admin/deny_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $row['event'] .'&role='. $row['requestedrole'] .'">Deny</a></p>';
                   $check = true;
                 }
               }
@@ -251,7 +251,7 @@
         <h4 class="modal-title" id="myModalLabel">Change Your Password</h4>
       </div>
       <div class="modal-body">
-        <form action="admin/change_password.php?event=<?php echo $currentEvent ?>" method="post">
+        <form action="admin/change_password?event=<?php echo $currentEvent ?>" method="post">
           <input type="text" name="oldpassword" id="oldpassword" class="form-control" placeholder="Old Password"><br/>
     			<input type="text" name="newpassword" id="newpassword" class="form-control" placeholder="New Password"><br/>
     			<input type="text" name="confirmnewpassword" id="confirmnewpassword" class="form-control" placeholder="Confirm New Password"><br/>
@@ -267,7 +267,7 @@
 
 <?php
   //If the user isn't signed in redirect them to the signin page
-	} else { echo '<script>document.location.href="signin.php"</script>'; }
+	} else { echo '<script>document.location.href="signin"</script>'; }
 	
 	include dirname(__DIR__) . "/footer.php"; 
 ?>

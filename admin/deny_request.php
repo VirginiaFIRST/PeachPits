@@ -18,5 +18,5 @@
     //Delete the request from the database
     $sql = $mysqli->query("DELETE FROM `requests` WHERE `email` = '$email' AND `event` = '$event' AND (`existingrole` = '$role' OR `requestedrole` = '$role')");
     
-    echo '<script type="text/javascript">window.location="admin/dashboard.php?event='.$currentEvent.'"</script></div>';
+    echo '<script type="text/javascript">window.location="admin/dashboard?event='.$currentEvent.'"</script></div>';
 ?>

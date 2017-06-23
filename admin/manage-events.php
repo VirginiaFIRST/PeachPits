@@ -46,7 +46,7 @@
 				</div>
 			</div>
 			<div class="container-add text-center">
-				<form class="form-inline" action="admin/add_event.php?event=<?php echo $currentEvent; ?>" method="post">
+				<form class="form-inline" action="admin/add_event?event=<?php echo $currentEvent; ?>" method="post">
 					<input type="text" name="eventid" id="eventid" class="form-control" style="width:100px;" placeholder="Event Id">
 					<input type="text" name="eventname" id="teamname" class="form-control" style="width:160px;" placeholder="Event Name">
 					<input type="text" name="eventdistrict" id="eventdistrict" class="form-control" style="width:120px;" placeholder="District">
@@ -96,12 +96,13 @@
                         <h2 style="margin-top:0px;">Not Live Events</h2>
                     </div>
 				    <div class="col-md-3 year-filter">
+            <input style="width: 55%; float: left" type="text" class="form-control" id="events-notlive-search-field" placeholder="Search Not Live Events"></input>
 
                     </div>
                 </div>
                 <div class="clearfix"></div>
 				<div class="table-responsive">
-					<table class="table table-hover sortable not-live">
+					<table class="table table-hover sortable not-live" id="table-not-live">
 						<thead>
 							<th><strong>Event Id</strong></th>
 							<th><strong>Name</strong></th>
@@ -223,7 +224,7 @@
 </div>	
 	
 <?php 
-	} else { echo '<script>document.location.href="signin.php"</script>'; }
+	} else { echo '<script>document.location.href="signin"</script>'; }
 	
 	include dirname(__DIR__) . "/footer.php"; 
 ?>

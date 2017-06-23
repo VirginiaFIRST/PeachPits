@@ -64,7 +64,7 @@
         function update() {
             var teamsArr2;
             $.ajax({
-                url: 'auto-refresh.php?event=<?php echo $currentEvent; ?>',
+                url: 'auto-refresh?event=<?php echo $currentEvent; ?>',
                 type: 'POST',
                 success: function(data) {
                     teamsArr2 = [];
@@ -111,7 +111,7 @@
 <nav class="navbar" style="z-index:100; margin-bottom:60px !important;">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="pitmap.php?event=<?php echo $currentEvent; ?>" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left"></span>PeachPits | <?php echo $eventName; ?></a>
+            <a href="pitmap?event=<?php echo $currentEvent; ?>" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left"></span>PeachPits | <?php echo $eventName; ?></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-1" style="margin-left:0px !important;">
             <ul class="nav navbar-nav navbar-right ">

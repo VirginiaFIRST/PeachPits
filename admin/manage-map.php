@@ -185,7 +185,7 @@
 </div>		
 	
 <?php 
-	} else { echo '<script>document.location.href="signin.php"</script>'; }
+	} else { echo '<script>document.location.href="signin"</script>'; }
 	
 	include dirname(__DIR__) . "/footer.php"; 
 ?>

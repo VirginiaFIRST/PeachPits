@@ -3,7 +3,7 @@
 	include "header.php"; 
 	
 	if (empty($currentEvent)) {
-		echo '<script>window.location="chooseevent.php"</script>';
+		echo '<script>window.location="chooseevent"</script>';
 	}
 	else {
 		$event = $currentEvent."_matches";	
@@ -45,7 +45,7 @@
                         echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";
 						echo "<td id='blue2' class='blue text-center'>". $row['blue2'] ."</td>";
 						echo "<td id='blue3' class='blue text-center'>". $row['blue3'] ."</td>";
-						echo "<td style='text-align:center;'><a href='pitmap.php?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
+						echo "<td style='text-align:center;'><a href='pitmap?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
 					}	
 				}
 				else{
@@ -78,7 +78,7 @@
 						echo "<td id='red1' class='red text-center'>". $row['red1'] ."</td>";
 						echo "<td id='red2' class='red text-center'>". $row['red2'] ."</td>";
 						echo "<td id='red3' class='red text-center'>". $row['red3'] ."</td>";
-						echo "<td rowspan='2' class='text-center' style='vertical-align:middle'><a href='pitmap.php?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
+						echo "<td rowspan='2' class='text-center' style='vertical-align:middle'><a href='pitmap?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
 						echo "</tr>";
                         echo "<tr id='". $row['matchid'] ."'>";
 						echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";

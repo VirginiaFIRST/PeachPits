@@ -9,6 +9,7 @@ $(document).ready(function() {
     console.log(years);
     var date = new Date();
     var currentYear = date.getFullYear();
+
     jQuery.each(years, function (index, item) {
         $('.year-filter').append('<button id="'+item+'" class="btn btn-default btn-year-filter">' + item + '</button>');
         if (currentYear == parseInt(item)) {
@@ -73,17 +74,17 @@ $(document).ready(function() {
 			$('.btn-event-status').addClass('status-red');
 		}
 		
-		$('#event-teams').attr('href',"admin/manage-teams.php?event=" + id);
-		$('#event-matches').attr('href', "admin/manage-matches.php?event=" + id);
-		$('#event-inspections').attr('href', "admin/manage-inspection.php?event=" + id);
-		$('#event-map').attr('href', "admin/manage-map.php?event=" + id);
+		$('#event-teams').attr('href',"admin/manage-teams?event=" + id);
+		$('#event-matches').attr('href', "admin/manage-matches?event=" + id);
+		$('#event-inspections').attr('href', "admin/manage-inspection?event=" + id);
+		$('#event-map').attr('href', "admin/manage-map?event=" + id);
 		
 	});
 	$('.toggle-status').on('click', function(e){
 		e.preventDefault();
 		var currentStatus = $(this).siblings('.event-status').text();
 		var eventid = $(this).attr('id');
-		$.post("admin/toggle_status.php", {
+		$.post("admin/toggle_status", {
 			eventid: eventid,
 			currentStatus: currentStatus
 		}, function () {
@@ -134,7 +135,7 @@ $(document).ready(function() {
 		$('.edit-event').css('display','initial');
 		$('.save-event').css('display', 'none');
 
-		$.post("admin/edit_event.php?event="+currentEvent, {
+		$.post("admin/edit_event?event="+currentEvent, {
 			eventid: eventid,
 			eventStart: eventStart,
 			eventEnd: eventEnd,
@@ -151,7 +152,7 @@ $(document).ready(function() {
 		var confirmDelete = confirm("Are you sure you want to delete this event? This cannot be undone.");
 		if (confirmDelete){
 			var eventDelete = $(this).attr('id');
-			$.post("admin/delete_event.php?event="+currentEvent, {
+			$.post("admin/delete_event?event="+currentEvent, {
 				eventDelete: eventDelete,
 			}, function () {
 				location.reload();
@@ -161,12 +162,33 @@ $(document).ready(function() {
 	$('.clear-event').on('click', function(e) {
 		var confirmClear = confirm("Are you sure you want to clear this event? This cannot be undone.");
 		if (confirmClear){
-			$.post("admin/clear_event.php?event="+currentEvent, {
+			$.post("admin/clear_event?event="+currentEvent, {
 			}, function () {
 				alert('Event Cleared!' +currentEvent);
 			});	
 		}
 	});
+  function filterEvents() {
+    var filter = $("#events-notlive-search-field").val().toUpperCase();
+    $("#table-not-live tr").each(function (item) {
+      
+      if ($(this).html().toUpperCase().indexOf(filter) > -1) {
+        $(this).css('display', '');
+      }
+      else {
+        if (!($(this).parent().is('thead')))
+          
+        $(this).css('display', 'none');
+      }
+    });
+    var visibleRows = $('#table-not-live tbody tr:visible').length;
+    if (visibleRows <= 1) {
+      //code for no results found
+    }
+  }
+  $(document).on('keyup', '#events-notlive-search-field', function (e) {
+    filterEvents();
+  });
 	$("#populate").click(function() {
 		var call = 'https://www.thebluealliance.com/api/v2/events/2017';
 		var data;
@@ -180,7 +202,7 @@ $(document).ready(function() {
 				length = data.length;
 				for (i=0; i < length; i++){
 					console.log(data[i].key);
-					$.post("admin/add_event.php", {
+					$.post("admin/add_event", {
 						eventid: data[i].key,
 						eventname: data[i].name,
 						eventlocation: data[i].location,

@@ -33,7 +33,7 @@ $(document).ready(function() {
 		var confirmRemove = confirm("Are you sure you want to remove this team from the event?");
 		if (confirmRemove){
 			var removeTeam = $(this).attr('id');
-			$.post("admin/remove_team.php?event="+currentEvent, {
+			$.post("admin/remove_team?event="+currentEvent, {
 				removeTeam: removeTeam,
 			}, function () {
 				alert('The team has been removed. Don\'t forget to remove them from the pit map!');
@@ -71,7 +71,7 @@ $(document).ready(function() {
 				//alert(data);
 				length = data.length;
 				for (i=0; i < length; i++){
-					$.post("admin/add_team.php", {
+					$.post("admin/add_team", {
 						eventid: eventid,
 						teamid: data[i].team_number,
 						teamname: data[i].nickname,
@@ -113,7 +113,7 @@ $(document).ready(function() {
 	    var inspectionstatus = $('#inspectionstatus').val();
 	    var teamid = $('#teamnumbermodal').text();
 	    console.log(teamid);
-	    $.post("admin/inspection_status.php?event=" + currentEvent, {
+	    $.post("admin/inspection_status?event=" + currentEvent, {
 	        teamid: teamid,
 	        inspectionnotes: inspectnotes,
 	        inspectionstatus: inspectionstatus

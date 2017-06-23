@@ -155,7 +155,7 @@
         <h4 class="modal-title" id="myModalLabel">Change Inspection Status</h4>
       </div>
       <div class="modal-body text-center">
-        <form action="admin/inspection_status.php?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=changestatus" method="post">
+        <form action="admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=changestatus" method="post">
 			<input type="hidden" name="teamid" id="inspectnumbermodal">
             <select name="inspectionstatus" id="inspectionstatus" class="form-control">
 				<option>Complete</option>
@@ -184,7 +184,7 @@
         <h4 class="modal-title" id="myModalLabel">Edit Inspection Notes</h4>
       </div>
       <div class="modal-body text-center">
-        <form action="admin/inspection_status.php?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=addnote" method="post">
+        <form action="admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=addnote" method="post">
 			<input type="hidden" name="teamid" id="inspectnumbermodal-notes">
 			<textarea class="form-control map-inspectnotes-modal" style="width:100%; height:100px; margin-bottom:5px;" name="inspectionnotes"></textarea><br/>
       </div>
@@ -197,7 +197,7 @@
 </div>	
 
 <?php 
-	} else { echo '<script>document.location.href="signin.php"</script>'; }
+	} else { echo '<script>document.location.href="signin"</script>'; }
 	
 	include dirname(__DIR__) . "/footer.php"; 
 ?>

@@ -39,5 +39,5 @@
     //Delete the request from the database
     $sql = $mysqli->query("DELETE FROM requests WHERE email = '$email'");
 
-    echo '<script type="text/javascript">window.location="admin/dashboard.php?event='.$currentEvent.'"</script></div>';
+    echo '<script type="text/javascript">window.location="admin/dashboard?event='.$currentEvent.'"</script></div>';
 ?>

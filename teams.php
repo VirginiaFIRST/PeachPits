@@ -37,7 +37,7 @@
 					echo "<td id='teamid'>". $row['teamid'] ."</td>";
 					echo "<td id='teamname'>". $row['teamname'] ."</td>";
 					echo "<td id='inspectionstatus'>". $row['inspectionstatus'] ."</td>";
-					echo '<td style="width:5%" class="text-center" id="pitmap"><a href="pitmap.php?event='.$currentEvent. '&team='. $row['teamid'] .'"><span class="glyphicon glyphicon-map-marker"></span></a></td>';
+					echo '<td style="width:5%" class="text-center" id="pitmap"><a href="pitmap?event='.$currentEvent. '&team='. $row['teamid'] .'"><span class="glyphicon glyphicon-map-marker"></span></a></td>';
 					echo "<td style='width:5%;' class='text-center btn-teaminfo' id='". $row["teamid"] ."'><span class='glyphicon glyphicon-triangle-bottom closed'</span></td>";
 					echo "</tr>";
           echo '<tr style="display: none;" class="team-info" id="info-'. $row['teamid'] .'">';?>
@@ -116,7 +116,7 @@
       $('#table-team-matches-' + id + ' .matchrow').remove();
       var teamSchd;
       $.ajax({
-        url: 'getTeamSchedule.php?event=' + currentEvent + '&team=' + id,
+        url: 'getTeamSchedule?event=' + currentEvent + '&team=' + id,
         type: 'POST',
         success: function (data) {
           teamSchd = [];

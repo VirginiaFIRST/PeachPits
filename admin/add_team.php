@@ -46,7 +46,7 @@
             $sql = "INSERT into `teams` (`teamid`,`teamname`, `schoolname`, `location`) VALUES ('$teamid','$teamname', '$schoolname', '$location')";
             $query = $mysqli->query($sql);
     
-            echo '<script>window.location="admin/manage-teams.php?event='.$currentEvent.'"</script></div>';
+            echo '<script>window.location="admin/manage-teams?event='.$currentEvent.'"</script></div>';
         }
     }
     else if ($auto == 'true') {

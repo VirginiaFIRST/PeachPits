@@ -3,7 +3,7 @@
 	include "header.php"; 
 	
 	if (empty($currentEvent)) {
-		echo '<script>window.location="chooseevent.php"</script>';
+		echo '<script>window.location="chooseevent"</script>';
 	}
 	else {
 		$event = $currentEvent."_teams";
@@ -69,8 +69,8 @@
         <div class="row">
             <div class="col-md-9"><h1><?php echo $eventName; ?> Pit Map</h1></div>
             <div class="col-md-3">
-                <a href="display.php?event=<?php echo $currentEvent; ?>" class="btn btn-default btn-display display-hd" data-toggle="tooltip" title="Updates status automatically every 15 seconds">Display Mode</a>
-                <a href="display.php?event=<?php echo $currentEvent; ?>" class="btn btn-default btn-xs btn-display display-vs" data-toggle="tooltip" title="Updates status automatically every 15 seconds">Display Mode</a>
+                <a href="display?event=<?php echo $currentEvent; ?>" class="btn btn-default btn-display display-hd" data-toggle="tooltip" title="Updates status automatically every 15 seconds">Display Mode</a>
+                <a href="display?event=<?php echo $currentEvent; ?>" class="btn btn-default btn-xs btn-display display-vs" data-toggle="tooltip" title="Updates status automatically every 15 seconds">Display Mode</a>
             </div>
         </div>
 	</div>

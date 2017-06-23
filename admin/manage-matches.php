@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="container-add text-center">
-				<form class="form-inline" action="admin/add_match.php?event=<?php echo $currentEvent; ?>" method="post">
+				<form class="form-inline" action="admin/add_match?event=<?php echo $currentEvent; ?>" method="post">
 					<input type="text" name="matchid" id="matchid" class="form-control" style="width:100px;" placeholder="Match Id">
 					<input type="text" name="matchnumber" id="matchnumber" class="form-control" style="width:80px;" placeholder="Match #">
 					<input type="text" name="setnumber" id="setnumber" class="form-control" style="width:80px;" placeholder="Set #">
@@ -140,7 +140,7 @@
         <h4 class="modal-title" id="myModalLabel">Edit Match Info</h4>
       </div>
       <div class="modal-body text-center">
-        <form action="admin/edit_match.php?event=<?php echo $currentEvent; ?>" method="post">
+        <form action="admin/edit_match?event=<?php echo $currentEvent; ?>" method="post">
             <b>Match Number: </b><p id="matchnumbermodal"></p>
 			<input type="text" name="starttime" id="starttimemodal" class="form-control" placeholder="Start Time"><br/>
 			<input type="text" name="red1" id="red1modal" class="form-control" placeholder="Red Team 1"><br/>
@@ -161,7 +161,7 @@
 	
 	
 <?php 
-	} else { echo '<script>document.location.href="signin.php"</script>'; }
+	} else { echo '<script>document.location.href="signin"</script>'; }
 	
 	include dirname(__DIR__) . "/footer.php"; 
 ?>

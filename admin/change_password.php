@@ -40,7 +40,7 @@
         $sql = "UPDATE `users`SET password = '$hashedPass' WHERE email = '$sessionEmail';";
         $query = $mysqli->query($sql);
 
-        echo '<script type="text/javascript">window.location="admin/dashboard.php"</script></div>';
+        echo '<script type="text/javascript">window.location="admin/dashboard"</script></div>';
     }
     
 ?>

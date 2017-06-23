@@ -29,13 +29,13 @@
                 <div class="formbox signin text-center" style="width:300px; margin:auto;">
                     <h3>Sign in</h3><br>
                     <fieldset>
-                        <form method="post" action="signin.php">
+                        <form method="post" action="signin">
                             <p><input type="text" name="email" placeholder="Email" style="border-radius:0px;" class="form-control"></p>
                             <p><input type="password" name="password" placeholder="Password"style="border-radius:0px;" class="form-control"></p>   
                             <p><input type="submit" name="submit" value="Sign In" class="btn btn-default"/></p>
                         </form>
                     </fieldset>
-                    <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+                    <p>Don't have an account? <a href="signup">Sign up</a></p>
                 </div>
             </div>
         </div>
@@ -66,20 +66,20 @@
                 $sql = $mysqli->query("SELECT `eventid` FROM `events` WHERE `eventname` LIKE '$eventName'");
                 $row = mysqli_fetch_assoc($sql);
                 
-                echo '<script type="text/javascript">window.location="admin/dashboard.php?event=' . $row['eventid'] . '"</script>';
+                echo '<script type="text/javascript">window.location="admin/dashboard?event=' . $row['eventid'] . '"</script>';
             }
             
             //If incorrect, send back to signin
             else{
                 echo '<script type="text/javascript">;
                 alert("Email and password combination is incorrect!");
-                window.location="signin.php"</script>';
+                window.location="signin"</script>';
             }
         }
         else{			
             echo '<script type="text/javascript">;
             alert("You need to gimme a username AND password!!");
-            window.location="signin.php"</script>';
+            window.location="signin"</script>';
         }
     }
     

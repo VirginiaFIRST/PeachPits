@@ -46,7 +46,7 @@
         $sql = $mysqli->query("INSERT into `requests`(`email`, `firstname`, `lastname`, `existingrole`, `requestedrole`, `status`, `type`, `event`)
         VALUES ('$sessionEmail', '$firstname', '$lastname', '$existingRole', '$requestedRole', '$status', '$type', '$requestedEvent')");
 
-        echo '<script type="text/javascript">window.location="admin/dashboard.php?event='.$currentEvent.'"</script></div>';
+        echo '<script type="text/javascript">window.location="admin/dashboard?event='.$currentEvent.'"</script></div>';
     }
     
 ?>

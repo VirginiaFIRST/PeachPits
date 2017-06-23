@@ -15,17 +15,17 @@
 		<h1 class="text-center"><small>Can't find your event? Need help or have a question?<br><br>Fill out the form below and we'll get back in touch with you as soon as possible.</small></h1>
   </div>
   <br>
-  <form name="htmlform" method="post" action="contact_send.php">
+  <form name="htmlform" method="post" action="contact_send">
     <div id="form-name" class="form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-user"></i>
-        <input type="text" class="form-control input-lg no-radius" name="name" id="name" placeholder="Name">
+        <input type="text" class="form-control input-lg no-radius" name="name" id="name" placeholder="Name" value=<?php if (loggedOn()){ echo $firstname, '&nbsp;', $lastname;}?> >
       </div>
     </div>
     <div class="form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-envelope"></i>
-        <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email">
+        <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email" value=<?php if (loggedOn()){ echo $username;}?>>
       </div>
     </div>
     <div id="form-topic" class="form-group">

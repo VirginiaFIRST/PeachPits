@@ -20,7 +20,7 @@
 				</div>
 			';} ?>
 			<div class="container-add text-center">
-				<form class="form-inline" action="admin/add_team.php?event=<?php echo $currentEvent; ?>" method="post">
+				<form class="form-inline" action="admin/add_team?event=<?php echo $currentEvent; ?>" method="post">
 					<input type="text" name="teamid" id="teamid" class="form-control" placeholder="Team Number">
 					<a id="lookup-team" href="#" class="btn btn-default" style="display:inline;">Lookup</a>
 					<input type="text" name="teamname" id="teamname" class="form-control" placeholder="Team Name">
@@ -69,7 +69,7 @@
         <h4 class="modal-title" id="myModalLabel">Edit Team Info</h4>
       </div>
       <div class="modal-body text-center">
-        <form action="admin/edit_team.php?event=<?php echo $currentEvent; ?>" method="post">
+        <form action="admin/edit_team?event=<?php echo $currentEvent; ?>" method="post">
             <b>Team Number: </b><p id="teamnumbermodal"></p>
 			<input type="text" name="teamname" id="teamnamemodal" class="form-control" placeholder="Team Name"><br/>
 			<input type="text" name="schoolname" id="schoolnamemodal" class="form-control" placeholder="School Name"><br/>
@@ -86,7 +86,7 @@
 </div>	
 	
 <?php 
-	} else { echo '<script>document.location.href="signin.php"</script>'; }
+	} else { echo '<script>document.location.href="signin"</script>'; }
 	
 	include dirname(__DIR__) . "/footer.php"; 
 ?>

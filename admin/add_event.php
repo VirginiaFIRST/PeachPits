@@ -70,7 +70,7 @@
             
             $query = $mysqli->query($sql);
         
-            echo '<script>window.location="admin/manage-events.php?event='.$currentEvent.'"</script></div>';
+            echo '<script>window.location="admin/manage-events?event='.$currentEvent.'"</script></div>';
         }
     }
     else if ($auto == 'true') {

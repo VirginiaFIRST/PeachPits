@@ -1,8 +1,7 @@
 To-Dos
 
 - Inspectors permissions
-- For inspectors, admin dashboard dropdown not displaying correct events
-- Admin dashboard event dropdown sizing is off
+- the "initial inspector" field isnt working properly
 - On mobile, the navbar dropdown for the event list needs style adjustments
 - The "line" to rezise odd shaped pits
 - Maybe add the pitmap key to the regular pitmap screen

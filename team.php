@@ -38,7 +38,7 @@
 	<p class="dashboard-usertitle-name">Inspection Status</p>
 	<p style="margin-left:10px;"><?php echo $inspection; ?></p>
 	
-	<p style="margin-left:10px;"><a href="pitmap.php?event=<?php echo $currentEvent ?>&team=<?php echo $teamid ?>">Pit Location ></a></p>
+	<p style="margin-left:10px;"><a href="pitmap?event=<?php echo $currentEvent ?>&team=<?php echo $teamid ?>">Pit Location ></a></p>
 	
 	<div class="table-responsive">
 		<table id="table-team-matches" class="table">
@@ -66,7 +66,7 @@
 						if($teamid == $row['blue1']){echo "<td id='blue1' class='blue text-center'><b>". $row['blue1'] ."</b></td>";} else {echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";}
 						if($teamid == $row['blue2']){echo "<td id='blue2' class='blue text-center'><b>". $row['blue2'] ."</b></td>";} else {echo "<td id='blue2' class='blue text-center'>". $row['blue2'] ."</td>";}
 						if($teamid == $row['blue3']){echo "<td id='blue3' class='blue text-center'><b>". $row['blue3'] ."</b></td>";} else {echo "<td id='blue3' class='blue text-center'>". $row['blue3'] ."</td>";}
-						echo "<td class='text-center'><a href='pitmap.php?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
+						echo "<td class='text-center'><a href='pitmap?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
 						echo "</tr>";
 					}		
 				}
@@ -100,7 +100,7 @@
 						if($teamid == $row['red1']){echo "<td id='red1' class='red text-center'><b>". $row['red1'] ."</b></td>";} else {echo "<td id='red1' class='red text-center'>". $row['red1'] ."</td>";}
 						if($teamid == $row['red2']){echo "<td id='red2' class='red text-center'><b>". $row['red2'] ."</b></td>";} else {echo "<td id='red2' class='red text-center'>". $row['red2'] ."</td>";}
 						if($teamid == $row['red3']){echo "<td id='red3' class='red text-center'><b>". $row['red3'] ."</b></td>";} else {echo "<td id='red3' class='red text-center'>". $row['red3'] ."</td>";}
-						echo "<td rowspan='2' class='text-center' style='vertical-align:middle'><a href='pitmap.php?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
+						echo "<td rowspan='2' class='text-center' style='vertical-align:middle'><a href='pitmap?event=".$currentEvent."&r1=".$row['red1']."&r2=".$row['red2']."&r3=".$row['red3']."&b1=".$row['blue1']."&b2=".$row['blue2']."&b3=".$row['blue3']."'><span class='glyphicon glyphicon-map-marker'></span></a></td>";
 						echo "</tr>";
             echo "<tr id='". $row['mactchid'] ."'>";
            	if($teamid == $row['blue1']){echo "<td id='blue1' class='blue text-center'><b>". $row['blue1'] ."</b></td>";} else {echo "<td id='blue1' class='blue text-center'>". $row['blue1'] ."</td>";}

@@ -28,7 +28,7 @@
                 <div class="formbox signup text-center" style="width:300px; margin:auto;">
                     <h3>Sign up</h3><br>
                     <fieldset>
-                        <form method="post" action="signup.php" id="registerForm">
+                        <form method="post" action="signup" id="registerForm">
                             <p><input type="text" name="firstname" placeholder="First Name"style="border-radius:0px;" class="form-control"></p>
                             <p><input type="text" name="lastname" placeholder="Last Name"style="border-radius:0px;" class="form-control"></p>
                             <p><input type="text" name="email" placeholder="Email" style="border-radius:0px;" class="form-control"></p>
@@ -37,7 +37,7 @@
                             <p><input type="submit" name="submit" value="Sign Up" class="btn btn-default"/></p>
                         </form>
                     </fieldset>                       
-                    <p>Already have an account? <a href="signin.php">Sign in</a></p>
+                    <p>Already have an account? <a href="signin">Sign in</a></p>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
             $sql = $mysqli->query("INSERT into `users`(`firstname`,`lastname`, `email`, `password`, `role`, `events`)
             VALUES ('$firstname','$lastname', '$email', '$hashedPass', '$role', '$events');");
 
-            echo '<script>window.location="signin.php"</script></div>';
+            echo '<script>window.location="signin"</script></div>';
         }
     }
     

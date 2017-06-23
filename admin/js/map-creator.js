@@ -37,7 +37,7 @@ $(document).ready(function() {
 	if(teamsArr == null || teamsArr == 'undefined' || teamsArr == ''){
 		alert("You must first add teams! You'll be redirected to the Manage Teams page.");
 		$(window).unbind('beforeunload');
-		window.location.href = "admin/manage-teams.php?event=" + currentEvent;
+		window.location.href = "admin/manage-teams?event=" + currentEvent;
 	}
 	
 	populateMap(teamsArr);
@@ -236,7 +236,7 @@ $(document).ready(function() {
 		var mapWidth = $('#frame').css('width');
 		var mapHeight = $('#frame').css('height');
 		var eventid = currentEvent;
-		$.post("admin/save_map.php", {
+		$.post("admin/save_map", {
 			eventid: eventid,
 			map: map,
 			width: mapWidth,

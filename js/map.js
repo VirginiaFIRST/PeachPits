@@ -234,7 +234,7 @@ $(document).ready(function() {
         $('#table-team-matches .matchrow').remove();
         var teamSchd;
         $.ajax({
-            url: 'getTeamSchedule.php?event=' + currentEvent + '&team=' + id,
+            url: 'getTeamSchedule?event=' + currentEvent + '&team=' + id,
             type: 'POST',
             success: function (data) {
                 teamSchd = [];
@@ -310,7 +310,7 @@ $(document).ready(function() {
 		$('.map-inspectmodifiedtime').html(teamsArr[index][7]);
 		mapTeamInspectStatus(index);
 		
-		var link = 'team.php?team=' + teamsArr[index][0] + '&event=' + currentEvent;
+		var link = 'team?team=' + teamsArr[index][0] + '&event=' + currentEvent;
 		$('.map-moreinfo').attr('href', link);
 		
 		document.getElementById('inspectNumInline').value = id;
@@ -335,7 +335,7 @@ $(document).ready(function() {
 		var inspectnotes = $('.map-inspectnotes').val();
 		var inspectionstatus = $('#inspectionstatus').val();
 		var teamid = $('#inspectNumInline').val();
-		$.post("admin/inspection_status.php?event="+currentEvent, {
+		$.post("admin/inspection_status?event="+currentEvent, {
 			teamid: teamid,
 			inspectionnotes: inspectnotes,
 			inspectionstatus: inspectionstatus
