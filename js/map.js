@@ -111,7 +111,12 @@ function resizeMapDesktop(viewportHeight) {
   console.log("Viewport: " + viewportHeight);
   console.log("Frame: " + heightFrame);
   console.log("Scale: " + scale);
-  var translateX = ((widthFrame * scale) - widthFrame) / 2;
+  
+  if(widthFrame > heightFrame){
+    var translateX = ((widthFrame * scale*.75) - widthFrame) / 2;
+  } else {
+    var translateX = ((widthFrame * scale) - widthFrame) / 2;
+  }
   var translateY = ((heightFrame * scale) - heightFrame) / 2;
   $('.map-page').css({ 'transform': 'translate(' + translateX + 'px, ' + translateY + 'px) scale(' + scale + ',' + scale + ')', 'margin-right': '0px !important' });
   $('.container-map-outer').css({ 'height': heightFrame * scale + 'px', 'width': widthFrame * scale + 'px' });
@@ -152,7 +157,7 @@ $(document).ready(function() {
 
 
     var viewportWidth = $(window).width();
-    var viewportHeight = $(window).height()-325;
+    var viewportHeight = $(window).height()*.75;
     if (viewportWidth <= 768) {
         resizeMap(viewportWidth);
     }
