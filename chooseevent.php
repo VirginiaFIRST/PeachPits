@@ -89,6 +89,8 @@
 								echo '<li><a href="' . $_SERVER['HTTP_REFERER'] . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
 							}
                             ?>
+                            <li class="divider"></li>
+							<li><a href="contact?topic=event" style="color:red;">Don't see your event?</a></li>
 						</ul>
 					</div>
 				</div>

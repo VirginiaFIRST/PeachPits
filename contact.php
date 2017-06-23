@@ -25,7 +25,7 @@
     <div class="form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-envelope"></i>
-        <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email" value=<?php if (loggedOn()){ echo $username;}?>>
+        <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email" value=<?php if (loggedOn()){ echo $email;}?>>
       </div>
     </div>
     <div id="form-topic" class="form-group">
@@ -121,14 +121,21 @@
     highlight: false,
     hideselected: true,
     preload: false,
-    placeholder: "Select an event"
+    placeholder: "Select/Add an event",
+    create: function(input) {
+        return {
+            value: input,
+            text: input
+        }
+    }
   });
-  $('#topic').selectize({
+  var $topic_select = $('#topic').selectize({
     highlight: false,
     hideselected: true,
-    preload: false,
+    preload: 'event',
     placeholder: "How can we help you?",
   });
+  var control_topic = $topic_select[0].selectize;
   $('#bugtopic').selectize({
     highlight: false,
     hideselected: true,
@@ -269,6 +276,19 @@
   });
 </script>
 </div>
+
+
+<?php
+  $topic = $_GET["topic"];
+  if($topic == "bug"){
+    echo'<script>control_topic.setValue("bug");</script>';
+  }
+  if($topic == "event"){
+    echo'<script>control_topic.setValue("event");</script>';  }
+  if($topic == "other"){
+    echo'<script>control_topic.setValue("other");</script>';  }
+  
+?>
 
 
 
