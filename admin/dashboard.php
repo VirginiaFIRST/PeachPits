@@ -62,7 +62,8 @@
                   <p class="dashboard-usertitle-name">Request a Role</p>
                   <p style="margin-left:10px;">
                   <form class="form-inline" action="admin/change_role?event=<?php echo $currentEvent ?>" method="post">
-                    <div class="request-role-field">
+                    <div class="request-role-field inner-addon left-addon">
+                      <i class="glyphicon glyphicon-user"></i>
                       <select name="roleChange" style="" id="roleChange">
                         <option value="">Your Role</option>
                         <option>Inspector</option>
@@ -76,7 +77,8 @@
                       for
                     </p>-->
 
-                    <div class="request-event-field">       
+                    <div class="request-event-field inner-addon left-addon">
+                      <i class="glyphicon glyphicon-star"></i>       
                       <?php $sql = $mysqli->query("SELECT * FROM events"); ?> 
                       <select name="addevent" id="addevent">
                         <option value="">Desired Event<option>

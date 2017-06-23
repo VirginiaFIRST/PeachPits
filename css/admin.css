@@ -96,6 +96,34 @@
   background-color:#e6e6e6;
   border-color: #adadad;
 }
+/* enable absolute positioning */
+  .inner-addon { 
+    position: relative; 
+  }
+
+/* style icon */
+  .inner-addon .glyphicon {
+    position: absolute;
+    padding: 15px;
+    pointer-events: none;
+    font-size: 17;
+  }
+
+  /* align icon */
+  .left-addon .glyphicon  { 
+    left:  0px;
+  }
+  .right-addon .glyphicon { 
+    right: 0px;
+  }
+
+  /* add padding  */
+  .left-addon input  { 
+    padding-left:  42px;
+  }
+  .right-addon input { 
+    padding-right: 42px;
+  }
 
 
 /****** Menu ******

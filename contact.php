@@ -25,11 +25,11 @@
     <div class="form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-envelope"></i>
-        <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email" value=<?php if (loggedOn()){ echo $email;}?>>
+        <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email" value=<?php if (loggedOn()){ echo $sessionEmail;}?>>
       </div>
     </div>
     <div id="form-topic" class="form-group">
-      <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon" id="topicselect">
+      <div style="padding:5px" class="col-sm-offset-1 col-sm-10 inner-addon left-addon" id="topicselect">
         <i class="glyphicon glyphicon-list-alt"></i>
         <select style="padding-left: 38px;" name="topic" id="topic" onchange="updateForm()">
           <option selected hidden value="">How can we help you?</option>
