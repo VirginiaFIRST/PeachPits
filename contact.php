@@ -5,6 +5,11 @@
 <link rel="stylesheet" type="text/css" href="css/selectize.css" />
 <link rel="stylesheet" type="text/css" href="css/contact.css" />
 
+
+<?php
+$prevURL = $_SERVER['HTTP_REFERER'];
+?>
+
 <div class="page-head">
   <div class="container">
     <h1>Contact Us</h1>
@@ -25,7 +30,7 @@
     <div class="form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-envelope"></i>
-        <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email" value=<?php if (loggedOn()){ echo $sessionEmail;}?>>
+        <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email" value=<?php if (loggedOn()){ echo $sessionEmail;}?>></input>
       </div>
     </div>
     <div id="form-topic" class="form-group">
@@ -80,8 +85,8 @@
           <option selected hidden value="">Where?</option>
           <option id="event" value="pitmap">Pitmap</option>
           <option id="bug" value="teamlist">Team List</option>
-          <option id="other" value="matchschedule">Match Schedule</option>
-          <option id="other" value="admin">Admin/Inspector Dashboard</option>
+          <option id="match-schedule" value="matchschedule">Match Schedule</option>
+          <option id="admin-dashboard" value="admin">Admin/Inspector Dashboard</option>
           <option id="other" value="other">Other</option>
         </select>
       </div>
@@ -136,12 +141,13 @@
     placeholder: "How can we help you?",
   });
   var control_topic = $topic_select[0].selectize;
-  $('#bugtopic').selectize({
+  var $bug_select = $('#bugtopic').selectize({
     highlight: false,
     hideselected: true,
     preload: false,
     placeholder: "Where?",
   });
+  var control_bug = $bug_select[0].selectize;
   $('#bugdevice').selectize({
     highlight: false,
     hideselected: true,
@@ -280,8 +286,12 @@
 
 <?php
   $topic = $_GET["topic"];
+  $bug = $_GET["bug"];
   if($topic == "bug"){
     echo'<script>control_topic.setValue("bug");</script>';
+    if($bug == "404"){
+      echo'<script>$("#bugdesc").val("404 Error: ' . $prevURL . ' ")</script>';
+    }
   }
   if($topic == "event"){
     echo'<script>control_topic.setValue("event");</script>';  }
