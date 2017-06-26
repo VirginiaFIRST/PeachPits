@@ -171,9 +171,9 @@
                         <td class="text-center"><b>Red 1</b></td>
                         <td class="text-center"><b>Red 2</b></td>
                         <td class="text-center"><b>Red 3</b></td>
-                        <td class="text-center"><b>Red 1</b></td>
-                        <td class="text-center"><b>Red 2</b></td>
-                        <td class="text-center"><b>Red 3</b></td>
+                        <td class="text-center"><b>Blue 1</b></td>
+                        <td class="text-center"><b>Blue 2</b></td>
+                        <td class="text-center"><b>Blue 3</b></td>
                     </tr>
                 </thead>
             </table>
