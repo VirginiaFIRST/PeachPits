@@ -52,6 +52,7 @@
                 <?php echo'<h4><b>School Name: </b></h4><div class="map-schoolname" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 8; -webkit-box-orient: vertical;">'. $row['schoolname'] .'</div>';?>
             </div>
             <?php echo'<div id="teammatches-'. $row['teamid'] .'" class="tabcontent">';?>
+              <?php echo'<div class="team-eventname"><h3>Match Schedule: ' . $eventname . '</h3></div>';?>
                 <?php echo'<table id="table-team-matches-'. $row['teamid'] .'" class="table table-team-matches" style="margin-top:20px;">';?>
                     <thead>
                         <tr>
@@ -201,8 +202,7 @@
       .team-matches-none-mobile {
         display: block;
       }
-    }
-    
+    }    
     </style>
 	</div>
 </div>
