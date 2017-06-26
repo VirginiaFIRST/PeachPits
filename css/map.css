@@ -404,6 +404,7 @@
 
 .box-num {
     line-height: 36px;
+    background-color: white;
 }
 
 .vertical-text {
@@ -490,7 +491,9 @@
 .levelSeven {
     background-color: #BB8FCE;
 }
-
+.box-num:hover {
+  -webkit-filter: brightness(75%);
+}
 .map-key {
     position: absolute;
     top: 70px;
