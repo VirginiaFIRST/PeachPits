@@ -88,6 +88,7 @@ $(document).ready(function() {
 			$(".item").removeClass("ui-draggable drag dragAdd");
 			$(".item").removeClass("ui-draggable-handle ui-draggable");
 			$(".item").draggable({
+        cursor: "move",
 				containment: 'parent',
 				grid: [5,5]
 			});
@@ -153,9 +154,11 @@ $(document).ready(function() {
 		}
 	});
 	$(".drag").draggable({
+    cursor: "move",
 		helper: 'clone'
 	});
 	$(".dragAdd").draggable({
+    cursor: "move",
 		containment: 'parent',
 		grid: [5,5]
 	});
@@ -249,6 +252,7 @@ $(document).ready(function() {
 		$('#frame').empty();
 		$('#frame').append(pits);
 		$(".dragAdd").draggable({
+      cursor: "move",
 			containment: 'parent',
 			grid: [5,5]
 		});
