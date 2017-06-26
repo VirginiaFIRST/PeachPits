@@ -24,7 +24,7 @@
                     $sql = $mysqli->query("SELECT * FROM `events`");      
                     //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
                     while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                        echo '<tr href="admin/dashboard?event=' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
+                        echo '<tr href="admin/dashboard?event=' . $row['eventid'] . '" data-toggle="tooltip" data-placement="right" title="' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
                     }
                     echo '<tr href="admin/manage-events?event="><td><font color= red> Manage Events </font></td></tr>';
                     echo '</table></div>';
@@ -43,7 +43,7 @@
                     $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
                     while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                         if($row['eventid'] != $currentEvent){
-                            echo '<li><a href="admin/dashboard?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                            echo '<li><a href="admin/dashboard?event=' . $row['eventid'] . '" data-toggle="tooltip" data-placement="right" title="' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
                         }
                     }
                 }
@@ -90,7 +90,7 @@
                     $sql = $mysqli->query("SELECT * FROM `events`");      
                     //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
                     while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                        echo '<tr href="admin/dashboard?event=' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
+                        echo '<tr href="admin/dashboard?event=' . $row['eventid'] . '" data-toggle="tooltip" data-placement="bottom" title="' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
                     }
                     echo '<tr href="admin/manage-events?event="><td><font color= red> Manage Events </font></td></tr>';
                     echo '</table></div>';
@@ -109,7 +109,7 @@
                     $sql = $mysqli->query("SELECT * FROM `events` WHERE " .implode(" OR ", $sqlEventsStr));
                     while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                         if($row['eventid'] != $currentEvent){
-                            echo '<li><a href="admin/dashboard?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                            echo '<li><a href="admin/dashboard?event=' . $row['eventid'] . '" data-toggle="tooltip" data-placement="bottom" title="' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
                         }
                     }
                 }
@@ -131,3 +131,9 @@
         </div>
       </div>
     </div>
+    <script>
+      $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+      })
+    
+    </script>
