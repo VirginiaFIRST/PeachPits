@@ -29,6 +29,18 @@
     color: #DC7633;
     outline: 0;
   }
+
+  .btn-contact-submit {
+    float: right;
+  }
+
+  @media screen and (max-width: 768px){
+    .btn-contact-submit{
+      width: 100%;
+      float: none;
+    }
+  }
+
   /* enable absolute positioning */
   .inner-addon { 
     position: relative; 

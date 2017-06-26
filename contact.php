@@ -117,7 +117,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     </div>
     <div style="padding:5px;" class="form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10">
-        <button id="submit" style="padding:5px; " type="submit" class="btn btn-default pull-right">Submit</button>
+        <button id="submit" style="padding:5px; " type="submit" class="btn btn-default btn-contact-submit">Submit</button>
       </div>
     </div>
 </form>
