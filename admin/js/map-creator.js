@@ -90,7 +90,20 @@ $(document).ready(function() {
 			$(".item").draggable({
         cursor: "move",
 				containment: 'parent',
-				grid: [5,5]
+				grid: [5,5],
+        drag: function (event, ui) {
+          var snapTolerance = $(this).draggable('option', 'snapTolerance');
+          var topRemainder = ui.position.top % 5;
+          var leftRemainder = ui.position.left % 5;
+
+          if (topRemainder <= snapTolerance) {
+            ui.position.top = ui.position.top - topRemainder;
+          }
+
+          if (leftRemainder <= snapTolerance) {
+            ui.position.left = ui.position.left - leftRemainder;
+          }
+        }  
 			});
 			$('#frame .box').hover(function(e){  
 				$(this).children('.btn-edit').css('visibility','visible');
@@ -155,12 +168,38 @@ $(document).ready(function() {
 	});
 	$(".drag").draggable({
     cursor: "move",
-		helper: 'clone'
+		helper: 'clone',
+    drag: function (event, ui) {
+      var snapTolerance = $(this).draggable('option', 'snapTolerance');
+      var topRemainder = ui.position.top % 5;
+      var leftRemainder = ui.position.left % 5;
+
+      if (topRemainder <= snapTolerance) {
+        ui.position.top = ui.position.top - topRemainder;
+      }
+
+      if (leftRemainder <= snapTolerance) {
+        ui.position.left = ui.position.left - leftRemainder;
+      }
+    }  
 	});
 	$(".dragAdd").draggable({
     cursor: "move",
 		containment: 'parent',
-		grid: [5,5]
+		grid: [5,5],
+    drag: function (event, ui) {
+      var snapTolerance = $(this).draggable('option', 'snapTolerance');
+      var topRemainder = ui.position.top % 5;
+      var leftRemainder = ui.position.left % 5;
+
+      if (topRemainder <= snapTolerance) {
+        ui.position.top = ui.position.top - topRemainder;
+      }
+
+      if (leftRemainder <= snapTolerance) {
+        ui.position.left = ui.position.left - leftRemainder;
+      }
+    }  
 	});
 	$('#frame .btn-edit').click(function(e){  
 		e.preventDefault();
@@ -254,7 +293,20 @@ $(document).ready(function() {
 		$(".dragAdd").draggable({
       cursor: "move",
 			containment: 'parent',
-			grid: [5,5]
+			grid: [5,5],
+      drag: function (event, ui) {
+        var snapTolerance = $(this).draggable('option', 'snapTolerance');
+        var topRemainder = ui.position.top % 5;
+        var leftRemainder = ui.position.left % 5;
+
+        if (topRemainder <= snapTolerance) {
+          ui.position.top = ui.position.top - topRemainder;
+        }
+
+        if (leftRemainder <= snapTolerance) {
+          ui.position.left = ui.position.left - leftRemainder;
+        }
+      }  
 		});
 		$('#frame').css('width', '316px');
 		$('#frame').css('height', '526px');
