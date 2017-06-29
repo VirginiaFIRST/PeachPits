@@ -5,6 +5,9 @@
 		echo '<script>window.location="chooseevent"</script>';
 	}
 	else {
+    echo '<script>$(".navbar").css("display", "none");</script>';
+    echo '<script>$("html").css("min-height", "0");</script>';
+    echo '<script>$("body").attr("style", "margin-bottom: 0px !important");</script>';
 		$event = $currentEvent."_teams";
 		$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
 		$row = mysqli_fetch_assoc($sql);
@@ -108,7 +111,7 @@
         }
     </script>
 </head>
-<nav class="navbar" style="z-index:100; margin-bottom:60px !important;">
+<nav class="navbar" style="z-index:100; margin-bottom:30px !important;">
     <div class="container-fluid">
         <div class="navbar-header">
             <a href="pitmap?event=<?php echo $currentEvent; ?>" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left"></span>PeachPits | <?php echo $eventName; ?></a>
@@ -139,7 +142,7 @@
 		<div class="container-map-outer portrait-view"><div id="frame" class="container-map map-page"></div></div>
 	</div>
 </div>
-	<section id="sponsors">
+	<section id="sponsors" style="padding: 0px !important;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">

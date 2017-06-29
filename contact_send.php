@@ -4,9 +4,6 @@
   include "footer.php";
 ?>
 <div class="page-head">
-  <div style="padding-left: 15px; padding vertical-align: middle !important; display:inline-block">
-    <FORM><INPUT Type="button" class="btn btn-default" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
-  </div>
   <div style="margin-left: 60px; display:inline-block" class="container">
       <h1>Contact Us</h1>
   </div>

@@ -1,6 +1,8 @@
 <title>PeachPits - Contact</title>
 <?php include "header.php"; ?>
 
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="js/selectize.js"></script>
 <link rel="stylesheet" type="text/css" href="css/selectize.css" />
 <link rel="stylesheet" type="text/css" href="css/contact.css" />
@@ -220,6 +222,18 @@ $prevURL = $_SERVER['HTTP_REFERER'];
       $('#othermsg').removeClass('missing');
     }
   });
+  
+  $('#event-btn-no').on('click', function(e){
+    $('#event-btn-no').addClass('contact-btn');
+    $('#event-btn-yes').removeClass('contact-btn');
+    $('.event-who').css('display', 'block');
+    $('#eventadmin').val("");
+  });
+  $('#event-btn-yes').on('click', function(e){
+    $('#event-btn-yes').addClass('contact-btn');
+    $('#event-btn-no').removeClass('contact-btn');
+    $('.event-who').css('display', 'none');
+  });
   $('#submit').on('click', function(e){
     if($('#event-btn-yes').hasClass('contact-btn') && $('.item').attr('data-value') == 'event'){
       var name = $('#name').val();
@@ -261,24 +275,20 @@ $prevURL = $_SERVER['HTTP_REFERER'];
       $('.selectize-control').addClass('missing');
       e.preventDefault();
     }
-  });
-  $('#event-btn-no').on('click', function(e){
-    $('#event-btn-no').addClass('contact-btn');
-    $('#event-btn-yes').removeClass('contact-btn');
-    $('.event-who').css('display', 'block');
-    $('#eventadmin').val("");
-  });
-  $('#event-btn-yes').on('click', function(e){
-    $('#event-btn-yes').addClass('contact-btn');
-    $('#event-btn-no').removeClass('contact-btn');
-    $('.event-who').css('display', 'none');
-  });
-  $('#submit').on('click', function(e){
-    if($('#event-btn-yes').hasClass('year-showing') && $('#topic').val() == 'event'){
-      var name = $('#name').val();
-      $('#eventadmin').val(name);
-
+    if($('.missing').length == 0){
+      if(confirm("Submit")){
+        if($('#event-btn-yes').hasClass('year-showing') && $('#topic').val() == 'event'){
+          var name = $('#name').val();
+          $('#eventadmin').val(name);
+        }
+      } else {
+        e.preventDefault();
+      
+      }
     }
+  });
+  $('#submit').click(function() {
+    $('.missing').parent().effect( "shake" );
   });
 </script>
 </div>
