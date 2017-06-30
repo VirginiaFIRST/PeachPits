@@ -49,7 +49,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     <div id="event-eventname" class="form-group event">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-star"></i>
-        <select style="padding-left: 38px" class="" name="events" id="events" onChange="clearMissing($('#events-selectized').parent())">
+        <select style="padding-left: 38px" name="events" id="events" onChange="clearMissing($('#events-selectized').parent())">
           <option selected hidden value="">Select an Event</option>
           <?php
             $sql = $mysqli->query("SELECT * FROM `events`");   
@@ -242,8 +242,6 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     if($('#name').val() == ''){
       $('#name').addClass('missing');
       e.preventDefault();
-    } else {
-      $('#eventadmin').val
     }
     if($('#email').val() == ''){
       $('#email').addClass('missing');
@@ -288,7 +286,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     }
   });
   $('#submit').click(function() {
-    $('.missing').parent().effect( "shake" );
+    $('.missing').parent().effect( "shake", {distance: 10}, 750 );
   });
 </script>
 </div>
@@ -304,10 +302,12 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     }
   }
   if($topic == "event"){
-    echo'<script>control_topic.setValue("event");</script>';  }
+    echo'<script>control_topic.setValue("event");</script>';
+    echo'<script>$("#events-selectized").parent().addClass("missing");</script>';
+  }
   if($topic == "other"){
-    echo'<script>control_topic.setValue("other");</script>';  }
-  
+    echo'<script>control_topic.setValue("other");</script>';
+  }
 ?>
 
 

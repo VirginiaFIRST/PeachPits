@@ -87,7 +87,7 @@
     <script type="text/javascript">
       setTimeout(function () {
           window.location= "";
-      }, 2000);
+      }, 2500);
     </script>
 <?php
   }
