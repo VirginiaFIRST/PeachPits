@@ -8,7 +8,7 @@
       <h1>Contact Us</h1>
   </div>
 </div>
-<div style="font-size: 18" class="container content col-md-offset-1">
+<div style="font-size: 18" class="container content">
 
 <?php
   if(isset($_POST['email'])) {
