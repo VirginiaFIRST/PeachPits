@@ -298,7 +298,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
       e.preventDefault();
     }
     if($('.missing').length == 0){
-      if(confirm("Submit")){
+      if(confirm("Are you sure you want to submit?")){
         if($('#event-btn-yes').hasClass('year-showing') && $('#topic').val() == 'event'){
           var name = $('#name').val();
           $('#eventadmin').val(name);
