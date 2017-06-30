@@ -76,7 +76,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     </div>
 	  <div class="form-group event">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
-        <i class="glyphicon glyphicon-comment"></i>
+        <div class="glyphicon glyphicon-comment" id="eventmessage-glyphicon"></div>
         <textarea style="resize:none; text-indent: 26px;" class="form-control input-lg no-radius" name="eventmessage" id="eventmessage" rows="7" placeholder="Anything else?"></textarea>
       </div>
     </div>
@@ -107,13 +107,13 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     </div>
     <div class="form-group event bug">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
-        <i class="glyphicon glyphicon-comment"></i>
+        <div class="glyphicon glyphicon-comment" id="bugdesc-glyphicon"></div>
         <textarea style="resize:none; text-indent: 26px;" class="form-control input-lg no-radius" name="bugdesc" id="bugdesc" rows="7" placeholder="Description of the Bug"></textarea>
       </div>
     </div>
     <div class="form-group other">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
-        <i class="glyphicon glyphicon-comment"></i>
+        <div class="glyphicon glyphicon-comment" id="othermsg-glyphicon"></div>
         <textarea style="resize:none; text-indent: 26px;" class="form-control input-lg no-radius" name="othermsg" id="othermsg" rows="7" placeholder="Message"></textarea>
       </div>
     </div>
@@ -158,10 +158,34 @@ $prevURL = $_SERVER['HTTP_REFERER'];
   });
   
   function clearMissing(element){
-    element.removeClass('missing');
+    element.parent().removeClass('missing');
   }
 
   function updateForm(){
+    $('textarea#othermsg').on('scroll', function(){
+      if(this.scrollTop != 0){
+        $('#name').val('test');
+        $('#othermsg-glyphicon').css('display', 'none');
+      } else {
+        $('#othermsg-glyphicon').css('display', 'initial');
+      }
+    });
+    $('textarea#bugdesc').on('scroll', function(){
+      if(this.scrollTop != 0){
+        $('#name').val('test');
+        $('#bugdesc-glyphicon').css('display', 'none');
+      } else {
+        $('#bugdesc-glyphicon').css('display', 'initial');
+      }
+    });
+    $('textarea#eventmessage').on('scroll', function(){
+      if(this.scrollTop != 0){
+        $('#name').val('test');
+        $('#eventmessage-glyphicon').css('display', 'none');
+      } else {
+        $('#eventmessage-glyphicon').css('display', 'initial');
+      }
+    });
     $('.selectize-control').removeClass('missing');
     var name = $('#name').val();
     if($('.item').attr('data-value') == 'event'){
@@ -248,7 +272,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
       e.preventDefault();
     }
     if($('#events-selectized').parent().hasClass('full')){
-      $('#events-selectized').parent().removeClass('missing');
+      $('#events-selectized').parent().parent().removeClass('missing');
     }
     if($('.item').attr('data-value') == 'event'){
       if($('#eventadmin').val() == ''){
@@ -256,7 +280,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
         e.preventDefault();
       }
       if($('#events-selectized').parent().hasClass('not-full')){
-        $('#events-selectized').parent().addClass('missing');
+        $('#events-selectized').parent().parent().addClass('missing');
         e.preventDefault();
       }
     } else if($('.item').attr('data-value') == 'bug'){
@@ -303,7 +327,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
   }
   if($topic == "event"){
     echo'<script>control_topic.setValue("event");</script>';
-    echo'<script>$("#events-selectized").parent().addClass("missing");</script>';
+    echo'<script>$("#events-selectized").parent().parent().addClass("missing");</script>';
   }
   if($topic == "other"){
     echo'<script>control_topic.setValue("other");</script>';

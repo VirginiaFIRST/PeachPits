@@ -83,7 +83,7 @@
 
       //echo $email_message;
     ?>
-    Thank you for contacting us. We'll get back to you shortly. <br> Redirecting you back to the home page...
+    <div class="text-center">Thank you for contacting us. We'll get back to you shortly. <br> Redirecting you back to the home page...</div>
     <script type="text/javascript">
       setTimeout(function () {
           window.location= "";
