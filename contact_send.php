@@ -83,7 +83,11 @@
 
       //echo $email_message;
     ?>
-    <div class="text-center">Thank you for contacting us. We'll get back to you shortly. <br> Redirecting you back to the home page...</div>
+    <div class="page-header" style="margin-top: 0px">
+		  <h1 class="text-center"><small>Thank you for contacting us. We'll get back to you shortly.</small></h1>
+      <br>
+      <h2 class="text-center"><small>Redirecting you back to the home page...</small></h2>
+    </div>
     <script type="text/javascript">
       setTimeout(function () {
           window.location= "";
