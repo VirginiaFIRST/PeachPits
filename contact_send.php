@@ -47,7 +47,7 @@
 
     $email_message .= "Name: ".clean_string($name)."\n";
     $email_message .= "Email: ".clean_string($email_from)."\n";
-    $email_message .= "Topic: ".clean_string($topic)."\n";
+    $email_message .= "Topic: ".clean_string($topic)."\n\n";
     if($topic == 'event'){
       $email_message .= "Event Name: " .clean_string($event_name). "\n";
       $email_message .= "Event Admin: " .clean_string($event_admin). "\n";
