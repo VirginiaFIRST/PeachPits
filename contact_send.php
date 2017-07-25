@@ -84,14 +84,11 @@
 		  <h1 class="text-center"><small>Thank you for contacting us. We'll get back to you shortly.</small></h1>
       <br>
       <h2 class="text-center"><small>Redirecting you back to the home page...</small></h2>
-      <div>
-        <?php echo $email_message ?>
-      </div>
     </div>
     <script type="text/javascript">
-      // setTimeout(function () {
-      //     window.location= "";
-      // }, 2500);
+      setTimeout(function () {
+          window.location= "";
+      }, 2500);
     </script>
 <?php
   }
