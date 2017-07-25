@@ -25,7 +25,7 @@
      
     $name = $_POST['name'];
     $email_from = $_POST['email'];
-	  $topic = $_POST['topic'];
+	  $topic = "[PeachPits Contact Form] " . $_POST['topic'];
     $event_name = $_POST['events'];
     $event_admin = $_POST['eventadmin'];
     $event_message = $_POST['eventmessage'];
@@ -38,8 +38,6 @@
     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
     $string_exp = "/^[A-Za-z .'-]+$/";
 
-    $email_message = "Form details below.\n\n";     
-
     function clean_string($string) {
         $bad = array("content-type","bcc:","to:","cc:","href");
         return str_replace($bad,"",$string);
@@ -48,15 +46,15 @@
     $email_message .= "Name: ".clean_string($name)."\n";
     $email_message .= "Email: ".clean_string($email_from)."\n";
     $email_message .= "Topic: ".clean_string($topic)."\n\n";
-    if($topic == 'event'){
+    if($topic == '[PeachPits Contact Form] event'){
       $email_message .= "Event Name: " .clean_string($event_name). "\n";
       $email_message .= "Event Admin: " .clean_string($event_admin). "\n";
       $email_message .= "Message: " .clean_string($event_message). "\n";
-    } else if($topic == 'bug'){
+    } else if($topic == '[PeachPits Contact Form] bug'){
       $email_message .= "Where: " .clean_string($bug_topic). "\n";
       $email_message .= "Device: " .clean_string($bug_device). "\n";
       $email_message .= "Description: " .clean_string($bug_desc). "\n";
-    } else if($topic == 'other'){
+    } else if($topic == '[PeachPits Contact Form] other'){
       $email_message .= "Message: ".clean_string($other_msg). "\n";
     }
     
@@ -66,7 +64,6 @@
     'X-Mailer: PHP/' . phpversion();
     @mail($email_to, $topic, $email_message, $headers);
 ?>
-    <!-- include your own success html here -->
     <?php
       // echo 'Name: ' .$name. '<br>';
       // echo 'Email: '.$email_from. '<br>';
@@ -87,11 +84,14 @@
 		  <h1 class="text-center"><small>Thank you for contacting us. We'll get back to you shortly.</small></h1>
       <br>
       <h2 class="text-center"><small>Redirecting you back to the home page...</small></h2>
+      <div>
+        <?php echo $email_message ?>
+      </div>
     </div>
     <script type="text/javascript">
-      setTimeout(function () {
-          window.location= "";
-      }, 2500);
+      // setTimeout(function () {
+      //     window.location= "";
+      // }, 2500);
     </script>
 <?php
   }
