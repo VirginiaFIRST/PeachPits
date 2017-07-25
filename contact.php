@@ -85,11 +85,11 @@ $prevURL = $_SERVER['HTTP_REFERER'];
         <i class="glyphicon glyphicon-search"></i>
         <select name="bugtopic" id="bugtopic">
           <option selected hidden value="">Where?</option>
-          <option id="event" value="pitmap">Pitmap</option>
-          <option id="bug" value="teamlist">Team List</option>
-          <option id="match-schedule" value="matchschedule">Match Schedule</option>
-          <option id="admin-dashboard" value="admin">Admin/Inspector Dashboard</option>
-          <option id="other" value="other">Other</option>
+          <option id="bug-pitmap" value="pitmap">Pitmap</option>
+          <option id="bug-team-list" value="teamlist">Team List</option>
+          <option id="bug-match-schedule" value="matchschedule">Match Schedule</option>
+          <option id="bug-admin-dashboard" value="admin">Admin/Inspector Dashboard</option>
+          <option id="bug-other" value="other">Other</option>
         </select>
       </div>
     </div>
@@ -98,10 +98,10 @@ $prevURL = $_SERVER['HTTP_REFERER'];
         <i class="glyphicon glyphicon-phone"></i>
         <select name="bugdevice" id="bugdevice">
           <option selected hidden value="">What device are you on?</option>
-          <option id="event" value="mobile">Mobile</option>
-          <option id="bug" value="tablet">Tablet</option>
-          <option id="other" value="desktop">Desktop</option>
-          <option id="other" value="other">Other</option>
+          <option id="device-mobile" value="mobile">Mobile</option>
+          <option id="device-tablet" value="tablet">Tablet</option>
+          <option id="device-desktop" value="desktop">Desktop</option>
+          <option id="device-other" value="other">Other</option>
         </select>
       </div>
     </div>
