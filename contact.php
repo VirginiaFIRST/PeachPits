@@ -73,6 +73,10 @@ $prevURL = $_SERVER['HTTP_REFERER'];
         <i class="glyphicon glyphicon-king"></i>
         <input style="float:left;" type="text" class="form-control input-lg no-radius" name="eventadmin" id="eventadmin" placeholder="Who will?"></input>
       </div>
+      <div style="padding:5px" class="special col-sm-offset-1 col-sm-10 inner-addon left-addon">
+        <i class="glyphicon glyphicon-envelope"></i>
+        <input style="float:left;" type="email" class="form-control input-lg no-radius" name="eventadmin-email" id="eventadmin-email" placeholder="Their E-Mail"></input>
+      </div>
     </div>
 	  <div class="form-group event">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
@@ -188,6 +192,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     });
     $('.selectize-control').removeClass('missing');
     var name = $('#name').val();
+    var email = $('#email').val();
     if($('.item').attr('data-value') == 'event'){
       $('#events').attr('name', 'events');
       $('#eventadmin').attr('name', 'eventadmin');
@@ -234,6 +239,19 @@ $prevURL = $_SERVER['HTTP_REFERER'];
   $('#email').blur(function(){
     if($('#email').val() != ''){
       $('#email').removeClass('missing');
+      if($('#event-btn-yes').hasClass('contact-btn') && $('.item').attr('data-value') == 'event'){
+        $('#eventadmin-email').removeClass('missing');
+      }
+    }
+  });
+  $('#eventadmin').blur(function(){
+    if($('#eventadmin').val() != ''){
+      $('#eventadmin').removeClass('missing');
+    }
+  });
+  $('#eventadmin-email').blur(function(){
+    if($('#eventadmin-email').val() != ''){
+      $('#eventadmin-email').removeClass('missing');
     }
   });
   $('#bugdesc').blur(function(){
@@ -261,7 +279,9 @@ $prevURL = $_SERVER['HTTP_REFERER'];
   $('#submit').on('click', function(e){
     if($('#event-btn-yes').hasClass('contact-btn') && $('.item').attr('data-value') == 'event'){
       var name = $('#name').val();
+      var email = $('#email').val();
       $('#eventadmin').val(name);
+      $('#eventadmin-email').val(email);
     }
     if($('#name').val() == ''){
       $('#name').addClass('missing');
@@ -277,6 +297,10 @@ $prevURL = $_SERVER['HTTP_REFERER'];
     if($('.item').attr('data-value') == 'event'){
       if($('#eventadmin').val() == ''){
         $('#eventadmin').addClass('missing');
+        e.preventDefault();
+      }
+      if($('#eventadmin-email').val() == ''){
+        $('#eventadmin-email').addClass('missing');
         e.preventDefault();
       }
       if($('#events-selectized').parent().hasClass('not-full')){

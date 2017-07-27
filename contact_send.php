@@ -28,6 +28,7 @@
 	  $topic = "[PeachPits Contact Form] " . $_POST['topic'];
     $event_name = $_POST['events'];
     $event_admin = $_POST['eventadmin'];
+    $event_admin_email = $_POST['eventadmin-email'];
     $event_message = $_POST['eventmessage'];
     $bug_topic = $_POST['bugtopic'];
     $bug_device = $_POST['bugdevice'];
@@ -49,6 +50,7 @@
     if($topic == '[PeachPits Contact Form] event'){
       $email_message .= "Event Name: " .clean_string($event_name). "\n";
       $email_message .= "Event Admin: " .clean_string($event_admin). "\n";
+      $email_message .= "Event Admin E-Mail: " .clean_string($event_admin_email). "\n";
       $email_message .= "Message: " .clean_string($event_message). "\n";
     } else if($topic == '[PeachPits Contact Form] bug'){
       $email_message .= "Where: " .clean_string($bug_topic). "\n";
@@ -85,10 +87,13 @@
       <br>
       <h2 class="text-center"><small>Redirecting you back to the home page...</small></h2>
     </div>
+    <div>
+        <?php echo $email_message ?>
+    </div>
     <script type="text/javascript">
-      setTimeout(function () {
-          window.location= "";
-      }, 2500);
+      // setTimeout(function () {
+      //     window.location= "";
+      // }, 2500);
     </script>
 <?php
   }
