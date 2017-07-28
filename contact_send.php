@@ -88,12 +88,12 @@
       <h2 class="text-center"><small>Redirecting you back to the home page...</small></h2>
     </div>
     <div>
-        <?php echo $email_message ?>
+        <?php //echo $email_message ?>
     </div>
     <script type="text/javascript">
-      // setTimeout(function () {
-      //     window.location= "";
-      // }, 2500);
+      setTimeout(function () {
+          window.location= "";
+      }, 2500);
     </script>
 <?php
   }

@@ -4,8 +4,10 @@
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="js/selectize.js"></script>
+<script src="js/jquery-confirm.js"></script>
 <link rel="stylesheet" type="text/css" href="css/selectize.css" />
 <link rel="stylesheet" type="text/css" href="css/contact.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery-confirm.css" />
 
 
 <?php
@@ -22,7 +24,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
 		<h1 class="text-center"><small>Can't find your event? Need help or have a question?<br><br>Fill out the form below and we'll get back in touch with you as soon as possible.</small></h1>
   </div>
   <br>
-  <form name="htmlform" method="post" action="contact_send">
+  <form name="htmlform" id="contact-form" method="post" action="contact_send">
     <div id="form-name" class="form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-user"></i>
@@ -322,23 +324,49 @@ $prevURL = $_SERVER['HTTP_REFERER'];
       e.preventDefault();
     }
     if($('.missing').length == 0){
-      if(confirm("Are you sure you want to submit?")){
-        if($('#event-btn-yes').hasClass('year-showing') && $('#topic').val() == 'event'){
-          var name = $('#name').val();
-          $('#eventadmin').val(name);
-        }
+      
+      if($('#event-btn-yes').hasClass('year-showing') && $('#topic').val() == 'event'){
+        var name = $('#name').val();
+        $('#eventadmin').val(name);
+        var email = $('#email').val();
+        $('#eventadmin-email').val(email);
+      }
+      if($('#submit').hasClass('accepted')){
+
       } else {
         e.preventDefault();
-      
+        $.confirm({
+        title: 'Event Admin Terms',
+        content:
+            'By accepting these terms, you or the person you appointed is fully capable of the responsibilities of being an event admin. Who will need to manage the event\'s inspectors, pitmap, teamlists, and schedules. The event admin will not be granted access to the event until we verify they are capable of doing so.',
+        buttons: {
+          accept: {
+            action:  function () {
+              $('#submit').addClass('accepted');
+              $('#submit').trigger('click');
+            },
+          },
+          cancel: {
+            action:  function () {
+
+            },
+          }
+        }
+      }); 
       }
-    }
+      
+    } 
   });
   $('#submit').click(function() {
     $('.missing').parent().effect( "shake", {distance: 10}, 750 );
   });
 </script>
 </div>
+<!--
 
+
+
+-->
 
 <?php
   $topic = $_GET["topic"];
