@@ -478,23 +478,23 @@
 
 /*Weighed and Sized*/
 .levelThree, .levelThreeKey {
-    background-color: #D98880;
+    background-color: #8c7fe3;
 }
 
 .levelThreeText {
-    color: #d98880;
-    background-color: #D98880;
+    color: #8c7fe3;
+    background-color: #8c7fe3;
     border: 1px solid #000000;
 }
 
 /*Major Issue*/
 .levelFour, .levelFourKey {
-    background-color: #E59866;
+    background-color: #d98880;
 }
 
 .levelFourText {
-    color: #e59866;
-    background-color: #E59866;
+    color: #d98880;
+    background-color: #d98880;
     border: 1px solid #000000;
 }
 
