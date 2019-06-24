@@ -37,7 +37,7 @@
     <!--<div class="row" style="padding-bottom:20px;">
         <div class="col-md-12 text-center">
             <h2>PeachPits is made possible by</h2>
-            <a href="http://www.automationdirect.com/adc/Home/Home"><img src="imgs/adc_logo.png" style="width:100%;" alt="Automation Direct Logo"></a>
+            <a href="http://www.automationdirect.com/adc/Home/Home"><img src="imgs/adc_logo.png" style="width:50%;" alt="Automation Direct Logo"></a>
         </div>
     </div>-->
 </div>

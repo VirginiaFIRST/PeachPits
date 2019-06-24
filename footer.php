@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2 id="sponsor-text">PeachPits is presented by</h2>
-					<a href="http://www.automationdirect.com/adc/Home/Home" name="AutomationDirect"><img src="imgs/adc_logo.png" alt="Automation Direct Logo" style="width:100%;"></a>
+					<a href="http://www.automationdirect.com/adc/Home/Home" name="AutomationDirect"><img src="imgs/adc_logo.png" alt="Automation Direct Logo" style="width:50%;"></a>
 				</div>
 			</div>
 		</div>

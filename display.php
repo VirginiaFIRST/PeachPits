@@ -85,6 +85,18 @@
     -webkit-animation: scroll-left <?php echo $animationTime; ?>s linear infinite;
     animation: scroll-left <?php echo $animationTime; ?>s linear infinite;
   }
+  html, body {
+    height: 100%;
+  }
+  body {
+    position: relative;
+  }
+  #sponsors {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 </style>
 <nav class="navbar" style="z-index:100; margin-bottom:30px !important;">
     <div class="container-fluid">
@@ -153,7 +165,7 @@
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>PeachPits is presented by</h2>
-					<a href="http://www.automationdirect.com/adc/Home/Home"><img src="imgs/adc_logo.png" style="width:100%;" alt="Automation Direct Logo"></a>
+					<a href="http://www.automationdirect.com/adc/Home/Home"><img src="imgs/adc_logo.png" style="width:50%;" alt="Automation Direct Logo"></a>
 				</div>
 			</div>
 		</div>
