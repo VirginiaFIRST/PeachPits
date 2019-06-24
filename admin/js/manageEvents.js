@@ -191,14 +191,14 @@ $(document).ready(function() {
     filterEvents();
   });
 	$("#populate").click(function() {
-		$('#processing-modal').modal({
-			backdrop: 'static',
-			keyboard: false
-		});
 		var date = new Date();
 		var year = date.getFullYear();
 		var confirmAutoFill = confirm("Are you sure you want to do this? This will get all of the events for " + year + " and delete all events that are before " + year + ".");
 		if (confirmAutoFill){
+      $('#processing-modal').modal({
+        backdrop: 'static',
+        keyboard: false
+      });
       $('#processing-modal').modal('show');
 			$.post("admin/delete_old_events", {
 			}, function () {
