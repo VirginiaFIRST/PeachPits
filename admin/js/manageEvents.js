@@ -195,11 +195,11 @@ $(document).ready(function() {
 			backdrop: 'static',
 			keyboard: false
 		});
-		$('#processing-modal').modal('show');
 		var date = new Date();
 		var year = date.getFullYear();
 		var confirmAutoFill = confirm("Are you sure you want to do this? This will get all of the events for " + year + " and delete all events that are before " + year + ".");
 		if (confirmAutoFill){
+      $('#processing-modal').modal('show');
 			$.post("admin/delete_old_events", {
 			}, function () {
 				var call = 'https://www.thebluealliance.com/api/v3/events/' + year ;
