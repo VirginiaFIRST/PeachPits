@@ -98,10 +98,10 @@
     right: 0;
   }
 </style>
-<nav class="navbar" style="z-index:100; margin-bottom:30px !important;">
+<nav class="navbar" style="z-index:100;">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a href="pitmap?event=<?php echo $currentEvent; ?>" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left"></span>PeachPits | <?php echo $eventName; ?></a>
+            <a href="pitmap?event=<?php echo $currentEvent; ?>" class="navbar-brand"><span class="glyphicon glyphicon-chevron-left"></span>PeachPits</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-1" style="margin-left:0px !important;">
             <ul class="nav navbar-nav navbar-right ">
@@ -147,18 +147,25 @@
 	}
 ?>
 </nav>
-<div class="map-key">
-    <div class="key-container"><div class="keyColor levelSix"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></div>
-    <div class="key-container"><div class="keyColor levelFive"></div><div class="key-text"  style="display:inline">Minor Issue (</div><div class="key-text" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></div>
-    <div class="key-container"><div class="keyColor levelFour"></div><div class="key-text"  style="display:inline">Major Issue (</div><div class="key-text" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></div>
-	<div class="key-container"><div class="keyColor levelThree"></div><div class="key-text" style="display:inline">Weighed and Sized (</div><div class="key-text" style="display:inline" id="count-weighed"></div><div class="key-text" style="display:inline">)</div></div>
-    <div class="key-container"><div class="keyColor levelTwo"></div><div class="key-text"  style="display:inline">Ok to unbag (</div><div class="key-text" style="display:inline" id="count-ok"></div><div class="key-text" style="display:inline">)</div></div>
-    <div class="key-container"><div class="keyColor levelOne"></div><div class="key-text"  style="display:inline">Not Started (</div><div class="key-text" style="display:inline" id="count-notstarted"></div><div class="key-text" style="display:inline">)</div></div>
+<div class="page-head" style="margin-bottom:30px">
+  <div class="container">
+    <h1><?php echo $currentEvent; ?></h1>
+  </div>
 </div>
-<div class="container" style="padding:0px !important;">
-	<div class="container-map-centered map-main">
-		<div class="container-map-outer portrait-view"><div id="frame" class="container-map map-page"></div></div>
-	</div>
+<div class="content" style="width:100%;position:relative;">
+  <div class="map-key">
+      <div class="key-container"><div class="keyColor levelSix"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></div>
+      <div class="key-container"><div class="keyColor levelFive"></div><div class="key-text"  style="display:inline">Minor Issue (</div><div class="key-text" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></div>
+      <div class="key-container"><div class="keyColor levelFour"></div><div class="key-text"  style="display:inline">Major Issue (</div><div class="key-text" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></div>
+    <div class="key-container"><div class="keyColor levelThree"></div><div class="key-text" style="display:inline">Weighed and Sized (</div><div class="key-text" style="display:inline" id="count-weighed"></div><div class="key-text" style="display:inline">)</div></div>
+      <div class="key-container"><div class="keyColor levelTwo"></div><div class="key-text"  style="display:inline">Ok to unbag (</div><div class="key-text" style="display:inline" id="count-ok"></div><div class="key-text" style="display:inline">)</div></div>
+      <div class="key-container"><div class="keyColor levelOne"></div><div class="key-text"  style="display:inline">Not Started (</div><div class="key-text" style="display:inline" id="count-notstarted"></div><div class="key-text" style="display:inline">)</div></div>
+  </div>
+  <div class="container" style="padding:0px !important;">
+    <div class="container-map-centered map-main">
+      <div class="container-map-outer portrait-view"><div id="frame" class="container-map map-page"></div></div>
+    </div>
+  </div>
 </div>
 	<section id="sponsors" style="padding: 0px !important;">
 		<div class="container">
