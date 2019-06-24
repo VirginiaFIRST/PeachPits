@@ -25,19 +25,19 @@ $prevURL = $_SERVER['HTTP_REFERER'];
   </div>
   <br>
   <form name="htmlform" id="contact-form" method="post" action="contact_send">
-    <div id="form-name" class="form-group">
+    <div id="form-name" class="form-group resize-form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-user"></i>
         <input type="text" class="form-control input-lg no-radius" name="name" id="name" placeholder="Name" value=<?php if (loggedOn()){ echo $firstname, '&nbsp;', $lastname;}?> >
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group resize-form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-envelope"></i>
         <input type="email" class="form-control input-lg no-radius" name="email" id="email" placeholder="Email" value=<?php if (loggedOn()){ echo $sessionEmail;}?>></input>
       </div>
     </div>
-    <div id="form-topic" class="form-group">
+    <div id="form-topic" class="form-group resize-form-group">
       <div style="padding:5px" class="col-sm-offset-1 col-sm-10 inner-addon left-addon" id="topicselect">
         <i class="glyphicon glyphicon-list-alt"></i>
         <select style="padding-left: 38px;" name="topic" id="topic" onchange="updateForm()">
@@ -48,7 +48,7 @@ $prevURL = $_SERVER['HTTP_REFERER'];
         </select>
       </div>
     </div>
-    <div id="event-eventname" class="form-group event">
+    <div id="event-eventname" class="form-group resize-form-group event">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-star"></i>
         <select style="padding-left: 38px" name="events" id="events" onChange="clearMissing($('#events-selectized').parent())">
@@ -57,20 +57,20 @@ $prevURL = $_SERVER['HTTP_REFERER'];
             $sql = $mysqli->query("SELECT * FROM `events`");   
             $row = mysqli_fetch_assoc($sql);
             while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-              echo '<option><td><font color= #000000 >' . $row['eventname'] . '</font><td></option>';
+              echo '<option><td>' . $row['eventname'] . '<td></option>';
             }
           ?>
         </select>
       </div>
     </div>
-    <div id="event-eventadmin" class="form-group event">
+    <div id="event-eventadmin" class="form-group resize-form-group event">
       <div style="padding:5px; vertical-align: middle;" class="who col-sm-offset-1 col-sm-10">
         <button id="event-btn-yes" style="float:left vertical-align: middle" type="button" class="btn btn-default contact-btn" value="event-eventadmin-yes">Yes</button>
         <button id="event-btn-no"  style="float:left" type="button" class="btn btn-default" value="event-eventadmin-no">No</button>
          &nbsp;&nbsp;Will you be the event admin?
       </div>
     </div>
-    <div id="event-eventadmin-who" class="form-group event-who">
+    <div id="event-eventadmin-who" class="form-group resize-form-group event-who">
       <div style="padding:5px" class="special col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-king"></i>
         <input style="float:left;" type="text" class="form-control input-lg no-radius" name="eventadmin" id="eventadmin" placeholder="Who will?"></input>
@@ -80,13 +80,13 @@ $prevURL = $_SERVER['HTTP_REFERER'];
         <input style="float:left;" type="email" class="form-control input-lg no-radius" name="eventadmin-email" id="eventadmin-email" placeholder="Their E-Mail"></input>
       </div>
     </div>
-	  <div class="form-group event">
+	  <div class="form-group resize-form-group event">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <div class="glyphicon glyphicon-comment" id="eventmessage-glyphicon"></div>
         <textarea style="resize:none; text-indent: 26px;" class="form-control input-lg no-radius" name="eventmessage" id="eventmessage" rows="7" placeholder="Anything else?"></textarea>
       </div>
     </div>
-    <div class="form-group bug">
+    <div class="form-group resize-form-group bug">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-search"></i>
         <select name="bugtopic" id="bugtopic">
@@ -95,11 +95,12 @@ $prevURL = $_SERVER['HTTP_REFERER'];
           <option id="bug-team-list" value="teamlist">Team List</option>
           <option id="bug-match-schedule" value="matchschedule">Match Schedule</option>
           <option id="bug-admin-dashboard" value="admin">Admin/Inspector Dashboard</option>
+          <option id="bug-peachtalk" value="peachtalk">PeachTalk</option>
           <option id="bug-other" value="other">Other</option>
         </select>
       </div>
     </div>
-    <div class="form-group bug">
+    <div class="form-group resize-form-group bug">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <i class="glyphicon glyphicon-phone"></i>
         <select name="bugdevice" id="bugdevice">
@@ -111,19 +112,19 @@ $prevURL = $_SERVER['HTTP_REFERER'];
         </select>
       </div>
     </div>
-    <div class="form-group event bug">
+    <div class="form-group resize-form-group event bug">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <div class="glyphicon glyphicon-comment" id="bugdesc-glyphicon"></div>
         <textarea style="resize:none; text-indent: 26px;" class="form-control input-lg no-radius" name="bugdesc" id="bugdesc" rows="7" placeholder="Description of the Bug"></textarea>
       </div>
     </div>
-    <div class="form-group other">
+    <div class="form-group resize-form-group other">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10 inner-addon left-addon">
         <div class="glyphicon glyphicon-comment" id="othermsg-glyphicon"></div>
         <textarea style="resize:none; text-indent: 26px;" class="form-control input-lg no-radius" name="othermsg" id="othermsg" rows="7" placeholder="Message"></textarea>
       </div>
     </div>
-    <div style="padding:5px;" class="form-group">
+    <div style="padding:5px;" class="form-group resize-form-group">
       <div style="padding:5px;" class="col-sm-offset-1 col-sm-10">
         <button id="submit" style="padding:5px; " type="submit" class="btn btn-default btn-contact-submit">Submit</button>
       </div>
@@ -362,11 +363,6 @@ $prevURL = $_SERVER['HTTP_REFERER'];
   });
 </script>
 </div>
-<!--
-
-
-
--->
 
 <?php
   $topic = $_GET["topic"];

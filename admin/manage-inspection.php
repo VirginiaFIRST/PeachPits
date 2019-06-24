@@ -7,12 +7,13 @@
 	 
 	if(loggedOn()) {
     	include "menu.php";	
-		$event = $currentEvent."_teams";
+		$eventTeams = $currentEvent."_teams";
 		$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
 		$row = mysqli_fetch_assoc($sql);
 		$eventname = $row['eventname'];
 		
 		$eventMatches = $currentEvent."_matches";
+		$eventInspections = $currentEvent."_inspections";
 		$sqlMatches = $mysqli->query("SELECT * FROM `".$eventMatches."` WHERE `matchtype` LIKE 'qm' ORDER BY matchnumber ASC");
 		
 		$sql = $mysqli->query("SELECT * FROM `maps` WHERE `eventid` LIKE '$currentEvent'");
@@ -40,7 +41,7 @@
 		<?php 
 			$i = 0;
 			$inspectStatuses;			
-			$sqlTeams = $mysqli->query("SELECT t.teamid, t.teamname, t.schoolname, t.location, e.inspectionstatus, e.inspectionnotes, e.initial_inspector, e.last_modified_by, e.last_modified_time FROM `".$event."` AS e, teams AS t WHERE e.teamid = t.teamid ORDER BY `teamid` ASC");
+			$sqlTeams = $mysqli->query("SELECT t.teamid, t.teamname, t.schoolname, t.location, e.inspectionstatus, e.inspectionnotes, e.initial_inspector, e.last_modified_by, e.last_modified_time FROM `".$eventTeams."` AS e, teams AS t WHERE e.teamid = t.teamid ORDER BY `teamid` ASC");
 			while($rowTeams = mysqli_fetch_array($sqlTeams, MYSQLI_BOTH)){
 				$inspectStatuses[$i][0] = $rowTeams['teamid']; 
 				$inspectStatuses[$i][1] = $rowTeams['teamname']; 
@@ -66,6 +67,8 @@
 		<div class="col-md-10 container-dashboard-content">
 			<div class="dashboard-toolbar">
 				<div class="container-fluid">
+				<?php if(isLeadInspector($role) || isEventAdmin($role) || isSuperAdmin($role)) { ?>
+					<button id="thisbtn" class="btn btn-danger pull-left" data-toggle='modal' data-target='#resetInspectionStatus'>Reset Inspection Status</a></button> <?php } ?>
 					<button class="btn btn-default list-view pull-right">List View</button>
 					<button class="btn btn-default map-view pull-right">Map View</button>
 				</div>
@@ -73,7 +76,6 @@
             <div class="inspection-map-view">
 			    <div class="container-map-centered map-inspection">
 				    <div class="container-map-outer"><div id="frame" class="container-map map-page"></div></div>
-				
 			    </div>
                 <div class="map-page-team">
                     <a id="return-map-inspect" class="return btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span> Return to Map (Cancel)</a>
@@ -94,10 +96,9 @@
                         <input type="hidden" name="teamid" id="inspectNumInline">
                         <select name="inspectionstatus" id="inspectionstatus" class="form-control pull-left">
                             <option value="Complete">Complete</option>
-                            <option value="Major Issue">Major Issue</option>
                             <option value="Minor Issue">Minor Issue</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Weighed and Sized">Weighed and Sized</option>
+														<option value="Major Issue">Major Issue</option>
+														<option value="Weighed and Sized">Weighed and Sized</option>
                             <option value="Ok to unbag">Ok to unbag</option>
                             <option value="Not Started">Not Started</option>
                         </select>
@@ -108,9 +109,33 @@
                         <textarea class="form-control map-inspectnotes" name="inspectionnotes"></textarea>
                         <button type="submit" class="btn btn-default pull-right save-note" name="submit">Save Note</button>
                         <div class="clearfix"></div>
+												<div class="table-responsive">
+												<table style="border: 1px solid #ddd" class="table table-hover" id="inspections-table">
+													<thead style="background-color:white;border-top:none">
+														<th><strong>Inspection Status</strong></th>
+														<th><strong>Inspection Notes</strong></th>
+														<th><strong>Modified By</strong></th>
+														<th><strong>Modified Time</strong></th>
+													</thead>
+													<tbody>
+														<?php 
+															//Fetches all teams in order from the database
+															$sql = $mysqli->query("SELECT * FROM `".$eventInspections."` ORDER BY `modified_time` ASC");	
+															while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+																echo "<tr name='".$row['teamid']."' class='inspections-row'>";
+																echo "<td id='inspectionstatus'>". $row['inspectionstatus'] ."</td>";
+																echo "<td id='inspectionnotes'>". $row['inspectionnotes'] ."</td>";
+																echo "<td>". $row['modified_by'] ."</td>";
+																echo "<td>". $row['modified_time'] ."</td>";
+																echo "</tr>";
+															}				
+														?>
+													</tbody>
+												</table>
+												</div>
                         <h4><b>Initial Inspector: </b></h4><p class="map-initialinspector"></p>
-                        <h4><b>Last Modified By: </b></h4><p class="map-inspectmodifiedby"></p>
-                        <h4><b>Last Modified Time: </b></h4><p class="map-inspectmodifiedtime"></p><?php } ?>
+
+												<?php } ?>
                     </div>
                 </div>
             </div>
@@ -127,7 +152,7 @@
 								<td></td>
 							</thead>
 							<?php 
-								$sql = $mysqli->query("SELECT t.teamid, t.teamname, t.schoolname, t.location, e.inspectionstatus, e.inspectionnotes FROM `".$event."` AS e, teams AS t WHERE e.teamid = t.teamid ORDER BY `teamid` ASC");
+								$sql = $mysqli->query("SELECT t.teamid, t.teamname, t.schoolname, t.location, e.inspectionstatus, e.inspectionnotes FROM `".$eventTeams."` AS e, teams AS t WHERE e.teamid = t.teamid ORDER BY `teamid` ASC");
 								while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
 									echo "<tr id='". $row['teamid'] ."'>";
 									echo "<td id='teamid'>". $row['teamid'] ."</td>";
@@ -136,7 +161,7 @@
 									echo "<td><a href='#' id='changeStatus' data-toggle='modal' data-target='#changeInspectionStatus'>Change</a></td>";
 									echo "<td id='inspectionnotes'>". $row['inspectionnotes'] ."</td>";
 									echo "<td><a href='#' id='editNotes' data-toggle='modal' data-target='#editInspectionNotes'>Edit Note</a></td>";
-								}	
+								}
 							?>
 						</table>
 					</div>
@@ -144,7 +169,48 @@
 			</div>
 		</div>
 	</div>
-</div>	
+</div>
+		
+			
+
+<!-- Reset all inspection statuses to Not Started -->
+<div class="modal fade" id="resetInspectionStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Reset Inspection Status for ALL Teams?</h4>
+      </div>
+      <div class="modal-body text-center">
+				<h5>This will RESET the inspection status of ALL teams back to "Not Started".</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-danger pull-right" data-toggle='modal' data-target='#reset-areyousure' data-dismiss="modal">Reset Inspection Status</button></form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Are you sure? Modal for resetting all inspection statuses to Not Started -->
+<div class="modal fade" id="reset-areyousure" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel">Are you sure?</h2>
+      </div>
+      <div class="modal-body text-center">
+        <h3>This will RESET the inspection status of ALL teams back to "Not Started".</h3>
+				<form action="/peachpits/admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=resetstatus" method="post">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" id="btn-not-sure" data-dismiss="modal">No, I'm not sure</button>
+        <button type="submit" class="btn btn-danger pull-right" id="btn-confirm" name="submit">Yes, Reset Inspection Status</button></form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Change inspection status popup -->
 <div class="modal fade" id="changeInspectionStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -152,17 +218,17 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Change Inspection Status</h4>
+        <h4 style="display:inline" class="modal-title" id="myModalLabel">Change Inspection Status for Team</h4>
+				<h4 style="display:inline" class="modal-title" name="teamid" id="getteamid">#</h4>
       </div>
       <div class="modal-body text-center">
-        <form action="admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=changestatus" method="post">
+        <form action="/peachpits/admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=changestatus" method="post">
 			<input type="hidden" name="teamid" id="inspectnumbermodal">
             <select name="inspectionstatus" id="inspectionstatus" class="form-control">
 				<option>Complete</option>
-				<option>Major Issue</option>
 				<option>Minor Issue</option>
-                <option>In Progress</option>
-                <option>Weighed and Sized</option>
+				<option>Major Issue</option>
+				<option>Weighed and Sized</option>
 				<option>Ok to unbag</option>
 				<option>Not Started</option>
 			</select>
@@ -181,12 +247,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit Inspection Notes</h4>
+        <h4 style="display:inline" class="modal-title" id="myModalLabel">Edit Inspection Notes for Team </h4>
+				<h4 style="display:inline" class="modal-title" name="teamid" id="getteamid2">#</h4>
       </div>
       <div class="modal-body text-center">
-        <form action="admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=addnote" method="post">
+        <form action="/peachpits/admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=manageinspect&type=addnote" method="post">
 			<input type="hidden" name="teamid" id="inspectnumbermodal-notes">
-			<textarea class="form-control map-inspectnotes-modal" style="width:100%; height:100px; margin-bottom:5px;" name="inspectionnotes"></textarea><br/>
+			<textarea class="form-control map-inspectnotes-modal" style="width:100%; height:100px; margin-bottom:5px; resize:none;" name="inspectionnotes"></textarea><br/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -195,7 +262,22 @@
     </div>
   </div>
 </div>	
-
+<script>
+	if (window.innerWidth <= 430 && document.getElementById('btn-not-sure').innerText != 'No, Cancel') {
+		document.getElementById('btn-not-sure').innerText = 'No, Cancel';
+		document.getElementById('btn-confirm').innerText = 'Yes, Reset';
+	}
+	$(window).resize(function () {
+		if (window.innerWidth <= 430 && document.getElementById('btn-not-sure').innerText != 'No, Cancel') {
+			document.getElementById('btn-not-sure').innerText = 'No, Cancel';
+			document.getElementById('btn-confirm').innerText = 'Yes, Reset';
+		}
+		else if (window.innerWidth > 430 && document.getElementById('btn-not-sure').innerText == 'No, Cancel') {
+			document.getElementById('btn-not-sure').innerText = 'No I\'m not sure';
+			document.getElementById('btn-confirm').innerText = 'Yes, Reset Inspection Status';
+		}
+	})
+</script>
 <?php 
 	} else { echo '<script>document.location.href="signin"</script>'; }
 	

@@ -24,7 +24,7 @@
             $errors[] = "You did not fill out the required fields";
         }
     
-        $sql = $mysqli->query("SELECT * FROM `teams` WHERE `teamid`='{$teamid}'");
+        $sql = $mysqli->query("SELECT * FROM `'$event'` WHERE `teamid`='$teamid'");
         if(mysqli_num_rows($sql) > 0) {
             $errors[] = "Team already added, please add a different team";
         }  
@@ -45,8 +45,13 @@
             }
             $sql = "INSERT into `teams` (`teamid`,`teamname`, `schoolname`, `location`) VALUES ('$teamid','$teamname', '$schoolname', '$location')";
             $query = $mysqli->query($sql);
+
+            date_default_timezone_set("America/New_York");
+            $lastModifiedTime = date("m-d-Y") . ' @ ' . date("H:i:sa") . ' EDT';
+            
+            $sqlInspections = $mysqli->query("INSERT into `".$eventid."_inspections` (`teamid`, `inspectionstatus`, `modified_time`) VALUES ('$teamid', 'Not Started', '$lastModifiedTime');");
     
-            echo '<script>window.location="admin/manage-teams?event='.$currentEvent.'"</script></div>';
+            echo '<script>window.location="/peachpits/admin/manage-teams?event='.$currentEvent.'"</script></div>';
         }
     }
     else if ($auto == 'true') {
@@ -55,5 +60,10 @@
             
         $sql = "INSERT into `" .$event. "` (`teamid`,`inspectionstatus`) VALUES ('$teamid','$inspectionstatus')";
         $query = $mysqli->query($sql);
+
+        date_default_timezone_set("America/New_York");
+        $lastModifiedTime = date("m-d-Y") . ' @ ' . date("H:i:sa") . ' EDT';
+
+        $sqlInspections = $mysqli->query("INSERT into `".$eventid."_inspections` (`teamid`, `inspectionstatus`, `modified_time`) VALUES ('$teamid', 'Not Started', '$lastModifiedTime');");
     }
 ?>

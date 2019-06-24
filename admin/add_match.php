@@ -49,7 +49,7 @@
             $sql = "INSERT into `".$event."`(`matchid`,`matchnumber`,`setnumber`,`start`, `red1`, `red2`, `red3`, `blue1`, `blue2`, `blue3`,`matchtype`) VALUES ('$matchid','$matchnumber','$setnumber','$start', '$red1', '$red2', '$red3', '$blue1', '$blue2', '$blue3', '$matchtype')"; 
             $query = $mysqli->query($sql);
     
-            echo '<script type="text/javascript">window.location="admin/manage-matches?event='.$currentEvent.'"</script></div>';
+            echo '<script type="text/javascript">window.location="/peachpits/admin/manage-matches?event='.$currentEvent.'"</script></div>';
         }
     }
     else if ($auto == 'true') {

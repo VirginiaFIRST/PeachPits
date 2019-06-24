@@ -34,7 +34,7 @@
 
         $query = $mysqli->query($sql);
 
-        echo '<script type="text/javascript">window.location="admin/manage-teams?event='.$currentEvent.'"</script></div>';
+        echo '<script type="text/javascript">window.location="/peachpits/admin/manage-teams?event='.$currentEvent.'"</script></div>';
     }
     
 ?>

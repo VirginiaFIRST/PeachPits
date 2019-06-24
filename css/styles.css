@@ -1,7 +1,7 @@
 body {
   /*background-color: #F1F3FA;*/
   font-family: 'Open Sans', sans-serif;
-  margin-bottom: 90px !important;
+  margin-bottom:280px;
 }
 
 .content{
@@ -100,6 +100,20 @@ body {
 
 /* Dropdown Menus */
 
+.dropdown-current-event {
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:180px;
+}
+
+@media screen and (max-width: 767px) {
+    .dropdown-current-event {
+        white-space:inherit;
+        max-width:none;
+    }
+}
+
 .dropdown-menu {
   border-radius:0px;
 }
@@ -148,6 +162,11 @@ body {
     padding: 10px;
 }
 
+.team-matches {
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
 #table-team-matches-mobile {
     display: none;
 }
@@ -194,15 +213,185 @@ body {
                         Teams
 *****************************************************/
 
-.table-teams {
-    border: 1px solid #ddd;
+.form-wide {
+    width:120px !important;
 }
 
 @media screen and (max-width:768px) {
-    #teamname {
-        max-width: 20px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    .form-wide {
+        width:100% !important;
+        margin-bottom:5px;
+    }
+}
+
+.fixed {
+    top:0;
+    position:fixed;
+    width:auto;
+    display:none;
+    border:none;
+}
+
+/*****************************************************
+               Inspection Legend Header
+*****************************************************/
+
+@media screen and (max-width: 468px) {
+    #inspection-legend-header1 {
+        display:none;
+    }
+    #inspection-legend-header2 {
+        display:none;
+    }
+    #inspection-legend-header3 {
+        display:none;
+    }
+    #inspection-legend-header4 {
+        display:block;
+    }
+}
+
+@media screen and (max-width: 680px) and (min-width: 468px) {
+    #inspection-legend-header1 {
+        display:none;
+    }
+    #inspection-legend-header2 {
+        display:none;
+    }
+    #inspection-legend-header3 {
+        display:block;
+    }
+    #inspection-legend-header4 {
+        display:none;
+    }
+}
+
+@media screen and (max-width: 1205px) and (min-width: 680px) {
+    #inspection-legend-header1 {
+        display:none;
+    }
+    #inspection-legend-header2 {
+        display:block;
+    }
+    #inspection-legend-header3 {
+        display:none;
+    }
+    #inspection-legend-header4 {
+        display:none;
+    }
+}
+
+@media screen and (min-width: 1205px) {
+    #inspection-legend-header1 {
+        display:block;
+    }
+    #inspection-legend-header2 {
+        display:none;
+    }
+    #inspection-legend-header3 {
+        display:none;
+    }
+    #inspection-legend-header4 {
+        display:none;
+    }
+}
+
+/*****************************************************
+                    Sponsor Text
+*****************************************************/
+
+@media screen and (max-width: 580px) {
+    #sponsor-text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-width: 580px) {
+    #sponsor-text {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    #sponsor-text {
+        font-size: 21px;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+    #sponsor-text {
+        font-size: 25px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    #sponsor-text {
+        font-size: 30px;
+    }
+}
+
+/*****************************************************
+                    Scroll Text
+*****************************************************/
+
+.scroll-left {
+ height: 50px;	
+ overflow: hidden;
+ position: relative;
+ background-color: #fbeee6;
+ /*border-top: 2px solid #DC7633;*/
+}
+.scroll-left h4 {
+ position: absolute;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -webkit-transform:translateX(100%);	
+ transform:translateX(100%);
+ /* Apply animation to this element */	
+ -webkit-animation: scroll-left 30s linear infinite;
+ animation: scroll-left 30s linear infinite;
+}
+/* Mobile - Apply animation to this element */	
+@media screen and (max-width: 768px) {
+  .scroll-left h4 {
+    -webkit-animation: scroll-left 30s linear infinite;
+    animation: scroll-left 30s linear infinite;
+  }
+}
+/* Move it (define the animation) */
+@-webkit-keyframes scroll-left {
+ 0%   { -webkit-transform: translateX(100vw); }
+ 100% { -webkit-transform: translateX(-100vw); }
+}
+@keyframes scroll-left {
+ 0%   { 
+ -webkit-transform: translateX(100vw);
+ transform: translateX(100vw); 		
+ }
+ 100% { 
+ -webkit-transform: translateX(-100%);
+ transform: translateX(-100%); 
+ }
+}
+@media screen and (max-width: 1024px) {
+    .scroll-left {
+        display:none;
+    }
+}
+/*****************************************************
+                        Forms
+*****************************************************/
+
+.resize-form-group {
+    padding-bottom:5px;
+}
+@media only screen and (max-width: 767px) {
+    .resize-form-group {
+        padding-top:0px;
+        padding-bottom:0px;
+        margin-bottom:3px;
     }
 }

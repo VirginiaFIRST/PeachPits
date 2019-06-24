@@ -37,6 +37,13 @@
         }
     }
 
+    //Checks if a user is an pit admin when called
+    function isPitAdmin($role){
+        if($role == "Pit Admin"){
+            return true;
+        }
+    }
+
     //Checks if a user is an inspector when called
     function isInspector($role){
         if($role == "Inspector"){
@@ -51,6 +58,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <title>PeachPits</title>
+        <link rel="icon" href="imgs/peach-icon.ico" type="image/x-icon">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet"/>
         <link href="css/footer.css" rel="stylesheet" />
@@ -62,12 +70,7 @@
 			}
 			body{
 				background-image:url(imgs/peaches.jpg);
-			}
-			@media screen and (min-width: 768px) {
-				body{
-					background-image:url(imgs/peaches.jpg);
-					background-size:100%;
-				}
+                background-size:cover;
 			}
 			.navbar{
 				background-color:transparent;

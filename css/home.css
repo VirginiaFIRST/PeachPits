@@ -15,6 +15,7 @@
   margin-top:-60px;
   height:100vh;
   background-image:url(../imgs/peaches.jpg);
+  background-size:cover;
   position:relative;
 }
 .cover-container {
@@ -70,7 +71,7 @@
 #about{
   width:100%;
   background-color:#D7DBDD;
-  padding:40px;
+  padding:40px 0px;
 }
 
 #sponsors{

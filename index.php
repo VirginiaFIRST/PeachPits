@@ -15,7 +15,7 @@
             @media only screen and (max-width: 766px) {
                 .navbar{background-color:#DC7633;}
                 .collapsing, .in {background-color: #DC7633;}
-                .collapsing ul li a, .in ul li a {color: #555 !important;}
+                .collapsing ul li a, .in ul li a {color: #555;}
                 .collapsing ul li a:hover, .in ul li a:hover {color: #f1f1f1 !important;}
             }
 		</style>
@@ -33,7 +33,7 @@
     <div class="site-wrapper-inner">
       <div class="cover-container">
         <div class="inner cover">
-          <h1 class="cover-heading">Choose an Event To Get Started!</h1>
+		  <h1 class="cover-heading">Choose an Event To Get Started!</h1>
           	<?php if (empty($currentEvent)){ ?>
 						<div class="dropdown text-center" style="display:inline !important; float:left; width:100%;">
 							<button class="btn-dropdown-nav btn-lg dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -93,7 +93,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<img src ="imgs/screen_mockups-temp.png" style="width:100%;">
+					<img src ="imgs/screen_mockups-temp.png" style="width:100%;" alt="PeachPits Screenshots">
 				</div>
 			</div>
 			<div class="row">
@@ -105,16 +105,16 @@
 		</div>
 	</section>
 
-	<section id="sponsors">
+	<!--<section id="sponsors">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
 					<h2>PeachPits is presented by</h2>
-					<a href="http://www.automationdirect.com/adc/Home/Home"><img src="imgs/adc_logo.png" style="width:100%;"></a>
+					<a href="http://www.automationdirect.com/adc/Home/Home"><img src="imgs/adc_logo.png" style="width:100%;" alt="Automation Direct Logo"></a>
 				</div>
 			</div>
 		</div>
-	</section>
+	</section>-->
 
 	
 <?php include "footer.php"; ?>

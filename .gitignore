@@ -6,3 +6,4 @@ PeachPits.sln
 .vs/PeachPits/v15/.suo
 vs/
 .vscode/settings.json
+.vscode/launch.json

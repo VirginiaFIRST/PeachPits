@@ -2,8 +2,8 @@
 
 <?php 
 	$team = $_GET['team'];
-	$event = $currentEvent."_teams";
-	$sql = $mysqli->query("SELECT t.teamid, t.teamname, t.schoolname, t.location, e.inspectionstatus FROM teams AS t INNER JOIN `".$event."` AS e ON t.teamid=e.teamid WHERE t.teamid = '$team'");
+	$eventTeams = $currentEvent."_teams";
+	$sql = $mysqli->query("SELECT t.teamid, t.teamname, t.schoolname, t.location, e.inspectionstatus FROM teams AS t INNER JOIN `".$eventTeams."` AS e ON t.teamid=e.teamid WHERE t.teamid = '$team'");
 	$row = mysqli_fetch_assoc($sql);
 	
 	$teamid = $row['teamid'];
@@ -12,7 +12,7 @@
 	$location = $row['location'];
 	$inspection = $row['inspectionstatus'];	
 	
-	$event = $currentEvent."_matches";	
+	$eventMatches = $currentEvent."_matches";	
 	$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
 	$row = mysqli_fetch_assoc($sql);
 	$eventname = $row['eventname'];
@@ -43,7 +43,7 @@
 	<div class="table-responsive">
 		<table id="table-team-matches" class="table">
 			<?php 
-				$sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qm' AND `red1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red3` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND`blue1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue3` LIKE '$teamid' ORDER BY matchnumber ASC");
+				$sql = $mysqli->query("SELECT * FROM `".$eventMatches."` WHERE `matchtype` LIKE 'qm' AND `red1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red3` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND`blue1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue3` LIKE '$teamid' ORDER BY matchnumber ASC");
 				if(mysqli_num_rows($sql) != 0){
           echo '<thead>';
           echo '  <td><b>Match #</b></td>';
@@ -78,7 +78,7 @@
 		</table>
     <table id="table-team-matches-mobile" class="table">
 			<?php 
-				$sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qm' AND `red1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red3` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND`blue1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue3` LIKE '$teamid' ORDER BY matchnumber ASC");
+				$sql = $mysqli->query("SELECT * FROM `".$eventMatches."` WHERE `matchtype` LIKE 'qm' AND `red1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `red3` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND`blue1` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue2` LIKE '$teamid' OR `matchtype` LIKE 'qm' AND `blue3` LIKE '$teamid' ORDER BY matchnumber ASC");
 				if(mysqli_num_rows($sql) != 0){
           echo '<thead>';
           echo   '<tr>';

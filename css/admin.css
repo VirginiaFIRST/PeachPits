@@ -118,8 +118,11 @@
   }
 
   /* add padding  */
-  .left-addon input  { 
+  .left-addon input { 
     padding-left:  42px;
+  }
+  .left-addon select {
+    padding-left: 38px;
   }
   .right-addon input { 
     padding-right: 42px;
@@ -203,6 +206,15 @@
   width:100%; 
   background-color:#F8F9F9;
   padding:10px;
+}
+
+@media (min-width: 769px) {
+		.col-md-10 {
+      width: 83.33333333% !important;
+    }
+    .col-md-2 {
+      width: 16.66666667% !important;
+    }
 }
 
 /*** Search Function ***/
@@ -305,7 +317,7 @@
 
 /****** Manage Teams ******
  **************************/
-.container-add {
+.container-add, .container-add-many {
     width: 100%;
     padding: 10px;
     display: none;
@@ -378,4 +390,18 @@
     background-color: #F6DDCC;
     color: #DC7633;
     outline: 0;
+}
+#desktop-event-btns {
+  display:block;
+}
+#mobile-event-btns {
+  display:none;
+}
+@media only screen and (max-width: 550px) {
+  #desktop-event-btns {
+    display:none;
+  }
+  #mobile-event-btns {
+    display:block;
+  }
 }

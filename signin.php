@@ -5,37 +5,50 @@
     /*********************
     Signin page
     **********************/
-    
+    $refer = $_GET['refer'];
     //If no submission has been made then display the form
     if(!isset($_POST['submit'])){
 ?>
 
-<head>
-    <style>
-        html,
-        body {
-            height: calc(100% - 110px);
+<style>
+    .formbox {
+        width:300px;
+    }
+    @media screen and (max-width:340px) {
+        .formbox {
+            width:calc(100vw - 40px);
         }
-        .site-wrapper {
-            height: calc(100% - 50px);
-        }
-    </style>
-</head>
-
-<div class="site-wrapper">
+    }
+</style>
+<div class="site-wrapper" style="height: calc(100vh - 330px)">
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <div class="inner cover" style="color:#000000;">
-                <div class="formbox signin text-center" style="width:300px; margin:auto;">
+                <div class="formbox signin text-center" style="margin:auto;">
                     <h3>Sign in</h3><br>
                     <fieldset>
-                        <form method="post" action="signin">
+                        <?php 
+                            if ($refer == '') { 
+                                echo '<form method="post" action="signin?event='.$currentEvent.'">';
+                            }
+                            else { 
+                                echo '<form method="post" action="signin?refer='.$refer.'&event='.$currentEvent.'">';
+                            }
+                        ?>
                             <p><input type="text" name="email" placeholder="Email" style="border-radius:0px;" class="form-control"></p>
                             <p><input type="password" name="password" placeholder="Password"style="border-radius:0px;" class="form-control"></p>   
                             <p><input type="submit" name="submit" value="Sign In" class="btn btn-default"/></p>
                         </form>
                     </fieldset>
-                    <p>Don't have an account? <a href="signup">Sign up</a></p>
+                    <?php 
+                        if ($refer == '') { 
+                            echo '<p>Don\'t have an account? <a href="signup?event='.$currentEvent.'">Sign up</a></p>';
+                        }
+                        else { 
+                            echo '<p>Don\'t have an account? <a href="signup?refer='.$refer.'&event='.$currentEvent.'">Sign up</a></p>';
+                        }
+                    ?>
+                    <br>
                 </div>
             </div>
         </div>
@@ -66,7 +79,12 @@
                 $sql = $mysqli->query("SELECT `eventid` FROM `events` WHERE `eventname` LIKE '$eventName'");
                 $row = mysqli_fetch_assoc($sql);
                 
-                echo '<script type="text/javascript">window.location="admin/dashboard?event=' . $row['eventid'] . '"</script>';
+                if ($refer == 'peachtalk') {
+                    echo '<script type="text/javascript">window.location="peachtalk/peachtalk-home?event='.$currentEvent.'"</script>';
+                }
+                else {
+                    echo '<script type="text/javascript">window.location="admin/dashboard?event='.$row['eventid'].'"</script>';
+                }
             }
             
             //If incorrect, send back to signin

@@ -11,19 +11,16 @@ function boxColor() {
     console.log('boxColor run');
 	for (var i=0; i < teamsArr.length; i++){
 		if (teamsArr[i][3] == 'Complete'){
+			$("#" + teamsArr[i][0]).addClass('levelSix');
+		}
+		else if (teamsArr[i][3] == 'Minor Issue'){
 			$("#" + teamsArr[i][0]).addClass('levelFive');
 		}
 		else if (teamsArr[i][3] == 'Major Issue'){
 			$("#" + teamsArr[i][0]).addClass('levelFour');
 		}
-		else if (teamsArr[i][3] == 'Minor Issue'){
-			$("#" + teamsArr[i][0]).addClass('levelThree');
-		}
-		else if (teamsArr[i][3] == 'In Progress') {
-		    $("#" + teamsArr[i][0]).addClass('levelSix');
-		}
 		else if (teamsArr[i][3] == 'Weighed and Sized') {
-		    $("#" + teamsArr[i][0]).addClass('levelSeven');
+		    $("#" + teamsArr[i][0]).addClass('levelThree');
 		}
 		else if (teamsArr[i][3] == 'Ok to unbag'){
 			$("#" + teamsArr[i][0]).addClass('levelTwo');
@@ -37,19 +34,16 @@ function boxColor() {
 function mapTeamInspectStatus(index){
   
 	if (teamsArr[index][3] == 'Complete'){
+		$('.map-inspectstatus').addClass('levelSix');
+	}
+	else if (teamsArr[index][3] == 'Minor Issue'){
 		$('.map-inspectstatus').addClass('levelFive');
 	}
 	else if (teamsArr[index][3] == 'Major Issue'){
 		$('.map-inspectstatus').addClass('levelFour');
 	}
-	else if (teamsArr[index][3] == 'Minor Issue'){
-		$('.map-inspectstatus').addClass('levelThree');
-	}
-	else if (teamsArr[index][3] == 'In Progress') {
-	    $('.map-inspectstatus').addClass('levelSix');
-	}
 	else if (teamsArr[index][3] == 'Weighed and Sized') {
-	    $('.map-inspectstatus').addClass('levelSeven');
+	    $('.map-inspectstatus').addClass('levelThree');
 	}
 	else if (teamsArr[index][3] == 'Ok to unbag'){
 		$('.map-inspectstatus').addClass('levelTwo');
@@ -104,10 +98,17 @@ function resizeMap(viewportWidth) {
     $('.table-text').css('-webkit-user-modify', 'read-only');
     $('.table-text').css('cursor', 'default');
 }
-function resizeMapDesktop(viewportHeight) {
+function resizeMapDesktop(viewportHeight, viewportWidth) {
   var widthFrame = frameWidth;
   var heightFrame = frameHeight;
-  var scale = viewportHeight / heightFrame;
+  var scale;
+  var scaleHeight = viewportHeight / heightFrame;
+  var scaleWidth = viewportWidth / widthFrame;
+  if (scaleHeight > scaleWidth) {
+	  scale = scaleWidth-.5;
+  } else {
+	  scale = scaleHeight;
+  }
   console.log("Viewport: " + viewportHeight);
   console.log("Frame: " + heightFrame);
   console.log("Scale: " + scale);
@@ -124,8 +125,19 @@ function resizeMapDesktop(viewportHeight) {
   $('.table-text').css('cursor', 'default');
 }
 
+$(window).resize(function() {
+	var viewportWidth = $(window).width();
+    var viewportHeight = $(window).height()*.5;
+    if (viewportWidth <= 768) {
+        resizeMap(viewportWidth);
+    }
+    else {
+        resizeMapDesktop(viewportHeight, viewportWidth);
+    }
+});
+
 $(document).ready(function() {
-    $('#frame').html(mapCode);
+	$('#frame').html(mapCode);
 	if((frameWidth && frameWidth != 0) && (frameHeight && frameHeight !=0)){
 		$('#frame').css('width', frameWidth);
 		$('#frame').css('height', frameHeight);
@@ -135,7 +147,13 @@ $(document).ready(function() {
 	$('.btn-remove').remove();
 	$('.btn-rotate').remove();
 	$('.btn-edit-table').remove();
-	$('.box').removeClass('item ui-draggable ui-draggable-handle')
+	if(window.location.pathname.indexOf("display") == -1) {
+		$('.box').removeClass('item ui-draggable ui-draggable-handle');
+	}
+	else {
+		$('.box').addClass("box-no-click");
+		$('.box-no-click').removeClass('box item ui-draggable ui-draggable-handle');
+	}
 	$('.box-num').removeAttr('contenteditable');
 	$('.box').css('cursor','pointer');
 	
@@ -147,6 +165,17 @@ $(document).ready(function() {
 		$('.btn-back').html('<a class="btn btn-default pull-left" href="javascript:history.back()"><span class="glyphicon glyphicon-chevron-left"></span>Back</a>');
 		back = false;
 	}	
+	if (r1 != '#' || r2 != '#' || r3 != '#' || b1 != '#' || b2 != '#' || b3 != '#' || team != '#') {
+		clear();
+		clearInspectionStatus();
+		$('.btn-m').html('Select a Match <span class="caret"></span>');
+		$('.btn-inspection').css('display','block');
+		$('.btn-inspection-hide').css('display','none');
+		$('#all-inspection-headers').css('display', 'none');
+		$('.btn-inspection-header-show').css('display','block');
+		$('.btn-inspection-header-hide').css('display','none');		
+		$('.status-text').html('Viewing Pit Map');
+	}
 	$(r1).addClass('red');
 	$(r2).addClass('red');
 	$(r3).addClass('red');
@@ -157,12 +186,12 @@ $(document).ready(function() {
 
 
     var viewportWidth = $(window).width();
-    var viewportHeight = $(window).height()*.75;
+    var viewportHeight = $(window).height()*.5;
     if (viewportWidth <= 768) {
         resizeMap(viewportWidth);
     }
     else {
-        resizeMapDesktop(viewportHeight);
+        resizeMapDesktop(viewportHeight, viewportWidth);
     }
 
 	$('.select-teams').on('click',function(e){
@@ -176,7 +205,14 @@ $(document).ready(function() {
 		$('.btn-st').html('Team ' + id  + ' <span class="caret"></span>');
 		$('.dropdown-matches').css('display','inline');
 		$('.select-matches').css('display','none');
-		$('.select-matches:contains('+id+')').css('display','block');
+		var matchesArr = document.getElementsByClassName('select-matches');
+		var searchID = '-'+id+'-';
+		for (var index = 0; index < matchesArr.length; index++) {
+			console.log(matchesArr[index].id);
+			if (matchesArr[index].id.indexOf(searchID) != -1) {
+				matchesArr[index].style.display = 'block';
+			}
+		}
 		$("#"+id).parent('.box').addClass('selected-team');
 	});
 	$('.select-matches').on('click',function(e){
@@ -201,6 +237,9 @@ $(document).ready(function() {
 		$(b3).addClass('blue');
 		$('.btn-inspection').css('display','block');
 		$('.btn-inspection-hide').css('display','none');
+		$('.btn-inspection-header-show').css('display','block');
+		$('.btn-inspection-header-hide').css('display','none');
+		$('#all-inspection-headers').css('display', 'none');
         var currTeamId = $('.btn-st').html().replace(/\D/g, '');
         $('.status-text').html('Viewing Alliance Partners, ' + currTeamId + ', ' + $('.a-sm').html());
 	});
@@ -221,7 +260,29 @@ $(document).ready(function() {
 		$('.btn-m').html('Select a Match <span class="caret"></span>');
 		$('.btn-inspection').css('display','block');
 		$('.btn-inspection-hide').css('display','none');
+		$('#all-inspection-headers').css('display', 'none');
+		$('.btn-inspection-header-show').css('display','block');
+		$('.btn-inspection-header-hide').css('display','none');		
 		$('.status-text').html('Viewing Pit Map');
+	});
+
+	//Shows/hides inspection header on the map
+	$('.btn-inspection-header-show').on('click',function(){
+		$('.btn-inspection-header-show').css('display','none');
+		$('.btn-inspection-header-hide').css('display','block');
+		$('#all-inspection-headers').css('display', 'block');
+		clear();
+		$('.btn-m').html('Select a Match <span class="caret"></span>');
+		boxColor();
+		$('.key').css({'display':'block', 'margin-left': 'auto', 'margin-right': 'auto'});
+		$('.btn-inspection').css('display','none');
+		$('.btn-inspection-hide').css('display','block');
+		$('.status-text').html('Viewing Inspection Status');
+	});
+	$('.btn-inspection-header-hide').on('click',function(){
+		$('.btn-inspection-header-show').css('display','block');
+		$('.btn-inspection-header-hide').css('display','none');
+		$('#all-inspection-headers').css('display', 'none');
 	});
 	
 	//Fires when a team pit is clicked, shows detailed team info
@@ -234,7 +295,7 @@ $(document).ready(function() {
         $('#table-team-matches .matchrow').remove();
         var teamSchd;
         $.ajax({
-            url: 'getTeamSchedule?event=' + currentEvent + '&team=' + id,
+            url: 'get_team_schedule?event=' + currentEvent + '&team=' + id,
             type: 'POST',
             success: function (data) {
                 teamSchd = [];
@@ -309,7 +370,18 @@ $(document).ready(function() {
 		$('.map-inspectmodifiedby').html(teamsArr[index][6]);
 		$('.map-inspectmodifiedtime').html(teamsArr[index][7]);
 		mapTeamInspectStatus(index);
-		
+
+		var elementCount = 0;
+		var table = document.getElementById("inspections-table");
+		var rowCount = table.rows.length;
+		while (elementCount < rowCount-1) {
+			var rowTeamId = document.getElementsByClassName('inspections-row')[elementCount].getAttribute('name');
+			if (rowTeamId != teamsArr[index][0]) {
+				document.getElementsByClassName('inspections-row')[elementCount].className = 'inspections-row hidden';
+			}
+			elementCount++;
+		}
+
 		var link = 'team?team=' + teamsArr[index][0] + '&event=' + currentEvent;
 		$('.map-moreinfo').attr('href', link);
 		
@@ -325,24 +397,28 @@ $(document).ready(function() {
         if($('.btn-inspection-hide').css('display') == 'block' || $(this).attr('id') == 'return-map-inspect'){
            boxColor();
         }
+		while (document.getElementsByClassName('inspections-row hidden')[0]) {
+			document.getElementsByClassName('inspections-row hidden')[0].className = 'inspections-row';
+		}
 	});
 	$(".inspect").click(function() {
 		var team = $(".map-teamnum").text();  
 		var teamid = team.substring(5);
 		document.getElementById('inspectnumbermodal').value = teamid;
 	});
-	$('.change-status, .save-note').on('click', function(){
-		var inspectnotes = $('.map-inspectnotes').val();
-		var inspectionstatus = $('#inspectionstatus').val();
-		var teamid = $('#inspectNumInline').val();
-		$.post("admin/inspection_status?event="+currentEvent, {
-			teamid: teamid,
-			inspectionnotes: inspectnotes,
-			inspectionstatus: inspectionstatus
-		}, function () {
-			location.reload();
-		});
-	});
+	// $('.change-status, .save-note').on('click', function(){
+	// 	var inspectnotes = $('.map-inspectnotes').val();
+	// 	var inspectionstatus = $('#inspectionstatus').val();
+	// 	var teamid = $('#inspectNumInline').val();
+	// 	$.post("admin/inspection_status?event="+currentEvent, {
+	// 		teamid: teamid,
+	// 		inspectionnotes: inspectnotes,
+	// 		inspectionstatus: inspectionstatus,
+	// 		type: changestatus
+	// 	}, function () {
+	// 		location.reload();
+	// 	});
+	// });
 
 
     ////// DISPLAY MODE //////

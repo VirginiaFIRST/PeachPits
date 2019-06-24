@@ -6,38 +6,45 @@
         
     include "header.php";
     include "includes/password.php";
+    $refer = $_GET['refer'];
     if(!isset($_POST['submit'])){
 ?>
 
-<head>
-    <style>
-        html,
-        body {
-            height: calc(100% - 110px);
+<style>
+    .formbox {
+        width:300px;
+    }
+    @media screen and (max-width:340px) {
+        .formbox {
+            width:calc(100vw - 40px);
         }
-        .site-wrapper{
-            height:calc(100% - 50px);
-        }
-    </style>
-</head>
-
-<div class="site-wrapper">
+    }
+</style>
+<div class="site-wrapper" style="height:calc(100vh - 330px)">
     <div class="site-wrapper-inner">
         <div class="cover-container">
             <div class="inner cover" style="color:#000000;">
-                <div class="formbox signup text-center" style="width:300px; margin:auto;">
+                <div class="formbox signup text-center" style="margin:auto;">
                     <h3>Sign up</h3><br>
                     <fieldset>
-                        <form method="post" action="signup" id="registerForm">
+                        <?php
+                            if ($refer == '') {
+                                echo '<form method="post" action="signup?event='.$currentEvent.'" id="registerForm">';
+                            }
+                            else {
+                                echo '<form method="post" action="signup?refer='.$refer.'&event='.$currentEvent.'" id="registerForm">';
+                            }
+                        ?>
                             <p><input type="text" name="firstname" placeholder="First Name"style="border-radius:0px;" class="form-control"></p>
                             <p><input type="text" name="lastname" placeholder="Last Name"style="border-radius:0px;" class="form-control"></p>
                             <p><input type="text" name="email" placeholder="Email" style="border-radius:0px;" class="form-control"></p>
                             <p><input type="password" name="password" placeholder="Password"style="border-radius:0px;" class="form-control"></p>
-                            <p><input type="password" name="repeatPassword" placeholder="Repeat Password"style="border-radius:0px;" class="form-control"></p>
+                            <p><input type="password" name="repeatPassword" placeholder="Repeat Password" style="border-radius:0px;" class="form-control"></p>
                             <p><input type="submit" name="submit" value="Sign Up" class="btn btn-default"/></p>
                         </form>
                     </fieldset>                       
                     <p>Already have an account? <a href="signin">Sign in</a></p>
+                    <br>
                 </div>
             </div>
         </div>
@@ -91,7 +98,12 @@
             $sql = $mysqli->query("INSERT into `users`(`firstname`,`lastname`, `email`, `password`, `role`, `events`)
             VALUES ('$firstname','$lastname', '$email', '$hashedPass', '$role', '$events');");
 
-            echo '<script>window.location="signin"</script></div>';
+            if ($refer == 'peachtalk') {
+                echo '<script>window.location="signin?event='.$currentEvent.'&refer='.$refer.'"</script></div>';
+            }
+            else {
+                echo '<script>window.location="signin?event='.$currentEvent.'"</script></div>';
+            }
         }
     }
     

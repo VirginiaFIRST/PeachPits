@@ -77,6 +77,7 @@ $(document).ready(function() {
 		$('#event-teams').attr('href',"admin/manage-teams?event=" + id);
 		$('#event-matches').attr('href', "admin/manage-matches?event=" + id);
 		$('#event-inspections').attr('href', "admin/manage-inspection?event=" + id);
+		$('#event-announcements').attr('href', "admin/manage-announcements?event=" + id);
 		$('#event-map').attr('href', "admin/manage-map?event=" + id);
 		
 	});
@@ -190,36 +191,62 @@ $(document).ready(function() {
     filterEvents();
   });
 	$("#populate").click(function() {
-		var call = 'https://www.thebluealliance.com/api/v2/events/2017';
-		var data;
-		var length;
-		//var eventid = currentEvent;
-		$.ajax({
-			url: call,
-			type: "GET",
-			beforeSend: function(xhr){ xhr.setRequestHeader('X-TBA-App-Id', 'gabriel_arkanum:peachpits:v1'); },
-			success: function(data) { 
-				length = data.length;
-				for (i=0; i < length; i++){
-					console.log(data[i].key);
-					$.post("admin/add_event", {
-						eventid: data[i].key,
-						eventname: data[i].name,
-						eventlocation: data[i].location,
-						eventaddress: data[i].venue_address,
-						eventstart: data[i].start_date,
-						eventend: data[i].end_date,
-						eventdistrict: data[i].event_district_string,
-						eventyear: data[i].year,
-						eventtype: data[i].event_type_string,
-						auto: true
-					}, function () {
-						
-					});
-				}
-				alert("Finished! Click 'Ok' to refresh the page.");
-				location.reload();
-			}
-		});				
+		$('#processing-modal').modal({
+			backdrop: 'static',
+			keyboard: false
+		});
+		$('#processing-modal').modal('show');
+		var date = new Date();
+		var year = date.getFullYear();
+		var confirmAutoFill = confirm("Are you sure you want to do this? This will get all of the events for " + year + " and delete all events that are before " + year + ".");
+		if (confirmAutoFill){
+			$.post("admin/delete_old_events", {
+			}, function () {
+				var call = 'https://www.thebluealliance.com/api/v3/events/' + year ;
+				var data;
+				var length;
+				var index = 0;
+				//var eventid = currentEvent;
+				$.ajax({
+					url: call,
+					type: "GET",
+					beforeSend: function(xhr){ xhr.setRequestHeader('X-TBA-Auth-Key', '8sMHphq38VPol9skertutXEJLGQFZVFubLIaUhiV0igM4SnPdzr2wvkzwyc64jZz'); },
+					success: function(data) { 
+						length = data.length;
+						document.getElementById('total-events').innerHTML = length;
+						$('.progress-bar').attr('ariavalue-max', length);
+						console.log('Length: ' + length);
+						for (i=0; i < length; i++){
+							console.log(data[i].key);
+							$.post("admin/add_event", {
+								eventid: data[i].key,
+								eventname: data[i].name,
+								eventlocation: data[i].location,
+								eventaddress: data[i].venue_address,
+								eventstart: data[i].start_date,
+								eventend: data[i].end_date,
+								eventdistrict: data[i].event_district_string,
+								eventyear: data[i].year,
+								eventtype: data[i].event_type_string,
+								auto: true
+							}, function () {
+								index++;
+								document.getElementById('current-events').innerHTML = index;
+								$('.progress-bar').css('width', index*100/length + '%').attr('aria-valuenow', index);
+								console.log('Index: ' + index);
+								if (index == length) {
+									document.getElementById('processing-modal-title').innerHTML = 'Finished!';
+									document.getElementById('modal-body-text').innerHTML = 'The events have been added! Click "Refresh" or refresh the page to see the changes.';
+									document.getElementById('processing-modal-footer').classList.remove('hidden');
+									document.getElementById('progressbar').classList.remove('progress-bar-warning');
+									document.getElementById('progressbar').classList.remove('active');
+									document.getElementById('progressbar').classList.add('progress-bar-success');
+								}
+							});
+						}
+					}
+				});	
+			});
+		}			
 	});
 });

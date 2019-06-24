@@ -12,11 +12,25 @@
     $email = base64_decode($email);
 	$event = $_GET['eventReq'];
 	$role = $_GET['role'];
+    $refer = $_GET['refer'];
 
+    if ($role == "Communication Liaison") {
+        $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventname` = '$event'");
+        $row = mysqli_fetch_assoc($sql);
+        $eventid = $row['eventid'];
+        $eventLiaisons = $eventid . "_liaisons";
+        $sql = $mysqli->query("UPDATE `".$eventLiaisons."` SET `status`= 'Denied' WHERE `email`='$email'");
+    }
+    
     //$sql = $mysqli->query("UPDATE `requests` SET `status` = 'Denied' WHERE `email` = '$email' AND `event` = '$event' AND (`existingrole` = '$role' OR `requestedrole` = '$role')");
 
     //Delete the request from the database
     $sql = $mysqli->query("DELETE FROM `requests` WHERE `email` = '$email' AND `event` = '$event' AND (`existingrole` = '$role' OR `requestedrole` = '$role')");
     
-    echo '<script type="text/javascript">window.location="admin/dashboard?event='.$currentEvent.'"</script></div>';
+    if ($refer == 'manage_requests') {
+        echo '<script>window.location="/peachpits/peachtalk/manage-requests?event='.$currentEvent.'"</script></div>';
+    }
+    else {
+        echo '<script>window.location="/peachpits/admin/dashboard?event='.$currentEvent.'"</script></div>';
+    }
 ?>

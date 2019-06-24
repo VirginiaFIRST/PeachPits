@@ -62,7 +62,7 @@
 
 .container-map{
   height:526px; 
-  width:316px;
+  width:326px;
   border:3px dashed #000000;
   position:relative;
 }
@@ -165,6 +165,10 @@
 .map-inspectstatus {
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.map-inspectstatus.levelOne {
+    border:1px dashed black;
 }
 
 .pitmap-btn-container {
@@ -315,6 +319,15 @@
     position: relative;
 }
 
+.box-no-click {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: solid 2px #555;
+    text-align: center;
+    position: relative;
+}
+
 .btn-edit {
     position: absolute;
     top: -8px;
@@ -397,9 +410,7 @@
 
 .circle {
     cursor: pointer;
-    font-size: 10px;
-    top: 0px;
-    line-height: 1;
+    line-height: 1.25;
 }
 
 .box-num {
@@ -409,7 +420,17 @@
 
 .vertical-text {
     transform: rotate(-90deg);
-    transform-origin: left top 0;
+    transform-origin: 50% 50% 0;
+}
+
+.upside-down-text {
+    transform: rotate(-180deg);
+    transform-origin: 50% 50% 0;
+}
+
+.vertical-text-right {
+    transform: rotate(-270deg);
+    transform-origin: 50% 50% 0;
 }
 
 .expand {
@@ -426,12 +447,16 @@
     transform: scale(0.5);
 }
 
+.stuck {
+    position:absolute;
+}
+
 
 /*****************************************************
                       Inspection
 *****************************************************/
-/*Not started*/
-.levelOne {
+/*Not Started*/
+.levelOne, .levelOneKey {
     background-color: #ffffff;
 }
 
@@ -440,8 +465,8 @@
     border: 1px solid #000000;
 }
 
-/*Unbag*/
-.levelTwo {
+/*Ok to unbag*/
+.levelTwo, .levelTwoKey {
     background-color: #85C1E9;
 }
 
@@ -451,42 +476,50 @@
     border: 1px solid #000000;
 }
 
-/*Minor Issue*/
-.levelThree {
-    background-color: #E59866;
-}
-
-.levelThreeText {
-    color: #e59866;
-    background-color: #E59866;
-    border: 1px solid #000000;
-}
-
-/*Major Issue*/
-.levelFour {
+/*Weighed and Sized*/
+.levelThree, .levelThreeKey {
     background-color: #D98880;
 }
 
-.levelFourText {
+.levelThreeText {
     color: #d98880;
     background-color: #D98880;
     border: 1px solid #000000;
 }
 
-/*Complete*/
-.levelFive {
-    background-color: #7DCEA0;
+/*Major Issue*/
+.levelFour, .levelFourKey {
+    background-color: #E59866;
+}
+
+.levelFourText {
+    color: #e59866;
+    background-color: #E59866;
+    border: 1px solid #000000;
+}
+
+/*Minor Issue*/
+.levelFive, .levelFiveKey {
+    background-color: #F7DC6F;
 }
 
 .levelFiveText {
+    color: #f7dc6f;
+    background-color: #F7DC6F;
+    border: 1px solid #000000;
+}
+
+/*Complete*/
+.levelSix, .levelSixKey {
+    background-color: #7DCEA0;
+}
+
+.levelSixText {
     color: #7dcea0;
     background-color: #7DCEA0;
     border: 1px solid #000000;
 }
 
-.levelSix {
-    background-color: #F7DC6F;
-}
 
 .levelSeven {
     background-color: #BB8FCE;
@@ -496,10 +529,10 @@
 }
 .map-key {
     position: absolute;
-    top: 70px;
+    top: 120px;
     right: 20px;
     padding: 10px;
-    width: 240px;
+    width: 280px;
     border: 1px dashed #000000;
     font-size: 20px;
 }
@@ -525,7 +558,23 @@
 .blue {
     background-color: #AED6F1;
 }
+.gray {
+    background-color:gray;
+    color:#f2f2f2;
+}
 
+.btn-status {
+    float: right;
+    margin-top: 19px;
+}
+
+.btn-inspection-matches{
+  display:none;
+}
+
+.btn-inspection-matches-hide{
+  display:block;
+}
 
 /*****************************************************
                    Display Mode

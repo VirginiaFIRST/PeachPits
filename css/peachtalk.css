@@ -1,0 +1,601 @@
+/*****************************************************
+                    PeachTalk Home
+*****************************************************/
+
+#boxes-container-left, #boxes-container-right {
+    padding-left:1%;
+    padding-right:1%;
+}
+.messaging-box {
+    width:100%;
+    padding-top:100%;
+    border:2px solid black;
+    border-radius:20px;
+    margin-bottom:5%;
+}
+#general-box {
+    background-color:#e87800;
+}
+#schedule-box {
+    background-color:yellow;
+}
+#private-box, #join-box {
+    background-color:#90a1a2;
+}
+#users-box {
+    background-color:#ffd6b3;
+}
+#parts-box {
+    background-color:red;
+}
+#safety-box {
+    background-color:#00b250;
+}
+#requests-box, #settings-box, #login-box {
+    background-color:#00b8ff;
+}
+#export-box {
+    background-color:#934fb0;
+}
+#general-box:hover {
+    background-color:#cc6900;
+}
+#schedule-box:hover {
+    background-color:#cccc00;
+}
+#private-box:hover, #join-box:hover {
+    background-color:#748a8b;
+}
+#users-box:hover {
+    background-color:#ffbb80;
+}
+#parts-box:hover {
+    background-color:#cc0000;
+}
+#safety-box:hover {
+    background-color:#009945;
+}
+#requests-box:hover, #settings-box:hover, #login-box:hover {
+    background-color:#0092cc;
+}
+#export-box:hover {
+    background-color:#763f8d;
+}
+.messaging-box-icon {
+    position:absolute;
+    color:#111;
+    font-size:220px;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    text-align:center;
+    line-height:calc(26.67% - 2px);
+    height:calc(26.67% - 2px);
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.general-box-icon, #general-box-icon-admin {
+    font-size:250px;
+}
+.schedule-box-icon, .safety-box-icon {
+    top:33.33%;
+}
+.private-box-icon, .settings-box-icon, .join-box-icon, .login-box-icon {
+    top:66.67%;
+}
+#export-box-icon-admin {
+    padding-left:15px;
+}
+.icon-admin-row1, .icon-admin-row2, .icon-admin-row3, .icon-admin-row4 {
+    line-height:calc(20% - 2px);
+    height:calc(20% - 2px);
+}
+.icon-admin-row2 {
+    top:25%;
+}
+.icon-admin-row3 {
+    top:50%;
+}
+.icon-admin-row4 {
+    top:75%;
+}
+.messaging-box-text {
+    position:absolute;
+    color:#111;
+    font-size:45px;
+    left:0;
+    right:0;
+    bottom:0;
+    text-align:center;
+    line-height:calc(32% - 2px);
+    height:calc(32% - 2px);
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    vertical-align:bottom;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.messaging-box-text-rows {
+    line-height:calc(25% - 2px);
+    height:calc(25% - 2px);
+}
+#general-box-text, #parts-box-text {
+    top:10%;
+}
+#schedule-box-text, #safety-box-text {
+    top:43.33%;
+}
+#private-box-text, #settings-box-text, #join-box-text, #login-box-text {
+    top:76.67%;
+}
+#general-box-text, #parts-box-text {
+    top:10%;
+}
+#schedule-box-text, #safety-box-text {
+    top:43.33%;
+}
+#private-box-text, #settings-box-text {
+    top:76.67%;
+}
+#general-box-text-admin, #parts-box-text-admin {
+    top:7.5%;
+}
+#schedule-box-text-admin, #safety-box-text-admin {
+    top:32.5%;
+}
+#requests-box-text-admin, #private-box-text-admin {
+    top:57.5%;
+}
+#export-box-text-admin, #users-box-text-admin {
+    top:82.5%;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+@media (max-width: 1199px) {
+    .messaging-box-icon {
+        font-size:180px;
+    }
+    #general-box-icon, #general-box-icon-admin {
+        font-size:200px;
+    }
+    .messaging-box-text {
+        font-size:38px
+    }
+}
+@media (max-width: 991px) {
+    #boxes-container-left, #boxes-container-right {
+        margin-left:0;
+        width:50%;
+        padding-left:1%;
+        padding-right:1%;
+    }
+    .messaging-box-icon {
+        font-size:220px;
+    }
+    #general-box-icon, #general-box-icon-admin {
+        font-size:250px;
+    }
+    .messaging-box-text {
+        font-size:45px;
+    }
+}
+@media (max-width: 767px) {
+    #boxes-container-left, #boxes-container-right {
+        margin-left:0;
+        width:50%;
+        padding-left:1.5%;
+        padding-right:1.5%;
+    }
+    .messaging-box-icon {
+        font-size:30vw;
+    }
+    #general-box-icon, #general-box-icon-admin {
+        font-size:33vw;
+    }
+    .messaging-box-text {
+        font-size:6vw;
+    }
+}
+@-webkit-keyframes safetyflash {
+    from {
+        background-color:#008039;
+    }
+    to {
+        background-color:#00e667;
+    }
+}
+@keyframes safetyflash {
+    from {
+        background-color:#008039;
+    }
+    to {
+        background-color:#00e667;
+    }
+}
+.box-flash {
+    animation: safetyflash 1s linear 0s infinite alternate;
+    -webkit-animation: safetyflash 1s linear 0s infinite alternate;
+}
+
+/*****************************************************
+                    Channel Pages
+*****************************************************/
+
+.header-btn-container {
+    background-color: #F8F9F9;
+    width:100%;
+    padding:10px;
+    margin-bottom: 0px;
+}
+.back-btn {
+    margin-top:3px;
+    display:inline-block;
+    vertical-align:middle;
+}
+.back-btn-minimized {
+    padding-left:6px;
+    padding-right:6px;
+    padding-top:4px;
+    margin-top:7px;
+}
+.channel-header-text {
+    font-size:19px;
+}
+@media only screen and (max-width: 768px) {
+    .header-btn-container{
+        padding-left:0px !important;
+        padding-right:0px !important; 
+    } 
+}
+#channel-container {
+    height:calc(100% - 116px);
+    margin-top:20px;
+}
+#chat-container {
+    width:auto;
+    height:calc(100vh - 200px);
+    margin-left:auto;
+    margin-right:auto;
+    border: 1px solid black;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+@media screen and (max-height: 650px) {
+    .channel-info {
+        display:none;
+    }
+    #channel-container {
+        height:calc(100% - 60px);
+        margin-top:0px;
+    }
+    #chat-container {
+        height:calc(100vh - 120px);
+    }
+}
+#chat-wrap {
+    margin-left:25px;
+    margin-right:25px;
+}
+#chat-wrap > h3 {
+    word-wrap:break-word;
+}
+.new-message-alert {
+    height:30px;
+    width:200px;
+    position:absolute;
+    bottom:100px;
+    left:0;
+    right:0;
+    margin:auto;
+    padding-top:3px;
+    text-align:center;
+    background-color:#DC7633;
+    border-radius:15px;
+    font-size:18px;
+    color:#F8F9F9;
+    display:none;
+    z-index:20;
+}
+.new-message-alert:hover {
+    background-color:#D35400;
+}
+.message, .message-info {
+    display:inline;
+    /*background-color:yellow;*/
+}
+.message-info {
+    line-height:0.75;
+}
+.height1, .height2, .height3, .height5 {
+    content:" ";
+    display:block;
+}
+.height1 {
+    margin-bottom:10px;
+    font-size:50px;
+}
+.height2 {
+    margin-bottom:20px;
+    font-size:50px;    
+}
+.height3 {
+    margin-bottom:30px;
+    font-size:50px;
+}
+.height5 {
+    margin-bottom:50px;
+    font-size:50px;
+}
+.new-message, .new-message-info {
+    font-style:italic;
+    text-decoration:underline;
+}
+#send-message-wrap {
+    width:auto;
+    padding:5px;
+    position:relative;
+}
+#comment-glyphicon {
+    position: absolute;
+    padding: 20px;
+    pointer-events:none;
+    font-size:17px;
+    left:0px;
+    z-index:3;
+}
+#chat-textbox {
+    width:100%;
+    margin-left:-5px;
+    margin-right:-50px;
+    resize:none;
+    text-indent:26px;
+    float:left;
+    padding-right:35px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    position:absolute;
+    bottom:-41px;
+    z-index:2;
+}
+#chat-textbox::-webkit-input-placeholder {
+    text-indent:26px;
+}
+#chat-textbox::placeholder {
+    text-indent:26px;
+}
+#chat-textbox::-moz-placeholder {
+    text-indent:26px;
+}
+#chat-textbox::-ms-input-placeholder {
+    text-indent:26px;
+}
+#chat-textbox:-moz-placeholder {
+    text-indent:26px;
+}
+#send-message-btn {
+    position:absolute;
+    padding: 14px;
+    margin-top:5px;
+    font-size:17px;
+    color:#337ab7;
+    right:0px;
+    z-index:3;
+}
+#send-message-btn:hover {
+    color:#23527c;
+}
+#general-box-placeholder {
+    top:80px;
+    width:100%;
+    height: 732px;
+    line-height: 732px;
+}
+.general-color {
+    background-color:#e87800;
+}
+.schedule-color {
+    background-color:#ffff80;
+}
+.parts-color {
+    background-color:#ff4d4d;
+}
+.safety-color {
+    background-color:#00b250;
+}
+.private-color {
+    background-color:#90a1a2;
+}
+.chat-container-color {
+    background-color:#d9edf7;
+}
+@media only screen and (max-width: 767px) {
+    .date-header {
+        font-size:18px;
+    }
+    .message {
+        font-size:14px;
+    }
+    .message-info {
+        font-size:10px;
+    }
+    #channel-container {
+        padding-left:0px;
+        padding-right:0px;
+    }
+}
+
+/*****************************************************
+                        Parts
+*****************************************************/
+
+.reply-link {
+    font-size:18px;
+}
+.reply-link:hover {
+    text-decoration:underline;
+    font-weight:900;
+}
+.reply-message::before {
+    content:">> ";
+}
+.reply-message-info::before {
+    font-weight:bold;
+    content:">> ";
+}
+.reply-message-info, .reply-message {
+    color:#c45911;
+    padding-left:18px;
+}
+.replying {
+    background-color:yellow;
+}
+.view-replies {
+    display:inline-block;
+    margin-top:0px;
+    padding-left:2em;
+}
+@media only screen and (max-width: 767px) {
+    .reply-link {
+        font-size:10px;
+    }
+    .view-replies {
+        font-size:10px;
+    }
+}
+
+/*****************************************************
+                    Private Messages
+*****************************************************/
+
+.red-alliance-text {
+    color:#C0392B;
+}
+.blue-alliance-text {
+    color: #2980B9;
+}
+.new-message-btn {
+    float:right;
+}
+.private-channel-box {
+    width:100%;
+    height:120px;
+    background-color:#90a1a2;
+    border:2px solid black;
+    border-radius:25px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.private-channel-box:hover {
+    background-color:#748a8b;
+}
+.box-wrap {
+    padding:10px;
+    padding-top:0px;
+}
+.private-channel-box-text {
+    color:#111;
+    font-weight:bold;
+    text-align:center;
+}
+@media only screen and (max-width: 768px) {
+    .new-message-btn {
+        float:inherit;
+    }
+    .private-channel-box {
+        height:100px;
+        border-radius:15px;
+    }
+    .private-channel-box-text {
+        font-size:18px;
+    }
+}
+
+/*****************************************************
+                        Export
+*****************************************************/
+
+.export-desktop-view {
+    display:block;
+}
+.export-mobile-view {
+    display:none;
+}
+@media only screen and (max-width: 992px) {
+    .export-desktop-view {
+        display:none;
+    }
+    .export-mobile-view {
+        display:block;
+    }
+    .export-btn {
+        margin:5px;
+    }
+}
+/*****************************************************
+                    Manage Users
+*****************************************************/
+
+.label-no-bold {
+    font-weight:500;
+}
+.lbl-reply {
+    font-size:18px;
+    line-height:1.3333333;
+    color:#555;
+    font-family:inherit;
+    position:absolute;
+    padding:11px;
+    padding-left:43px;
+    padding-right:0px;
+    margin-left:-5px;
+    pointer-events:none;
+    z-index:4;
+}
+.blue-link {
+    color:#337ab7;
+}
+.blue-link:hover {
+    color:#23527c;
+}
+/*****************************************************
+                        Join
+*****************************************************/
+.join-select:invalid {
+    color: gray;
+}
+.join-select option[value=""][disabled] {
+    display: none;
+}
+.join-select option {
+    color: #333;
+}
+.not-valid {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+#liaison-btn-submit-request[disabled] {
+    border-color:red;
+}

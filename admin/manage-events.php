@@ -41,21 +41,21 @@
 			<?php if(isSuperAdmin($role)){ ?>
 			<div class="dashboard-toolbar">
 				<div class="container-fluid text-center">
-					<button id="addEvent" class="btn btn-default">Add a Event</button>
+					<button id="addEvent" class="btn btn-default">Add an Event</button>
 					<a href="#" id="populate" class="btn btn-default" data-toggle="modal">Auto Fill Events</a>
 				</div>
 			</div>
 			<div class="container-add text-center">
-				<form class="form-inline" action="admin/add_event?event=<?php echo $currentEvent; ?>" method="post">
-					<input type="text" name="eventid" id="eventid" class="form-control" style="width:100px;" placeholder="Event Id">
-					<input type="text" name="eventname" id="teamname" class="form-control" style="width:160px;" placeholder="Event Name">
-					<input type="text" name="eventdistrict" id="eventdistrict" class="form-control" style="width:120px;" placeholder="District">
-					<input type="text" name="eventlocation" id="eventlocation" class="form-control" style="width:120px;" placeholder="Location">
-					<input type="text" name="eventaddress" id="eventaddress" class="form-control" style="width:120px;" placeholder="Address">
-					<input type="text" name="eventstart" id="eventstart" class="form-control" style="width:100px;" placeholder="Start">
-					<input type="text" name="eventend" id="eventend" class="form-control" style="width:100px;" placeholder="End">
-					<input type="text" name="eventyear" id="eventyear" class="form-control" style="width:80px;" placeholder="Year">
-					<input type="text" name="eventtype" id="eventtype" class="form-control" style="width:100px;" placeholder="Type">
+				<form class="form-inline" action="/peachpits/admin/add_event?event=<?php echo $currentEvent; ?>" method="post">
+					<input type="text" name="eventid" id="eventid" class="form-control form-wide" placeholder="Event Id">
+					<input type="text" name="eventname" id="teamname" class="form-control form-wide" style="width:100%" placeholder="Event Name">
+					<input type="text" name="eventdistrict" id="eventdistrict" class="form-control form-wide" placeholder="District">
+					<input type="text" name="eventlocation" id="eventlocation" class="form-control form-wide" placeholder="Location">
+					<input type="text" name="eventaddress" id="eventaddress" class="form-control form-wide" placeholder="Address">
+					<input type="text" name="eventstart" id="eventstart" class="form-control form-wide" placeholder="Start">
+					<input type="text" name="eventend" id="eventend" class="form-control form-wide" placeholder="End">
+					<input type="text" name="eventyear" id="eventyear" class="form-control form-wide" placeholder="Year">
+					<input type="text" name="eventtype" id="eventtype" class="form-control form-wide" placeholder="Type">
 					<input type="hidden" name="auto" value="false">
 					<button type="submit" class="btn btn-default" name="submit">Add</button>
 					<a id="addEvent_cancel" href="#" class="btn btn-default btn-add-cancel">Cancel</a>
@@ -154,8 +154,17 @@
 						<tbody>
 						<?php 
 							$sql = $mysqli->query("SELECT * FROM `events` ORDER BY eventname ASC");
+							$sqlEventsStr;
+							$index = 0;
+							foreach($eventsArr as $singleEvent){
+								$str = $eventsArr[$index];
+								$arr = explode('@',$str);
+								$singleEvent = $arr[1];
+								$sqlEventsStr[] = $singleEvent;
+								$index++;
+							}
 							while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-								if(in_array($row['eventname'],$eventsArr)){
+								if(in_array($row['eventname'],$sqlEventsStr)){
 									echo "<tr id='". $row['eventid'] ."' class='event-info'>";
 									echo "<td id='eventid'>". $row['eventid'] ."</td>";
 									echo "<td id='eventname'>". $row['eventname'] ."</td>";
@@ -178,12 +187,23 @@
 		
 		<div class="col-md-10 container-dashboard-content event-details">
 			<div class="dashboard-toolbar">
-				<div class="container-fluid">
+				<div class="container-fluid" id="desktop-event-btns">
 					<button class="btn btn-default event-details-return pull-left">Back to Event List</button>
 					<button class="btn btn-default delete-event pull-right" style="margin-left:10px;">Delete Event</button>
 					<button class="btn btn-default clear-event pull-right" style="margin-left:10px;">Clear Event</button>
 					<button class="btn btn-default edit-event pull-right">Edit Event</button>
 					<button class="btn btn-default save-event pull-right">Save Event</button>
+				</div>
+				<div class="container-fluid" id="mobile-event-btns">
+					<button class="btn btn-default event-details-return pull-left">Back to Event List</button>
+					<div class="pull-right">
+					<button class="btn btn-default delete-event pull-right" style="margin-bottom:5px;">Delete Event</button>
+					<br>
+					<button class="btn btn-default clear-event pull-right" style="margin-bottom:5px;">Clear Event</button>
+					<br>
+					<button class="btn btn-default edit-event pull-right">Edit Event</button>
+					<button class="btn btn-default save-event pull-right">Save Event</button>
+					</div>
 				</div>
 			</div>
 			<div class="dashboard-content">
@@ -212,6 +232,11 @@
 								<div class="display: inline-block;"><span class="glyphicon glyphicon-search btn-event-manage-icon"></span><span class="btn-event-manage-text"> Manage Inspections</span></div>
 							</div>
 						</a>
+						<a id="event-announcements" href="" class="btn btn-default" style="margin:10px;">
+							<div class="btn-event-manage">
+								<div class="display: inline-block;"><span class="glyphicon glyphicon-bullhorn btn-event-manage-icon"></span><span class="btn-event-manage-text"> Manage Announcements</span></div>
+							</div>
+						</a>
 						<a id="event-map" href="" class="btn btn-default" style="margin:10px;">
 							<div class="btn-event-manage">
 								<div class="display: inline-block;"><span class="glyphicon glyphicon-map-marker btn-event-manage-icon"></span><span class="btn-event-manage-text"> Pit Map Creator</span></div>
@@ -223,8 +248,31 @@
 	</div>
 </div>	
 	
+<!-- Processing Request Popup -->
+<div class="modal fade" id="processing-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="processing-modal-title">Processing...</h3>
+      </div>
+      <div class="modal-body text-center">
+        <h4 id="modal-body-text">Please do not leave or refresh the page while the events are added...</h4>
+		<hr>
+		<h4>Progress:</h4>
+		<h4><span id="current-events">0</span>/<span id="total-events">0</span></h4>
+		<div class="progress center-block" style="width:75%;height:25px">
+			<div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" id="progressbar" style="width:0%" aria-valuenow="0" ariavalue-min="0" ariavalue-max="100"></div>
+		</div>
+      </div>
+	  <div class="modal-footer hidden" id="processing-modal-footer">
+        <button class="btn btn-default pull-right" onclick="location.reload()">Refresh</button>
+      </div>
+    </div>
+  </div>
+</div>	
+
 <?php 
 	} else { echo '<script>document.location.href="signin"</script>'; }
-	
+
 	include dirname(__DIR__) . "/footer.php"; 
 ?>

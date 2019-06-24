@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<div class="container-add text-center">
-				<form class="form-inline" action="admin/add_match?event=<?php echo $currentEvent; ?>" method="post">
+				<form class="form-inline" action="/peachpits/admin/add_match?event=<?php echo $currentEvent; ?>" method="post">
 					<input type="text" name="matchid" id="matchid" class="form-control" style="width:100px;" placeholder="Match Id">
 					<input type="text" name="matchnumber" id="matchnumber" class="form-control" style="width:80px;" placeholder="Match #">
 					<input type="text" name="setnumber" id="setnumber" class="form-control" style="width:80px;" placeholder="Set #">
@@ -72,10 +72,10 @@
                         echo '  <td class="text-center"><b>Red 1</b></td>';
                         echo '  <td class="text-center"><b>Red 2</b></td>';
                         echo '  <td class="text-center"><b>Red 3</b></td>';
-                        echo '  <td class="text-center"><b>Red 1</b></td>';
-                        echo '  <td class="text-center"><b>Red 2</b></td>';
-                        echo '  <td class="text-center"><b>Red 3</b></td>';
-                        echo '  <td class="text-center"><b>Pit</b></td>';
+                        echo '  <td class="text-center"><b>Blue 1</b></td>';
+                        echo '  <td class="text-center"><b>Blue 2</b></td>';
+                        echo '  <td class="text-center"><b>Blue 3</b></td>';
+                        echo '  <td class="text-center"><b></b></td>';
                         echo '</thead>';
                         while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                             echo "<tr id='". $row['matchid'] ."'>";
@@ -140,14 +140,20 @@
         <h4 class="modal-title" id="myModalLabel">Edit Match Info</h4>
       </div>
       <div class="modal-body text-center">
-        <form action="admin/edit_match?event=<?php echo $currentEvent; ?>" method="post">
+        <form action="/peachpits/admin/edit_match?event=<?php echo $currentEvent; ?>" method="post">
             <b>Match Number: </b><p id="matchnumbermodal"></p>
 			<input type="text" name="starttime" id="starttimemodal" class="form-control" placeholder="Start Time"><br/>
+      <p class="pull-left" style="margin-bottom:0px">Red Team 1:</p>
 			<input type="text" name="red1" id="red1modal" class="form-control" placeholder="Red Team 1"><br/>
+      <p class="pull-left" style="margin-bottom:0px">Red Team 2:</p>
 			<input type="text" name="red2" id="red2modal" class="form-control" placeholder="Red Team 2"><br/>
+      <p class="pull-left" style="margin-bottom:0px">Red Team 3:</p>
 			<input type="text" name="red3" id="red3modal" class="form-control" placeholder="Red Team 3"><br/>
+      <p class="pull-left" style="margin-bottom:0px">Blue Team 1:</p>
 			<input type="text" name="blue1" id="blue1modal" class="form-control" placeholder="Blue Team 1"><br/>
+      <p class="pull-left" style="margin-bottom:0px">Blue Team 2:</p>
 			<input type="text" name="blue2" id="blue2modal" class="form-control" placeholder="Blue Team 2"><br/>
+      <p class="pull-left" style="margin-bottom:0px">Blue Team 3:</p>
 			<input type="text" name="blue3" id="blue3modal" class="form-control" placeholder="Blue Team 3"><br/>
 			<input type="hidden" name="matchid" id="matchidmodal">
       </div>
@@ -158,7 +164,29 @@
     </div>
   </div>
 </div>		
-	
+
+<!-- Processing Request Popup -->
+<div class="modal fade" id="processing-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="processing-modal-title">Processing...</h3>
+      </div>
+      <div class="modal-body text-center">
+        <h4 id="modal-body-text">Please do not leave or refresh the page while the matches are added...</h4>
+		<hr>
+		<h4>Progress:</h4>
+		<h4><span id="current-matches">0</span>/<span id="total-matches">0</span></h4>
+		<div class="progress center-block" style="width:75%;height:25px">
+			<div class="progress-bar progress-bar-striped progress-bar-warning active" role="progressbar" id="progressbar" style="width:0%" aria-valuenow="0" ariavalue-min="0" ariavalue-max="100"></div>
+		</div>
+      </div>
+	  <div class="modal-footer hidden" id="processing-modal-footer">
+        <button class="btn btn-default pull-right" onclick="location.reload()">Refresh</button>
+      </div>
+    </div>
+  </div>
+</div>	
 	
 <?php 
 	} else { echo '<script>document.location.href="signin"</script>'; }
