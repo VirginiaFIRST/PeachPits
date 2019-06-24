@@ -467,12 +467,12 @@
 
 /*Ok to unbag*/
 .levelTwo, .levelTwoKey {
-    background-color: #85C1E9;
+    background-color: #addfff;
 }
 
 .levelTwoText {
-    color: #85c1e9;
-    background-color: #85C1E9;
+    color: #addfff;
+    background-color: #addfff;
     border: 1px solid #000000;
 }
 
