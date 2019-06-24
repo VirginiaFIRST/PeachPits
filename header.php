@@ -221,7 +221,7 @@
                             <?php 
                                 $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live'");
                                 while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                                    echo '<li><a class="mobile-header-list" href="peachtalk/peachtalk-home?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                                    echo '<li><a class="mobile-header-list" href="pitmap?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
                                 }	 
                             ?>
                             <!--<li class="divider"></li>
@@ -245,7 +245,7 @@
                                 $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live'");
                                 while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                                     if($row['eventid'] != $currentEvent){
-                                        echo '<li><a class="mobile-header-list" href="peachtalk/peachtalk-home?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                                        echo '<li><a class="mobile-header-list" href="pitmap?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
                                     }
                                 }	 
                             ?>

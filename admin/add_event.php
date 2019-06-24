@@ -16,7 +16,7 @@
     $eventend = protect($_POST['eventend']);
     $eventyear = protect($_POST['eventyear']);
     $eventtype = protect($_POST['eventtype']);
-    $peachtalkstatus = 'Enabled';
+    $peachtalkstatus = 'Disabled';
     $auto = protect($_POST['auto']);
 
     $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid`='$eventid'");
