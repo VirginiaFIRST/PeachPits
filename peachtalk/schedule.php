@@ -6,18 +6,22 @@
 		echo '<script>window.location="/peachpits/chooseevent"</script>';
 	}
 	else {
-        $eventMessages = $currentEvent . "_messages";
-        $eventActivity = $currentEvent . "_activity";
+    $eventMessages = $currentEvent . "_messages";
+    $eventActivity = $currentEvent . "_activity";
 		$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
 		$row = mysqli_fetch_assoc($sql);
 		$eventname = $row['eventname'];
-        $userArr = explode(";", $peachtalkUsername);
-        $userEmail = $userArr[0];
-        $userTeam = $userArr[1];
-        $channel = 'Schedule';
+    $userArr = explode(";", $peachtalkUsername);
+    $userEmail = $userArr[0];
+    $userTeam = $userArr[1];
+    $peachtalkDisabled = $row['peachtalkstatus'];
+    if ($peachtalkDisabled && !isPeachTalkAdmin($role)) {
+      echo '<script>window.location="/peachpits/peachtalk/peachtalk-home?event=' + $currentEvent + '"</script>';
+    }
+    $channel = 'Schedule';
 
-        echo '<script>var username = "'.$peachtalkUsername.'";var channel = "'.$channel.'";</script>';
-        if (!(isSuperAdmin($role) || isEventAdmin($role) || isPitAdmin($role))) {
+    echo '<script>var username = "'.$peachtalkUsername.'";var channel = "'.$channel.'";</script>';
+    if (!(isSuperAdmin($role) || isEventAdmin($role) || isPitAdmin($role))) {
 ?>
 <style>
     @media screen and (max-height: 650px) {

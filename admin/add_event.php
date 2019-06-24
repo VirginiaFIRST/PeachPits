@@ -16,6 +16,7 @@
     $eventend = protect($_POST['eventend']);
     $eventyear = protect($_POST['eventyear']);
     $eventtype = protect($_POST['eventtype']);
+    $peachtalkstatus = 'Enabled';
     $auto = protect($_POST['auto']);
 
     $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid`='$eventid'");
@@ -45,7 +46,7 @@
             echo '<a href="javascript:history.go(-1)">Try again</a>';
         } 
         else {
-            $sql = "INSERT into `events` (`eventid`,`eventname`, `eventstatus`, `eventdistrict`, `eventlocation`, `eventaddress`, `eventstart`, `eventend`, `eventyear`, `eventtype`) VALUES ('$eventid','$eventname', '$eventstatus', '$eventdistrict', '$eventlocation', '$eventaddress', '$eventstart', '$eventend', '$eventyear', '$eventtype')";
+            $sql = "INSERT into `events` (`eventid`,`eventname`, `eventstatus`, `eventdistrict`, `eventlocation`, `eventaddress`, `eventstart`, `eventend`, `eventyear`, `eventtype`, `peachtalkstatus`) VALUES ('$eventid','$eventname', '$eventstatus', '$eventdistrict', '$eventlocation', '$eventaddress', '$eventstart', '$eventend', '$eventyear', '$eventtype', '$peachtalkstatus')";
             $query = $mysqli->query($sql);
     
             $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_teams (
@@ -142,7 +143,7 @@
         }
     }
     else if ($auto == 'true') {
-        $sql = "INSERT into `events` (`eventid`,`eventname`, `eventstatus`, `eventdistrict`, `eventlocation`, `eventaddress`, `eventstart`, `eventend`, `eventyear`, `eventtype`) VALUES ('$eventid','$eventname', '$eventstatus', '$eventdistrict', '$eventlocation', '$eventaddress', '$eventstart', '$eventend', '$eventyear', '$eventtype') ON DUPLICATE KEY UPDATE `eventid`='$eventid', `eventname`='$eventname', `eventstatus`='$eventstatus', `eventdistrict`='$eventdistrict', `eventlocation`='$eventlocation', `eventaddress`='$eventaddress',`eventstart`='$eventstart', `eventend`='$eventend', `eventyear`='$eventyear', `eventtype`='$eventtype'";
+        $sql = "INSERT into `events` (`eventid`,`eventname`, `eventstatus`, `eventdistrict`, `eventlocation`, `eventaddress`, `eventstart`, `eventend`, `eventyear`, `eventtype`, `peachtalkstatus`) VALUES ('$eventid','$eventname', '$eventstatus', '$eventdistrict', '$eventlocation', '$eventaddress', '$eventstart', '$eventend', '$eventyear', '$eventtype', '$peachtalkstatus') ON DUPLICATE KEY UPDATE `eventid`='$eventid', `eventname`='$eventname', `eventstatus`='$eventstatus', `eventdistrict`='$eventdistrict', `eventlocation`='$eventlocation', `eventaddress`='$eventaddress',`eventstart`='$eventstart', `eventend`='$eventend', `eventyear`='$eventyear', `eventtype`='$eventtype'";
         $query = $mysqli->query($sql);
         
         $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_teams (

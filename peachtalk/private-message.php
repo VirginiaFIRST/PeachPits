@@ -11,16 +11,16 @@
     $sql = $mysqli->query("SELECT * FROM `".$eventGroups."` WHERE `groupid`='$groupid'");
     $row = mysqli_fetch_assoc($sql);
     if ($row['private_users'] != '') {
-        $users = $row['private_users'];
+      $users = $row['private_users'];
     }
     else {
-        $users = null;
+      $users = null;
     }
     if ($row['private_teams'] != '') {
-        $teams = $row['private_teams'];
+      $teams = $row['private_teams'];
     }
     else {
-        $teams = null;
+      $teams = null;
     }
     $groupName = $row['name'];
     $userArr = explode(";", $peachtalkUsername);
@@ -31,10 +31,10 @@
     $userRestrictions = $userArr[4];
     $channel = 'Private';
     if (strpos($userRestrictions, "Private") !== false) {
-        echo '<script>var restricted = true;</script>';
+      echo '<script>var restricted = true;</script>';
     }
     else {
-        echo '<script>var restricted = false;</script>';            
+      echo '<script>var restricted = false;</script>';            
     }
     $twoUsers = false;
     if (count(explode(';', $users)) == 2) {
@@ -54,6 +54,10 @@
     $eventMessages = $currentEvent . "_messages";
     $eventActivity = $currentEvent . "_activity";
     $eventLiaisons = $currentEvent . "_liaisons";
+    $peachtalkDisabled = $row['peachtalkstatus'];
+    if ($peachtalkDisabled && !isPeachTalkAdmin($role)) {
+      echo '<script>window.location="/peachpits/peachtalk/peachtalk-home?event=' + $currentEvent + '"</script>';
+    }
 ?>
 
 <div class="header-btn-container text center">

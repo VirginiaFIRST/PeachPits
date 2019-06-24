@@ -6,17 +6,18 @@
 		echo '<script>window.location="/peachpits/chooseevent"</script>';
 	}
 	else {
-        $eventMessages = $currentEvent . "_messages";
-        $eventGroups = $currentEvent . "_groups";
-        $eventActivity = $currentEvent . "_activity";
+    $eventMessages = $currentEvent . "_messages";
+    $eventGroups = $currentEvent . "_groups";
+    $eventActivity = $currentEvent . "_activity";
 		$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
 		$row = mysqli_fetch_assoc($sql);
 		$eventname = $row['eventname'];
-        echo '<script>var username = "'.$peachtalkUsername.'";</script>';
-        $userArr = explode(";", $peachtalkUsername);
-        $userEmail = $userArr[0];
-        $userTeam = $userArr[1];
-        $userId = $userArr[3];
+    echo '<script>var username = "'.$peachtalkUsername.'";</script>';
+    $userArr = explode(";", $peachtalkUsername);
+    $userEmail = $userArr[0];
+    $userTeam = $userArr[1];
+    $userId = $userArr[3];
+    $peachtalkDisabled = $row['peachtalkstatus'];
 ?>
 
 <div class="page-head" style="margin-bottom:0px">
@@ -34,7 +35,16 @@
 </div>
 <?php } ?>
 <div class="container content" style="margin-top:20px">
-    <?php if (isSuperAdmin($role) || isEventAdmin($role) || isPitAdmin($role)) { ?>
+    <?php
+      if (isSuperAdmin($role) || isEventAdmin($role) || isPitAdmin($role)) {
+        if ($peachtalkDisabled) {
+          echo `
+          <div class="text-center" style="margin-bottom:20px;">
+            <h3>PeachTalk has been disabled for this event. No one is able to view messages besides the Pit Admin and Event Admin.<br><br><a href="/peachpits/peachtalk/peachtalk_status?event=` + $currentEvent + `&type=enable">Click here to reenable PeachTalk for this event.</a></h3>
+          </div>
+          `;
+        }
+    ?>
     <div class="icons-admin"> 
         <div class="col-xs-4 col-xs-offset-2" id="boxes-container-left">
             <div class="text-center">
@@ -76,6 +86,21 @@
                 </button>
             </div>
         </div>
+    <?php
+      if (!$peachtalkDisabled) {
+        echo `
+        <div class="col-xs-12">
+          <div class="text-center" style="margin-bottom:20px;">
+            <h3><a href="/peachpits/peachtalk/peachtalk_status?event=` + $currentEvent + `&type=disable">Click here to disable PeachTalk for this event.</a><br><br>This will prevent other users from sending and viewing messages. PeachTalk can be reenabled from this page at any time.</h3>
+          </div>
+        </div>
+        `;
+      }
+    ?>
+    </div>
+    <?php } elseif ($peachtalkDisabled) { ?>
+    <div class="text-center" style="margin-bottom:20px;">
+      <h3>PeachTalk has been disabled for this event.</h3>
     </div>
     <?php } elseif ($peachtalkUsername != "none") { ?>
     <div class="icons-user">
@@ -195,7 +220,7 @@
     document.getElementById('requests-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/manage-requests?event=<?php echo $currentEvent; ?>'});
     document.getElementById('export-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/export?event=<?php echo $currentEvent; ?>'});
 </script>
-<?php } elseif ($peachtalkUsername != "none") { ?>
+<?php } elseif ($peachtalkUsername != "none" && !$peachtalkDisabled) { ?>
 <script>
     document.getElementById('general-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/general?event=<?php echo $currentEvent; ?>'});
     document.getElementById('schedule-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/schedule?event=<?php echo $currentEvent; ?>'});
@@ -204,7 +229,7 @@
     document.getElementById('private-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/manage-messages?event=<?php echo $currentEvent; ?>'});
     document.getElementById('settings-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/settings?event=<?php echo $currentEvent; ?>'});
 </script>
-<?php } elseif (loggedOn()) { ?>
+<?php } elseif (loggedOn() && !$peachtalkDisabled) { ?>
 <script>
     document.getElementById('general-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/general?event=<?php echo $currentEvent; ?>'});
     document.getElementById('schedule-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/schedule?event=<?php echo $currentEvent; ?>'});
@@ -213,7 +238,7 @@
     document.getElementById('join-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/join?event=<?php echo $currentEvent; ?>'});
     document.getElementById('settings-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/settings?event=<?php echo $currentEvent; ?>'});
 </script>
-<?php }  else { ?>
+<?php }  elseif (!$peachtalkDisabled) { ?>
 <script>
     document.getElementById('general-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/general?event=<?php echo $currentEvent; ?>'});
     document.getElementById('schedule-box').addEventListener('click', function () {window.location='/peachpits/peachtalk/schedule?event=<?php echo $currentEvent; ?>'});

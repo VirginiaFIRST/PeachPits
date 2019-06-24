@@ -13,10 +13,14 @@
 		$row = mysqli_fetch_assoc($sql);
 		$eventname = $row['eventname'];
 		$userArr = explode(";", $peachtalkUsername);
-        $userEmail = $userArr[0];
-        $userTeam = $userArr[1];
-        $userId = $userArr[3];
-		$userRestrictions = $userArr[4];
+    $userEmail = $userArr[0];
+    $userTeam = $userArr[1];
+    $userId = $userArr[3];
+    $userRestrictions = $userArr[4];
+    $peachtalkDisabled = $row['peachtalkstatus'];
+    if ($peachtalkDisabled && !isPeachTalkAdmin($role)) {
+      echo '<script>window.location="/peachpits/peachtalk/peachtalk-home?event=' + $currentEvent + '"</script>';
+    }
 ?>
 
 <div class="header-btn-container text center">

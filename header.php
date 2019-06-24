@@ -127,6 +127,10 @@
         }
     }
 
+    function isPeachTalkAdmin($role) {
+      return isSuperAdmin($role) || isEventAdmin($role) || isPitAdmin($role);
+    }
+
     $peachtalkUsername = "";
     if (isSuperAdmin($role) || isEventAdmin($role) || isPitAdmin($role)) {
         $peachtalkUsername = $sessionEmail.";".$role.";none;none;none";

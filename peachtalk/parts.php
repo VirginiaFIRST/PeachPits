@@ -6,25 +6,29 @@
 		echo '<script>window.location="/peachpits/chooseevent"</script>';
 	}
 	else {
-        $eventMessages = $currentEvent . "_messages";
-        $eventActivity = $currentEvent . "_activity";
-		$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
-		$row = mysqli_fetch_assoc($sql);
-		$eventname = $row['eventname'];
-        $userArr = explode(";", $peachtalkUsername);
-        $userEmail = $userArr[0];
-        $userTeam = $userArr[1];
-        $userRestrictions = $userArr[4];
-        $channel = 'Parts';
-        if (strpos($userRestrictions, "Parts") !== false) {
-            echo '<script>var restricted = true;</script>';
-        }
-        else {
-            echo '<script>var restricted = false;</script>';            
-        }
+    $eventMessages = $currentEvent . "_messages";
+    $eventActivity = $currentEvent . "_activity";
+    $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
+    $row = mysqli_fetch_assoc($sql);
+    $eventname = $row['eventname'];
+    $userArr = explode(";", $peachtalkUsername);
+    $userEmail = $userArr[0];
+    $userTeam = $userArr[1];
+    $userRestrictions = $userArr[4];
+    $peachtalkDisabled = $row['peachtalkstatus'];
+    if ($peachtalkDisabled && !isPeachTalkAdmin($role)) {
+      echo '<script>window.location="/peachpits/peachtalk/peachtalk-home?event=' + $currentEvent + '"</script>';
+    }
+    $channel = 'Parts';
+    if (strpos($userRestrictions, "Parts") !== false) {
+        echo '<script>var restricted = true;</script>';
+    }
+    else {
+        echo '<script>var restricted = false;</script>';            
+    }
 
-        echo '<script>var username = "'.$peachtalkUsername.'";var channel = "'.$channel.'";var replyMessageId = "";</script>';
-        if ($peachtalkUsername == 'none') {
+    echo '<script>var username = "'.$peachtalkUsername.'";var channel = "'.$channel.'";var replyMessageId = "";</script>';
+    if ($peachtalkUsername == 'none') {
 ?>
 <style>
     @media screen and (max-height: 650px) {

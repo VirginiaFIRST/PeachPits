@@ -12,7 +12,11 @@
 		$sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '".$currentEvent."'");
 		$row = mysqli_fetch_assoc($sql);
 		$eventname = $row['eventname'];
-		$eventTeams = $currentEvent . "_teams";
+    $eventTeams = $currentEvent . "_teams";
+    $peachtalkDisabled = $row['peachtalkstatus'];
+    if ($peachtalkDisabled && !isPeachTalkAdmin($role)) {
+      echo '<script>window.location="/peachpits/peachtalk/peachtalk-home?event=' + $currentEvent + '"</script>';
+    }
 ?>
 <script src="js/selectize.js"></script>
 <link rel="stylesheet" type="text/css" href="css/selectize.css" />
