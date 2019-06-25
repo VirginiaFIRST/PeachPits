@@ -225,7 +225,7 @@ $(document).ready(function() {
 								eventaddress: data[i].venue_address,
 								eventstart: data[i].start_date,
 								eventend: data[i].end_date,
-								eventdistrict: data[i].event_district_string,
+								eventdistrict: data[i].district.display_name,
 								eventyear: data[i].year,
 								eventtype: data[i].event_type_string,
 								auto: true
