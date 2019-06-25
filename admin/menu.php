@@ -12,7 +12,11 @@
               <?php
               $sql = $mysqli->query("SELECT `eventname` FROM `events` WHERE `eventid` LIKE '$currentEvent'");
               $row = mysqli_fetch_assoc($sql);
-              echo $row['eventname'];
+              if ($row['eventname'].length > 0) {
+                echo $row['eventname'];
+              } else {
+                echo "Select an Event";
+              }
               ?>
               <span class="caret"></span>
             </button>
@@ -21,7 +25,7 @@
                 if(isSuperAdmin($role)){
                     echo '<li><input type="text" id="event-filter-field" class="form-control event-filter-field" placeholder="Search All Events"></li><li class="divider"></li>';	
                     echo '<div class="dropdown-events-all"><table id="events-all" class="events-all">';
-                    $sql = $mysqli->query("SELECT * FROM `events`");      
+                    $sql = $mysqli->query("SELECT * FROM `events` ORDER BY `eventname` ASC");      
                     //echo'<tr href="#"><td><font color= #000000> <b> Current: </b> '. $row['eventname'] . ' </font></td></tr>';
                     while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                         echo '<tr href="/peachpits/admin/dashboard?event=' . $row['eventid'] . '" data-toggle="tooltip" data-placement="right" title="' . $row['eventid'] . '"><td><font color= #000000 >' . $row['eventname'] . '</font><td></tr>';
