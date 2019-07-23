@@ -257,6 +257,19 @@
                     <li><a href="teams?event=<?php echo $currentEvent; ?>">Team List</a></li>
                     <li><a href="matches?event=<?php echo $currentEvent; ?>">Match Schedule</a></li>
                     <li><a href="pitmap?event=<?php echo $currentEvent; ?>">Pit Map</a></li>
+                    <?php if (loggedOn()){ ?>
+                    <li>
+                      <a href="signout" style="padding-top:10px;" title="Sign Out">
+                        <i class="glyphicon glyphicon-user" style="font-size: 25px;"></i>
+                      </a>
+                    </li>
+                    <?php } else { ?>
+                    <li>
+                      <a href="signin?event=<?php echo $currentEvent; ?>" style="padding-top:10px;" title="Sign In">
+                        <i class="glyphicon glyphicon-user" style="font-size: 25px;"></i>
+                      </a>
+                    </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>      

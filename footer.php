@@ -13,15 +13,12 @@
 	        <p class="pull-left" id="top-footer-left" style="line-height:60px;margin-bottom:0px;">
                 <a class="admin-login" href="about">About</a> |
                 <a class="admin-login" href="contact">Contact</a>
+          </p>
+		      <?php if (loggedOn()){ ?>
+            <p class="pull-right" id="top-footer-right" style="line-height:60px;margin-bottom:0px;">
+              <a class="admin-login" id="dashboard-link" href="admin/dashboard?event=<?php echo $currentEvent; ?>">Dashboard</a>
             </p>
-	        <p class="pull-right" id="top-footer-right" style="line-height:60px;margin-bottom:0px;">
-		        <?php if (loggedOn()){ ?>
-			        <a class="admin-login" id="dashboard-link" href="admin/dashboard?event=<?php echo $currentEvent; ?>">Dashboard</a> | 
-			        <a class="admin-login" href="signout">Sign Out</a>
-		        <?php } else { ?>
-			        <a class="admin-login" href="signin?event=<?php echo $currentEvent; ?>">Sign In</a>
-		        <?php } ?>
-	        </p>
+		      <?php } ?>
         </div>
         <div class="container-fluid bottom-footer">Copyright &copy; 2017 Georgia <i>FIRST</i> Robotics, All Rights Reserved</div>
     </footer>
