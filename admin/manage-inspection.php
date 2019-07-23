@@ -98,8 +98,6 @@
                             <option value="Complete">Complete</option>
                             <option value="Minor Issue">Minor Issue</option>
 														<option value="Major Issue">Major Issue</option>
-														<option value="Weighed and Sized">Weighed and Sized</option>
-                            <option value="Ok to unbag">Ok to unbag</option>
                             <option value="Not Started">Not Started</option>
                         </select>
                         <button type="submit" class="btn btn-default change-status pull-right" name="submit">Change Status</button>
@@ -228,8 +226,6 @@
 				<option>Complete</option>
 				<option>Minor Issue</option>
 				<option>Major Issue</option>
-				<option>Weighed and Sized</option>
-				<option>Ok to unbag</option>
 				<option>Not Started</option>
 			</select>
       </div>

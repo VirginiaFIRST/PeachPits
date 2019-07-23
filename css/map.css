@@ -465,65 +465,39 @@
     border: 1px solid #000000;
 }
 
-/*Ok to unbag*/
-.levelTwo, .levelTwoKey {
-    background-color: #addfff;
-}
-
-.levelTwoText {
-    color: #addfff;
-    background-color: #addfff;
-    border: 1px solid #000000;
-}
-
-/*Weighed and Sized*/
-.levelThree, .levelThreeKey {
-    background-color: #8c7fe3;
-}
-
-.levelThreeText {
-    color: #8c7fe3;
-    background-color: #8c7fe3;
-    border: 1px solid #000000;
-}
-
 /*Major Issue*/
-.levelFour, .levelFourKey {
+.levelTwo, .levelTwoKey {
     background-color: #d98880;
 }
 
-.levelFourText {
+.levelTwoText {
     color: #d98880;
     background-color: #d98880;
     border: 1px solid #000000;
 }
 
 /*Minor Issue*/
-.levelFive, .levelFiveKey {
+.levelThree, .levelThreeKey {
     background-color: #F7DC6F;
 }
 
-.levelFiveText {
+.levelThreeText {
     color: #f7dc6f;
     background-color: #F7DC6F;
     border: 1px solid #000000;
 }
 
 /*Complete*/
-.levelSix, .levelSixKey {
+.levelFour, .levelFourKey {
     background-color: #7DCEA0;
 }
 
-.levelSixText {
+.levelFourText {
     color: #7dcea0;
     background-color: #7DCEA0;
     border: 1px solid #000000;
 }
 
-
-.levelSeven {
-    background-color: #BB8FCE;
-}
 .box-num:hover {
   -webkit-filter: brightness(75%);
 }

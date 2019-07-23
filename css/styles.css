@@ -236,63 +236,26 @@ body {
                Inspection Legend Header
 *****************************************************/
 
-@media screen and (max-width: 468px) {
-    #inspection-legend-header1 {
-        display:none;
-    }
-    #inspection-legend-header2 {
-        display:none;
-    }
+#inspection-legend-header1, #inspection-legend-header2,
+#inspection-legend-header3 {
+  display: none;
+}
+
+@media screen and (max-width: 450px) {
     #inspection-legend-header3 {
-        display:none;
-    }
-    #inspection-legend-header4 {
         display:block;
     }
 }
 
-@media screen and (max-width: 680px) and (min-width: 468px) {
-    #inspection-legend-header1 {
-        display:none;
-    }
+@media screen and (max-width:768px) and (min-width: 450px) {
     #inspection-legend-header2 {
-        display:none;
-    }
-    #inspection-legend-header3 {
         display:block;
-    }
-    #inspection-legend-header4 {
-        display:none;
     }
 }
 
-@media screen and (max-width: 1205px) and (min-width: 680px) {
-    #inspection-legend-header1 {
-        display:none;
-    }
-    #inspection-legend-header2 {
-        display:block;
-    }
-    #inspection-legend-header3 {
-        display:none;
-    }
-    #inspection-legend-header4 {
-        display:none;
-    }
-}
-
-@media screen and (min-width: 1205px) {
+@media screen and (min-width: 768px) {
     #inspection-legend-header1 {
         display:block;
-    }
-    #inspection-legend-header2 {
-        display:none;
-    }
-    #inspection-legend-header3 {
-        display:none;
-    }
-    #inspection-legend-header4 {
-        display:none;
     }
 }
 

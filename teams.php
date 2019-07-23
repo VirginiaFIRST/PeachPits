@@ -58,71 +58,40 @@
     <div class="dashboard-toolbar" id="inspection-legend-header1">
         <div class="container-fluid text-center">
           <span style="font-weight:bold;font-size:16px">
-            <span style="white-space:nowrap"><div class="keyColor levelSix" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text count-complete" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></span>
-            <span style="white-space:nowrap"><div class="keyColor levelFive" style="float:none;display:inline-block;vertical-align:middle;margin-left:20px"></div><div class="key-text" style="display:inline">Minor Issue (</div><div class="key-text count-minor" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></span>
-            <span style="white-space:nowrap"><div class="keyColor levelFour" style="float:none;display:inline-block;vertical-align:middle;margin-left:20px"></div><div class="key-text" style="display:inline">Major Issue (</div><div class="key-text count-major" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></span>
-            <span style="white-space:nowrap"><div class="keyColor levelThree" style="float:none;display:inline-block;vertical-align:middle;margin-left:20px"></div><div class="key-text" style="display:inline">Weighed and Sized (</div><div class="key-text count-weighed" style="display:inline" id="count-weighed"></div><div class="key-text" style="display:inline">)</div></span>
-            <span style="white-space:nowrap"><div class="keyColor levelTwo" style="float:none;display:inline-block;vertical-align:middle;margin-left:20px"></div><div class="key-text" style="display:inline">Ok to unbag (</div><div class="key-text count-ok" style="display:inline" id="count-ok"></div><div class="key-text" style="display:inline">)</div></span>
+            <span style="white-space:nowrap"><div class="keyColor levelFour" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text count-complete" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></span>
+            <span style="white-space:nowrap"><div class="keyColor levelThree" style="float:none;display:inline-block;vertical-align:middle;margin-left:20px"></div><div class="key-text" style="display:inline">Minor Issue (</div><div class="key-text count-minor" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></span>
+            <span style="white-space:nowrap"><div class="keyColor levelTwo" style="float:none;display:inline-block;vertical-align:middle;margin-left:20px"></div><div class="key-text" style="display:inline">Major Issue (</div><div class="key-text count-major" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></span>
             <span style="white-space:nowrap"><div class="keyColor levelOne" style="float:none;display:inline-block;vertical-align:middle;margin-left:20px"></div><div class="key-text" style="display:inline">Not Started (</div><div class="key-text count-notstarted" style="display:inline" id="count-notstarted"></div><div class="key-text" style="display:inline">)</div></span>
           </span>
         </div>
     </div>
-    <!--Inspection Legend size 2: small monitors/tablets-->
+    <!--Inspection Legend size 2: tablets-->
     <div class="dashboard-toolbar" id="inspection-legend-header2">
-        <div class="container-fluid text-center">
-          <span style="font-weight:bold;font-size:16px">
-            <div style="float:left;width:33.33%">
-              <div style="margin-left:auto;margin-right:auto;width:167px">
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelSix" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text count-complete" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></span>
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelFive" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Minor Issue (</div><div class="key-text count-minor" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></span>
-              </div>
-            </div>
-            <div style="float:left;width:33.33%">
-              <div style="margin-left:auto;margin-right:auto;width:221px">
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelFour" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Major Issue (</div><div class="key-text count-major" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></span>
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelThree" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Weighed and Sized (</div><div class="key-text count-weighed" style="display:inline" id="count-weighed"></div><div class="key-text" style="display:inline">)</div></span>
-              </div>
-            </div>
-            <div style="float:right;width:33.33%">
-              <div style="margin-left:auto;margin-right:auto;width:168px">
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelTwo" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Ok to unbag (</div><div class="key-text count-ok" style="display:inline" id="count-ok"></div><div class="key-text" style="display:inline">)</div></span>
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelOne" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Not Started (</div><div class="key-text count-notstarted" style="display:inline" id="count-notstarted"></div><div class="key-text" style="display:inline">)</div></span>
-              </div>
-            </div>
-          </span>
-        </div>
-    </div>
-    <!--Inspection Legend size 3: tablets-->
-    <div class="dashboard-toolbar" id="inspection-legend-header3">
         <div class="container-fluid text-center">
           <span style="font-weight:bold;font-size:16px">
             <div style="float:left;width:50%">
               <div style="margin-left:auto;margin-right:auto;width:167px">
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelSix" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text count-complete" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></span>
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelFive" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Minor Issue (</div><div class="key-text count-minor" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></span>
-                <span style="white-space:nowrap;float:left"><div class="keyColor levelFour" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Major Issue (</div><div class="key-text count-major" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></span>
+                <span style="white-space:nowrap;float:left"><div class="keyColor levelFour" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text count-complete" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></span>
+                <span style="white-space:nowrap;float:left"><div class="keyColor levelThree" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Minor Issue (</div><div class="key-text count-minor" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></span>
               </div>
             </div>
             <div style="float:right;width:50%">
               <div style="margin-left:auto;margin-right:auto;width:221px">
-                <span style="white-space:nowrap;float:left;margin-right:20px"><div class="keyColor levelThree" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Weighed and Sized (</div><div class="key-text count-weighed" style="display:inline" id="count-weighed"></div><div class="key-text" style="display:inline">)</div></span>
-                <span style="white-space:nowrap;float:left;margin-right:20px"><div class="keyColor levelTwo" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Ok to unbag (</div><div class="key-text count-ok" style="display:inline" id="count-ok"></div><div class="key-text" style="display:inline">)</div></span>
+                <span style="white-space:nowrap;float:left"><div class="keyColor levelTwo" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Major Issue (</div><div class="key-text count-major" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></span>
                 <span style="white-space:nowrap;float:left;margin-right:20px"><div class="keyColor levelOne" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Not Started (</div><div class="key-text count-notstarted" style="display:inline" id="count-notstarted"></div><div class="key-text" style="display:inline">)</div></span>
               </div>
             </div>
           </span>
         </div>
     </div>
-    <!--Inspection Legend size 4: mobile phones-->
-    <div class="dashboard-toolbar" id="inspection-legend-header4">
+    <!--Inspection Legend size 3: mobile phones-->
+    <div class="dashboard-toolbar" id="inspection-legend-header3">
         <div class="container-fluid text-center">
           <div style="margin-left:auto;margin-right:auto;width:200px">
             <span style="font-weight:bold;font-size:13px">
-              <span style="float:left"><div class="keyColor levelSix" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text count-complete" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></span>
-              <span style="float:left"><div class="keyColor levelFive" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Minor Issue (</div><div class="key-text count-minor" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></span>
-              <span style="float:left"><div class="keyColor levelFour" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Major Issue (</div><div class="key-text count-major" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></span>
-              <span style="float:left"><div class="keyColor levelThree" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Weighed and Sized (</div><div class="key-text count-weighed" style="display:inline" id="count-weighed"></div><div class="key-text" style="display:inline">)</div></span>
-              <span style="float:left"><div class="keyColor levelTwo" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Ok to unbag (</div><div class="key-text count-ok" style="display:inline" id="count-ok"></div><div class="key-text" style="display:inline">)</div></span>
+              <span style="float:left"><div class="keyColor levelFour" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text count-complete" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></span>
+              <span style="float:left"><div class="keyColor levelThree" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Minor Issue (</div><div class="key-text count-minor" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></span>
+              <span style="float:left"><div class="keyColor levelTwo" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Major Issue (</div><div class="key-text count-major" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></span>
               <span style="float:left"><div class="keyColor levelOne" style="float:none;display:inline-block;vertical-align:middle"></div><div class="key-text" style="display:inline">Not Started (</div><div class="key-text count-notstarted" style="display:inline" id="count-notstarted"></div><div class="key-text" style="display:inline">)</div></span>
             </span>
           </div>
@@ -142,28 +111,20 @@
         </thead>
         <tbody>
         <?php 
-          $statusCount = ['Complete'=> 0, 'Minor Issue'=> 0, 'Major Issue'=> 0, 'Weighed and Sized'=> 0, 'Ok to unbag'=> 0, 'Not Started'=> 0];
+          $statusCount = ['Complete'=> 0, 'Minor Issue'=> 0, 'Major Issue'=> 0, 'Not Started'=> 0];
           //Fetches all teams in order from the database
           $sql = $mysqli->query("SELECT t.teamid, t.teamname, t.schoolname, t.location, e.inspectionstatus FROM `".$eventTeams."` AS e, teams AS t WHERE e.teamid = t.teamid ORDER BY `teamid` ASC");
           while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
             if ($row['inspectionstatus'] == 'Complete'){
               $statusCount['Complete'] += 1;
-              echo "<tr class='levelSix' id='". $row['teamid'] ."'>";
+              echo "<tr class='levelFour' id='". $row['teamid'] ."'>";
             }
             elseif ($row['inspectionstatus'] == 'Minor Issue'){
               $statusCount['Minor Issue'] += 1;
-              echo "<tr class='levelFive' id='". $row['teamid'] ."'>";
+              echo "<tr class='levelThree' id='". $row['teamid'] ."'>";
             }
             elseif ($row['inspectionstatus'] == 'Major Issue'){
               $statusCount['Major Issue'] += 1;
-              echo "<tr class='levelFour' id='". $row['teamid'] ."'>";
-            }
-            elseif ($row['inspectionstatus'] == 'Weighed and Sized'){
-              $statusCount['Weighed and Sized'] += 1;
-              echo "<tr class='levelThree' id='". $row['teamid'] ."'>";
-            }
-            elseif ($row['inspectionstatus'] == 'Ok to unbag'){
-              $statusCount['Ok to unbag'] += 1;
               echo "<tr class='levelTwo' id='". $row['teamid'] ."'>";
             }
             elseif ($row['inspectionstatus'] == 'Not Started'){
@@ -495,8 +456,6 @@
           document.getElementsByClassName('key-text count-complete')[i].innerHTML = <?php echo $statusCount['Complete']; ?>;
           document.getElementsByClassName('key-text count-minor')[i].innerHTML = <?php echo $statusCount['Minor Issue']; ?>;
           document.getElementsByClassName('key-text count-major')[i].innerHTML = <?php echo $statusCount['Major Issue']; ?>;
-          document.getElementsByClassName('key-text count-weighed')[i].innerHTML = <?php echo $statusCount['Weighed and Sized']; ?>;
-          document.getElementsByClassName('key-text count-ok')[i].innerHTML = <?php echo $statusCount['Ok to unbag']; ?>;
           document.getElementsByClassName('key-text count-notstarted')[i].innerHTML = <?php echo $statusCount['Not Started']; ?>;
           i++;
         }
@@ -552,38 +511,26 @@
                         teamsArr2 = data;
                         console.log('refresh');
                         //console.log(teamsArr2);
-                        statusCount = {'Complete': 0, 'Minor Issue': 0, 'Major Issue': 0, 'Weighed and Sized': 0, 'Ok to unbag': 0, 'Not Started': 0};
+                        statusCount = {'Complete': 0, 'Minor Issue': 0, 'Major Issue': 0, 'Not Started': 0};
                         for (var i=0; i < teamsArr2.length; i++){
                             //console.log(teamsArr2[i][0] + ": " + teamsArr2[i][3]);
                             if (teamsArr2[i][3] == 'Complete'){
-                                document.getElementById(teamsArr2[i][0]).className = "levelSix";
+                                document.getElementById(teamsArr2[i][0]).className = "levelFour";
                                 document.getElementById(teamsArr2[i][0] + "-inspectionstatus").innerHTML = "Complete";
                                 document.getElementById(teamsArr2[i][0] + "-inspectionstatus2").innerHTML = "Complete";
                                 statusCount['Complete'] += 1;
                             }
                             else if (teamsArr2[i][3] == 'Minor Issue'){
-                                document.getElementById(teamsArr2[i][0]).className = "levelFive";
+                                document.getElementById(teamsArr2[i][0]).className = "levelThree";
                                 document.getElementById(teamsArr2[i][0] + "-inspectionstatus").innerHTML = "Minor Issue";
                                 document.getElementById(teamsArr2[i][0] + "-inspectionstatus2").innerHTML = "Minor Issue";
                                 statusCount['Minor Issue'] += 1;
                             }
                             else if (teamsArr2[i][3] == 'Major Issue'){
-                                document.getElementById(teamsArr2[i][0]).className = "levelFour";
+                                document.getElementById(teamsArr2[i][0]).className = "levelTwo";
                                 document.getElementById(teamsArr2[i][0] + "-inspectionstatus").innerHTML = "Major Issue";
                                 document.getElementById(teamsArr2[i][0] + "-inspectionstatus2").innerHTML = "Major Issue";
                                 statusCount['Major Issue'] += 1;
-                            }
-                            else if (teamsArr2[i][3] == 'Weighed and Sized'){
-                                document.getElementById(teamsArr2[i][0]).className = "levelThree";
-                                document.getElementById(teamsArr2[i][0] + "-inspectionstatus").innerHTML = "Weighed and Sized";                    
-                                document.getElementById(teamsArr2[i][0] + "-inspectionstatus2").innerHTML = "Weighed and Sized";                    
-                                statusCount['Weighed and Sized'] += 1;
-                            }
-                            else if (teamsArr2[i][3] == 'Ok to unbag'){
-                                document.getElementById(teamsArr2[i][0]).className = "levelTwo";
-                                document.getElementById(teamsArr2[i][0] + "-inspectionstatus").innerHTML = "Ok to unbag";                  
-                                document.getElementById(teamsArr2[i][0] + "-inspectionstatus2").innerHTML = "Ok to unbag";                  
-                                statusCount['Ok to unbag'] += 1;
                             }
                             else if (teamsArr2[i][3] == 'Not Started'){
                                 document.getElementById(teamsArr2[i][0]).className = "levelOne";
@@ -598,8 +545,6 @@
             document.getElementsByClassName('key-text count-complete')[i].innerHTML = statusCount['Complete'];
             document.getElementsByClassName('key-text count-minor')[i].innerHTML = statusCount['Minor Issue'];
             document.getElementsByClassName('key-text count-major')[i].innerHTML = statusCount['Major Issue'];
-            document.getElementsByClassName('key-text count-weighed')[i].innerHTML = statusCount['Weighed and Sized'];
-            document.getElementsByClassName('key-text count-ok')[i].innerHTML = statusCount['Ok to unbag'];
             document.getElementsByClassName('key-text count-notstarted')[i].innerHTML = statusCount['Not Started'];
             i++;
           }

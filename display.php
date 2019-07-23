@@ -154,11 +154,9 @@
 </div>
 <div class="content" style="width:100%;position:relative;">
   <div class="map-key">
-      <div class="key-container"><div class="keyColor levelSix"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></div>
-      <div class="key-container"><div class="keyColor levelFive"></div><div class="key-text"  style="display:inline">Minor Issue (</div><div class="key-text" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></div>
-      <div class="key-container"><div class="keyColor levelFour"></div><div class="key-text"  style="display:inline">Major Issue (</div><div class="key-text" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></div>
-    <div class="key-container"><div class="keyColor levelThree"></div><div class="key-text" style="display:inline">Weighed and Sized (</div><div class="key-text" style="display:inline" id="count-weighed"></div><div class="key-text" style="display:inline">)</div></div>
-      <div class="key-container"><div class="keyColor levelTwo"></div><div class="key-text"  style="display:inline">Ok to unbag (</div><div class="key-text" style="display:inline" id="count-ok"></div><div class="key-text" style="display:inline">)</div></div>
+      <div class="key-container"><div class="keyColor levelFour"></div><div class="key-text" style="display:inline">Complete (</div><div class="key-text" style="display:inline" id="count-complete"></div><div class="key-text" style="display:inline">)</div></div>
+      <div class="key-container"><div class="keyColor levelThree"></div><div class="key-text"  style="display:inline">Minor Issue (</div><div class="key-text" style="display:inline" id="count-minor"></div><div class="key-text" style="display:inline">)</div></div>
+      <div class="key-container"><div class="keyColor levelTwo"></div><div class="key-text"  style="display:inline">Major Issue (</div><div class="key-text" style="display:inline" id="count-major"></div><div class="key-text" style="display:inline">)</div></div>
       <div class="key-container"><div class="keyColor levelOne"></div><div class="key-text"  style="display:inline">Not Started (</div><div class="key-text" style="display:inline" id="count-notstarted"></div><div class="key-text" style="display:inline">)</div></div>
   </div>
   <div class="container" style="padding:0px !important;">
@@ -193,48 +191,32 @@
                 success: function(data) {
                     teamsArr2 = [];
                     teamsArr2 = data;
-					statusCount = {'Complete': 0, 'Minor Issue': 0, 'Major Issue': 0, 'Weighed and Sized': 0, 'Ok to unbag': 0, 'Not Started': 0};
+					statusCount = {'Complete': 0, 'Minor Issue': 0, 'Major Issue': 0, 'Not Started': 0};
                     //console.log('refresh');
                     //console.log(teamsArr2);
                     for (var i=0; i < teamsArr2.length; i++){
                         //console.log(teamsArr2[i][0] + ": " + teamsArr2[i][3]);
-                        $("#" + teamsArr2[i][0]).removeClass('levelFive');
                         $("#" + teamsArr2[i][0]).removeClass('levelFour');
                         $("#" + teamsArr2[i][0]).removeClass('levelThree');
                         $("#" + teamsArr2[i][0]).removeClass('levelTwo');
                         $("#" + teamsArr2[i][0]).removeClass('levelOne');
-                        $("#" + teamsArr2[i][0]).removeClass('levelSix');
-                        $("#" + teamsArr2[i][0]).removeClass('levelSeven');
 		                if (teamsArr2[i][3] == 'Complete'){
-			                $("#" + teamsArr2[i][0]).addClass('levelSix');
-							statusCount['Complete'] += 1;
-		                }
-		                else if (teamsArr2[i][3] == 'Minor Issue'){
-			                $("#" + teamsArr2[i][0]).addClass('levelFive');
-							statusCount['Minor Issue'] += 1;
-		                }
-						else if (teamsArr2[i][3] == 'Major Issue'){
 			                $("#" + teamsArr2[i][0]).addClass('levelFour');
-							statusCount['Major Issue'] += 1;
-		                }
-                        else if (teamsArr2[i][3] == 'Weighed and Sized'){
+                      statusCount['Complete'] += 1;
+		                } else if (teamsArr2[i][3] == 'Minor Issue'){
 			                $("#" + teamsArr2[i][0]).addClass('levelThree');
-							statusCount['Weighed and Sized'] += 1;
-		                }
-		                else if (teamsArr2[i][3] == 'Ok to unbag'){
+                      statusCount['Minor Issue'] += 1;
+		                } else if (teamsArr2[i][3] == 'Major Issue'){
 			                $("#" + teamsArr2[i][0]).addClass('levelTwo');
-							statusCount['Ok to unbag'] += 1;
-		                }
-		                else if (teamsArr2[i][3] == 'Not Started'){
+                      statusCount['Major Issue'] += 1;
+		                } else if (teamsArr2[i][3] == 'Not Started'){
 			                $("#" + teamsArr2[i][0]).addClass('levelOne');
-							statusCount['Not Started'] += 1;
+                      statusCount['Not Started'] += 1;
 		                }
 	                }  
 					document.getElementById('count-complete').innerHTML = statusCount['Complete'];
 					document.getElementById('count-minor').innerHTML = statusCount['Minor Issue'];
 					document.getElementById('count-major').innerHTML = statusCount['Major Issue'];
-					document.getElementById('count-weighed').innerHTML = statusCount['Weighed and Sized'];
-					document.getElementById('count-ok').innerHTML = statusCount['Ok to unbag'];
 					document.getElementById('count-notstarted').innerHTML = statusCount['Not Started'];
 
 					

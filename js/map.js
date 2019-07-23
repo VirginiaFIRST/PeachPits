@@ -11,18 +11,12 @@ function boxColor() {
     console.log('boxColor run');
 	for (var i=0; i < teamsArr.length; i++){
 		if (teamsArr[i][3] == 'Complete'){
-			$("#" + teamsArr[i][0]).addClass('levelSix');
-		}
-		else if (teamsArr[i][3] == 'Minor Issue'){
-			$("#" + teamsArr[i][0]).addClass('levelFive');
-		}
-		else if (teamsArr[i][3] == 'Major Issue'){
 			$("#" + teamsArr[i][0]).addClass('levelFour');
 		}
-		else if (teamsArr[i][3] == 'Weighed and Sized') {
-		    $("#" + teamsArr[i][0]).addClass('levelThree');
+		else if (teamsArr[i][3] == 'Minor Issue'){
+			$("#" + teamsArr[i][0]).addClass('levelThree');
 		}
-		else if (teamsArr[i][3] == 'Ok to unbag'){
+		else if (teamsArr[i][3] == 'Major Issue'){
 			$("#" + teamsArr[i][0]).addClass('levelTwo');
 		}
 		else if (teamsArr[i][3] == 'Not Started'){
@@ -34,18 +28,12 @@ function boxColor() {
 function mapTeamInspectStatus(index){
   
 	if (teamsArr[index][3] == 'Complete'){
-		$('.map-inspectstatus').addClass('levelSix');
-	}
-	else if (teamsArr[index][3] == 'Minor Issue'){
-		$('.map-inspectstatus').addClass('levelFive');
-	}
-	else if (teamsArr[index][3] == 'Major Issue'){
 		$('.map-inspectstatus').addClass('levelFour');
 	}
-	else if (teamsArr[index][3] == 'Weighed and Sized') {
-	    $('.map-inspectstatus').addClass('levelThree');
+	else if (teamsArr[index][3] == 'Minor Issue'){
+		$('.map-inspectstatus').addClass('levelThree');
 	}
-	else if (teamsArr[index][3] == 'Ok to unbag'){
+	else if (teamsArr[index][3] == 'Major Issue'){
 		$('.map-inspectstatus').addClass('levelTwo');
 	}
 	else if (teamsArr[index][3] == 'Not Started'){
@@ -58,13 +46,10 @@ function clear(){
 	$('.key').css('display','none');
 }
 function clearInspectionStatus(){
-	$('#frame .levelFive').removeClass('levelFive');
 	$('#frame .levelFour').removeClass('levelFour');
 	$('#frame .levelThree').removeClass('levelThree');
 	$('#frame .levelTwo').removeClass('levelTwo');
 	$('#frame .levelOne').removeClass('levelOne');
-	$('#frame .levelSix').removeClass('levelSix');
-	$('#frame .levelSeven').removeClass('levelSeven');
 }
 function openTab(evt, tab) {
     // Declare all variables
@@ -330,12 +315,10 @@ $(document).ready(function() {
             dataType: 'json'
         });
 
-		$('.levelFive').removeClass('levelFive');
-		$('.levelFour').removeClass('levelFour');
+    $('.levelFour').removeClass('levelFour');
 		$('.levelThree').removeClass('levelThree');
 		$('.levelTwo').removeClass('levelTwo');
 		$('.levelOne').removeClass('levelOne');
-        $('.levelSix').removeClass('levelSix');
 		
 		$('.map-page-team').css('display','block');
     

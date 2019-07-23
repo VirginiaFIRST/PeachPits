@@ -88,32 +88,32 @@
 						echo "<td style='width:8%; padding-left: 15px;' class='text-center' id='matchnumber'>". $row['matchnumber'] ."</td>";
 						echo "<td class='text-center' id='starttime'>". $row['start'] ."</td>";
 						if (in_array($row['red1'], $completedTeams)) {
-							echo "<td id='red1' class='levelSix text-center'>". $row['red1'] ."</td>";
+							echo "<td id='red1' class='levelFour text-center'>". $row['red1'] ."</td>";
 						} else {
 							echo "<td id='red1' class='gray text-center'>". $row['red1'] ."</td>";
 						}
 						if (in_array($row['red2'], $completedTeams)) {
-							echo "<td id='red2' class='levelSix text-center'>". $row['red2'] ."</td>";
+							echo "<td id='red2' class='levelFour text-center'>". $row['red2'] ."</td>";
 						} else {
 							echo "<td id='red2' class='gray text-center'>". $row['red2'] ."</td>";
 						}
 						if (in_array($row['red3'], $completedTeams)) {
-							echo "<td id='red3' class='levelSix text-center'>". $row['red3'] ."</td>";
+							echo "<td id='red3' class='levelFour text-center'>". $row['red3'] ."</td>";
 						} else {
 							echo "<td id='red3' class='gray text-center'>". $row['red3'] ."</td>";
 						}
 						if (in_array($row['blue1'], $completedTeams)) {
-							echo "<td id='blue1' class='levelSix text-center'>". $row['blue1'] ."</td>";
+							echo "<td id='blue1' class='levelFour text-center'>". $row['blue1'] ."</td>";
 						} else {
 							echo "<td id='blue1' class='gray text-center'>". $row['blue1'] ."</td>";
 						}
 						if (in_array($row['blue2'], $completedTeams)) {
-							echo "<td id='blue2' class='levelSix text-center'>". $row['blue2'] ."</td>";
+							echo "<td id='blue2' class='levelFour text-center'>". $row['blue2'] ."</td>";
 						} else {
 							echo "<td id='blue2' class='gray text-center'>". $row['blue2'] ."</td>";
 						}
 						if (in_array($row['blue3'], $completedTeams)) {
-							echo "<td id='blue3' class='levelSix text-center'>". $row['blue3'] ."</td>";
+							echo "<td id='blue3' class='levelFour text-center'>". $row['blue3'] ."</td>";
 						} else {
 							echo "<td id='blue3' class='gray text-center'>". $row['blue3'] ."</td>";
 						}
@@ -180,17 +180,17 @@
 						echo "<td rowspan='2' style='width:8%; padding-left: 15px; vertical-align:middle;' class='text-left' id='matchnumber'>". $row['matchnumber'] ."</td>";
 						echo "<td rowspan='2' 'class='text-center' style='vertical-align:middle' id='starttime'>". $row['start'] ."</td>";
 						if (in_array($row['red1'], $completedTeams)) {
-							echo "<td id='red1' class='levelSix text-center'>". $row['red1'] ."</td>";
+							echo "<td id='red1' class='levelFour text-center'>". $row['red1'] ."</td>";
 						} else {
 							echo "<td id='red1' class='gray text-center'>". $row['red1'] ."</td>";
 						}
 						if (in_array($row['red2'], $completedTeams)) {
-							echo "<td id='red2' class='levelSix text-center'>". $row['red2'] ."</td>";
+							echo "<td id='red2' class='levelFour text-center'>". $row['red2'] ."</td>";
 						} else {
 							echo "<td id='red2' class='gray text-center'>". $row['red2'] ."</td>";
 						}
 						if (in_array($row['red3'], $completedTeams)) {
-							echo "<td id='red3' class='levelSix text-center'>". $row['red3'] ."</td>";
+							echo "<td id='red3' class='levelFour text-center'>". $row['red3'] ."</td>";
 						} else {
 							echo "<td id='red3' class='gray text-center'>". $row['red3'] ."</td>";
 						}
@@ -198,17 +198,17 @@
 						echo "</tr>";
                         echo "<tr id='". $row['matchid'] ."'>";
 						if (in_array($row['blue1'], $completedTeams)) {
-							echo "<td id='blue1' class='levelSix text-center'>". $row['blue1'] ."</td>";
+							echo "<td id='blue1' class='levelFour text-center'>". $row['blue1'] ."</td>";
 						} else {
 							echo "<td id='blue1' class='gray text-center'>". $row['blue1'] ."</td>";
 						}
 						if (in_array($row['blue2'], $completedTeams)) {
-							echo "<td id='blue2' class='levelSix text-center'>". $row['blue2'] ."</td>";
+							echo "<td id='blue2' class='levelFour text-center'>". $row['blue2'] ."</td>";
 						} else {
 							echo "<td id='blue2' class='gray text-center'>". $row['blue2'] ."</td>";
 						}
 						if (in_array($row['blue3'], $completedTeams)) {
-							echo "<td id='blue3' class='levelSix text-center'>". $row['blue3'] ."</td>";
+							echo "<td id='blue3' class='levelFour text-center'>". $row['blue3'] ."</td>";
 						} else {
 							echo "<td id='blue3' class='gray text-center'>". $row['blue3'] ."</td>";
 						}
@@ -340,7 +340,7 @@
                         //console.log(teamsArr2);
                         for (var i=0; i < teamsArr2.length; i++){
                             //console.log(teamsArr2[i][0] + ": " + teamsArr2[i][3]);
-                            if (teamsArr2[i][3] == 'Minor Issue' || teamsArr2[i][3] == 'Major Issue' || teamsArr2[i][3] == 'Weighed and Sized' || teamsArr2[i][3] == 'Ok to unbag' || teamsArr2[i][3] == 'Not Started'){
+                            if (teamsArr2[i][3] == 'Minor Issue' || teamsArr2[i][3] == 'Major Issue' || teamsArr2[i][3] == 'Not Started'){
                                 //add team from teamArr2 to new arr
 								incompleteArr.push(teamsArr2[i][0]);
                             }
@@ -363,7 +363,7 @@
 						  }
 						  else {
 							cell.classList.remove('gray');
-							cell.classList.add('levelSix');
+							cell.classList.add('levelFour');
 						  }
 					  }
 				  }
