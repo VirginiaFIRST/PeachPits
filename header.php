@@ -254,7 +254,6 @@
                         </ul>
                     </li>
                     <?php } ?>
-                    <li><a href="peachtalk/peachtalk-home?event=<?php echo $currentEvent; ?>">PeachTalk</a></li>
                     <li><a href="teams?event=<?php echo $currentEvent; ?>">Team List</a></li>
                     <li><a href="matches?event=<?php echo $currentEvent; ?>">Match Schedule</a></li>
                     <li><a href="pitmap?event=<?php echo $currentEvent; ?>">Pit Map</a></li>
