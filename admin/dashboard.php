@@ -75,10 +75,8 @@
                       <i class="glyphicon glyphicon-user"></i>
                       <select name="roleChange" id="roleChange" onchange="liaisonFunction()">
                         <option value="">Your Role</option>
-                        <option value="Communication Liaison">Communication Liaison</option>
                         <option>Inspector</option>
                         <option>Lead Inspector</option>
-                        <option>Pit Admin</option>
                         <option>Event Admin</option>
                       </select>
                     </div>
