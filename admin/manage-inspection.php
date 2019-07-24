@@ -66,11 +66,26 @@
 
 		<div class="col-md-10 container-dashboard-content">
 			<div class="dashboard-toolbar">
-				<div class="container-fluid">
-				<?php if(isLeadInspector($role) || isEventAdmin($role) || isSuperAdmin($role)) { ?>
-					<button id="thisbtn" class="btn btn-danger pull-left" data-toggle='modal' data-target='#resetInspectionStatus'>Reset Inspection Status</a></button> <?php } ?>
-					<button class="btn btn-default list-view pull-right">List View</button>
-					<button class="btn btn-default map-view pull-right">Map View</button>
+				<div class="row text-center">
+        <?php if(isLeadInspector($role) || isEventAdmin($role) || isSuperAdmin($role)) { ?>
+          <div class="col-xs-12 col-sm-4" style="margin-bottom:10px;">
+              <button id="thisbtn" class="btn btn-danger" data-toggle='modal' data-target='#resetInspectionStatus'>Reset Inspection Status</button>
+          </div>
+          <div class="col-xs-12 col-sm-4" style="margin-bottom:10px;">
+            <form action="/peachpits/peachtalk/new_export?event=<?php echo $currentEvent; ?>" id="export-form" method="post" style="margin:0;">
+              <button class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Download Inspection Data</button>
+            </form>
+          </div>
+          <div class="col-xs-12 col-sm-4" style="margin-bottom:10px;">
+            <button class="btn btn-default list-view">List View</button>
+            <button class="btn btn-default map-view">Map View</button>
+          </div>
+        <?php } else { ?>
+          <div class="col-xs-12">
+            <button class="btn btn-default pull-right list-view">List View</button>
+            <button class="btn btn-default pull-right map-view">Map View</button>
+          </div>
+        <?php } ?>
 				</div>
 			</div>
             <div class="inspection-map-view">

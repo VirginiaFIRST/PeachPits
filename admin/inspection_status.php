@@ -11,7 +11,7 @@
     
     $lastModifiedBy = $firstname . ' ' . $lastname;
     date_default_timezone_set("America/New_York");
-    $lastModifiedTime = date("m-d-Y") . ' @ ' . date("H:i:sa") . ' EDT';
+    $lastModifiedTime = date("m-d-Y") . ' @ ' . date("H:i:sa");
     
     //Resets inspectionstatus to 'Not Started' for all teams
     if ($type == 'resetstatus'){
