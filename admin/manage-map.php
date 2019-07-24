@@ -195,7 +195,7 @@
 									if ($imgurl == "" || $imgurl == null || $imgurl == "undefined") {
 										echo '
 										<div class="element-box text-center" style="width:120px">
-											<button class="btn btn-default" style="width:120px" data-toggle="modal" data-target="#choose-image" id="choose-image-btn">Choose Image</button>
+											<button class="btn btn-default" style="width:120px" data-toggle="modal" data-target="#choose-image" id="choose-image-btn">Upload Image</button>
 										</div>';
 									}
 									else {
@@ -210,7 +210,7 @@
 											</div>
 										</div>
 										<div class="element-box text-center" style="width:152px">
-											<button class="btn btn-default" style="width:152px" data-toggle="modal" data-target="#choose-image" id="choose-image-btn">Choose New Image</button>
+											<button class="btn btn-default" style="width:152px" data-toggle="modal" data-target="#choose-image" id="choose-image-btn">Upload New Image</button>
 										</div>';
 									}
 								?>
@@ -313,19 +313,20 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 style="display:inline" class="modal-title" id="myModalLabel">Choose Image</h3>
+        <h3 style="display:inline" class="modal-title" id="myModalLabel">Upload Image</h3>
       </div>
-      <div class="modal-body">
-	  	<h4>Copy an image URL into the textbox below, and the blank square in the Drag & Drop Elements will turn into the image you choose.</h4>
-		<p>The image will not save, so if you come back to this page later, you will have to copy the image URL again in order to add it to the pit map.</p>
-		<p style="font-weight:bold">Make sure the pitmap is saved before clicking "Choose Image"!</p>
+      <div class="modal-body text-center">
+	  	<h3 style="margin-top:0;">Add your logo to the Pit Map!</h3>
+	  	<h4>Copy an image URL into the textbox below, and the image you choose will appear in the Drag & Drop Elements!</h4>
+		  <h4>The image will not save, so if you come back to this page later, you will have to copy the image URL again in order to add it to the pit map.</h4>
+		  <h4 style="font-weight:bold">Make sure the pitmap is saved before clicking "Upload Image"!</h4>
         <form action="/peachpits/admin/manage-map?event=<?php echo $currentEvent; ?>" method="post">
 			<input type="hidden" name="teamid" id="choose-image">
 			<textarea class="form-control" style="width:100%; height:100px; margin-bottom:5px; resize:none;" placeholder="Paste Image URL Here" name="imgurl"></textarea><br/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-default" name="submit">Choose Image</button></form>
+        <button type="submit" class="btn btn-default" name="submit">Upload Image</button></form>
       </div>
     </div>
   </div>
