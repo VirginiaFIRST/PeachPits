@@ -72,7 +72,7 @@
               <button id="thisbtn" class="btn btn-danger" data-toggle='modal' data-target='#resetInspectionStatus'>Reset Inspection Status</button>
           </div>
           <div class="col-xs-12 col-sm-4" style="margin-bottom:10px;">
-            <form action="/peachpits/peachtalk/new_export?event=<?php echo $currentEvent; ?>" id="export-form" method="post" style="margin:0;">
+            <form action="/peachpits/admin/export_inspections?event=<?php echo $currentEvent; ?>" id="export-form" method="post" style="margin:0;">
               <button class="btn btn-default"><span class="glyphicon glyphicon-save"></span> Download Inspection Data</button>
             </form>
           </div>

@@ -31,7 +31,9 @@
   while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
     echo $row['teamid'].$sep;
     echo $row['inspectionstatus'].$sep;
-    echo $row['inspectionnotes'].$sep;
+    $inspectionNotes = $row['inspectionnotes'];
+    $inspectionNotes = str_replace(array("\r", "\n"), '|', $inspectionNotes);
+    echo $inspectionNotes.$sep;
     echo $row['modified_by'].$sep;
     echo $row['modified_time'].$sep;
     echo "\n";
