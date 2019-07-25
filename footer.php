@@ -16,7 +16,7 @@
           </p>
 		      <?php if (loggedOn()){ ?>
             <p class="pull-right" id="top-footer-right" style="line-height:60px;margin-bottom:0px;">
-              <a class="admin-login" id="dashboard-link" href="admin/dashboard?event=<?php echo $currentEvent; ?>">Dashboard</a>
+              <a class="admin-login" href="signout>">Sign Out</a>
             </p>
 		      <?php } ?>
         </div>

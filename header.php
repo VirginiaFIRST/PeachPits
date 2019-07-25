@@ -259,7 +259,7 @@
                     <li><a href="pitmap?event=<?php echo $currentEvent; ?>">Pit Map</a></li>
                     <?php if (loggedOn()){ ?>
                     <li>
-                      <a href="signout" style="padding-top:10px;" title="Sign Out">
+                      <a href="admin/dashboard?event=<?php echo $currentEvent; ?>" style="padding-top:10px;" title="Dashboard">
                         <i class="glyphicon glyphicon-user" style="font-size: 25px;"></i>
                       </a>
                     </li>
