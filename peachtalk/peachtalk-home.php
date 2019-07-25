@@ -1,7 +1,10 @@
 <title>PeachTalk</title>
 <?php 
 	include dirname(__DIR__) . "/header.php"; 
-	
+  
+  // Remove when turning PeachTalk back on
+  echo '<script>window.location="/peachpits/index"</script>';
+
 	if (empty($currentEvent)) {
 		echo '<script>window.location="/peachpits/chooseevent"</script>';
 	}
