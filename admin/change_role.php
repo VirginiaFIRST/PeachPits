@@ -61,12 +61,12 @@
 
     else {
         if ($requestedRole == "Communication Liaison") {
-            $sql = $mysqli->query("INSERT into `requests`(`email`, `firstname`, `lastname`, `existingrole`, `requestedrole`, `status`, `type`, `event`, `liaison_info`) VALUES ('$sessionEmail', '$firstname', '$lastname', '$existingRole', '$requestedRole', '$status', '$type', '$requestedEvent', '$liaisonInfo')");
+            $sql = $mysqli->query("INSERT into `requests`(`email`, `firstname`, `lastname`, `existingrole`, `requestedrole`, `status`, `type`, `event`, `eventid`, `liaison_info`) VALUES ('$sessionEmail', '$firstname', '$lastname', '$existingRole', '$requestedRole', '$status', '$type', '$requestedEvent', '$eventid', '$liaisonInfo')");
             $sql = $mysqli->query("INSERT into `".$eventLiaisons."` (`teamid`, `user`, `email`, `cell`, `status`) VALUES ('$teamid', '$liaisonName', '$sessionEmail', '$liaisonCell', 'Pending')");
         }
         else {
-            $sql = $mysqli->query("INSERT into `requests`(`email`, `firstname`, `lastname`, `existingrole`, `requestedrole`, `status`, `type`, `event`)
-            VALUES ('$sessionEmail', '$firstname', '$lastname', '$existingRole', '$requestedRole', '$status', '$type', '$requestedEvent')");
+            $sql = $mysqli->query("INSERT into `requests`(`email`, `firstname`, `lastname`, `existingrole`, `requestedrole`, `status`, `type`, `event`, `eventid`)
+            VALUES ('$sessionEmail', '$firstname', '$lastname', '$existingRole', '$requestedRole', '$status', '$type', '$requestedEvent', '$eventid')");
         }
 
         if ($refer == "peachtalk") {

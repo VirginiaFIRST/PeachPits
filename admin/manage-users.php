@@ -19,51 +19,51 @@
               <td><b>Last Name</b></td>
               <td><b>Email</b></td>
               <td><b>Role</b></td>
-              <td><b>Delete User</b></td>
+              <td class="text-center"><b>Delete User</b></td>
             </thead>
-            <?php
-              $eventTeams = $currentEvent . '_teams';
-              $enabledX = `
-                <td style="width:20%" class="text-center">
-                  <a style="text-decoration:none" href="#" data-toggle="modal" data-target="#delete-user-modal" id="delete-user">
-                    <span style="font-size:30px;color:red;line-height:18px;">&times;</span>
-                  </a>
-                </td>
-              `;
-              $disabledX = `
-                <td style="width:20%" class="text-center">
-                  <span style="font-size:30px;color:gray;line-height:18px;">&times;</span>
-                </td>
-              `;
-              $sql = $mysqli->query("SELECT * FROM `".$eventUsers."` ORDER BY `lastname` ASC");
-              while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
-                $rowRole = $row['role'];
-                if (!isEventAdmin($rowRole))
-                echo "<tr>";
-                echo `<td id="firstname" style="width:20%;">`. $row['firstname'] .`</td>`;
-                echo `<td id="lastname" style="width:20%;">`. $row['lastname'] .`</td>`;
-                echo `<td id="email" style="width:20%;">`. $row['email'] .`</td>`;
-                echo `<td id="role" style="width:20%;">`. $row['role'] .`</td>`;
-                if (isSuperAdmin($role)) {
-                  echo $enabledX;
-                } else if (isEventAdmin($role)) {
-                  if (isEventAdmin($rowRole)) {
-                    echo $disabledX;
-                  } else {
+            <tbody>
+              <?php
+                $enabledX = '
+                  <td style="width:10%" class="text-center">
+                    <a style="text-decoration:none" href="#" data-toggle="modal" data-target="#delete-user-modal" id="delete-user">
+                      <span style="font-size:30px;color:red;line-height:18px;">&times;</span>
+                    </a>
+                  </td>
+                ';
+                $disabledX = '
+                  <td style="width:10%" class="text-center">
+                    <span style="font-size:30px;color:gray;line-height:18px;">&times;</span>
+                  </td>
+                ';
+                $sql = $mysqli->query("SELECT * FROM `".$eventUsers."` ORDER BY `lastname` ASC");
+                while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
+                  $rowRole = $row['role'];
+                  echo '<tr>';
+                  echo '<td id="firstname" style="width:25%;">'. $row['firstname'] .'</td>';
+                  echo '<td id="lastname" style="width:25%;">'. $row['lastname'] .'</td>';
+                  echo '<td id="email" style="width:25%;">'. $row['email'] .'</td>';
+                  echo '<td id="role" style="width:15%;">'. $row['role'] .'</td>';
+                  if (isSuperAdmin($role)) {
                     echo $enabledX;
-                  }
-                } else if (isLeadInspector($role)) {
-                  if (isInspector($rowRole)) {
-                    echo $enabledX;
+                  } else if (isEventAdmin($role)) {
+                    if (isEventAdmin($rowRole)) {
+                      echo $disabledX;
+                    } else {
+                      echo $enabledX;
+                    }
+                  } else if (isLeadInspector($role)) {
+                    if (isInspector($rowRole)) {
+                      echo $enabledX;
+                    } else {
+                      echo $disabledX;
+                    }
                   } else {
                     echo $disabledX;
                   }
-                } else {
-                  echo $disabledX;
+                  echo '</tr>';
                 }
-                echo "</tr>";
-              }
-            ?>
+              ?>
+            </tbody>
           </table>
         </div>
       </div>
@@ -97,7 +97,7 @@
   $(document).ready(function() {
     $(".nav li").removeClass("active");
     $('#users').addClass('active');
-    
+
     $(document).on("click", "#delete-user", function() {
       var row = $(this).closest("tr");
       var userEmail = row.find("#email").text();

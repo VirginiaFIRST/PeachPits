@@ -11,12 +11,15 @@
   $event = $_GET['eventReq'];
   $role = $_GET['role'];
   $refer = $_GET['refer'];
-  $eventUsers = $event . "_users";
+
+  $sql = $mysqli->query("SELECT * FROM `requests` WHERE `email` = '$email' AND `event` = '$event'");
+  $row = mysqli_fetch_assoc($sql);
+  $eventid = $row['eventid'];
+
+  $eventUsers = $eventid . "_users";
+
 
   if ($role == "Communication Liaison") {
-    $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventname` = '$event'");
-    $row = mysqli_fetch_assoc($sql);
-    $eventid = $row['eventid'];
     $eventLiaisons = $eventid . "_liaisons";
     $sql = $mysqli->query("UPDATE `".$eventLiaisons."` SET `status`= 'Approved' WHERE `email`='$email' AND `status`='Pending'");
     
@@ -57,7 +60,7 @@
     $eventStr = '';
   }
 
-  $addStr = $role . '@' . $event;
+  $addStr = $role . '@' . $eventid;
   
   $eventStr .= ';' . $addStr;
   $eventStr = trim($eventStr,';');

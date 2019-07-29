@@ -15,6 +15,9 @@
 
   $eventsArr = array_diff($eventsArr, array($roleString));
   $updatedEvents = implode(";", $eventsArr);
+  if (!$updatedEvents) {
+    $updatedEvents == "No Event";
+  }
 
   $sql = $mysqli->query("UPDATE `users` SET `events` = '$updatedEvents' WHERE `email` = '$userEmail'");
 
