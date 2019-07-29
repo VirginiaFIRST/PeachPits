@@ -73,7 +73,7 @@
                   <form class="form-inline" id="change-role-form" action="/peachpits/admin/change_role?event=<?php echo $currentEvent ?>" method="post">
                     <div class="request-role-field inner-addon left-addon">
                       <i class="glyphicon glyphicon-user"></i>
-                      <select name="roleChange" id="roleChange" onchange="liaisonFunction()">
+                      <select name="roleChange" id="roleChange" onchange="validateRoleForm()">
                         <option value="">Your Role</option>
                         <option>Inspector</option>
                         <option>Lead Inspector</option>
@@ -88,7 +88,7 @@
                     <div class="request-event-field inner-addon left-addon" id="normal-request-form">
                       <i class="glyphicon glyphicon-star"></i>       
                       <?php $sql = $mysqli->query("SELECT * FROM events ORDER BY eventname ASC"); ?> 
-                      <select onchange="formChange(this)" name="addevent" id="addevent">
+                      <select onchange="validateRoleForm()" name="addevent" id="addevent">
                         <option value="">Desired Event<option>
                         <?php 
                         while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){ 
@@ -100,7 +100,7 @@
                         ?>
                       </select>
                     </div>
-                    <button style="vertical-align:top;" type="button" class="btn btn-default" onclick="document.getElementById('change-role-form').submit()" id='btn-submit-request' >
+                    <button disabled style="vertical-align:top;" type="button" class="btn btn-default" onclick="document.getElementById('change-role-form').submit()" id='btn-submit-request' >
                       Request
                     </button>
                     <br>
@@ -108,19 +108,19 @@
                       <div class="form-group resize-form-group" style="width:100%">
                         <div class="inner-addon left-addon">
                           <i class="glyphicon glyphicon-asterisk"></i>
-                          <input class="form-control input-lg no-radius" onchange="formChange(this)" name="teamid" id="teamid" style="width:100%" placeholder="Team Number"></input>
+                          <input class="form-control input-lg no-radius" onchange="formChange(this)" name="teamid" id="teamid" style="width:100%" placeholder="Team Number" />
                         </div>
                       </div>
                       <div class="form-group resize-form-group" style="width:100%">
                         <div class="inner-addon left-addon">
                           <i class="glyphicon glyphicon-user"></i>
-                          <input class="form-control input-lg no-radius" onchange="formChange(this)" name="liaison-name" id="liaison-name" style="width:100%" placeholder="Your Name" value="<?php echo $firstname . ' ' . $lastname;?>"></input>
+                          <input class="form-control input-lg no-radius" onchange="formChange(this)" name="liaison-name" id="liaison-name" style="width:100%" placeholder="Your Name" value="<?php echo $firstname . ' ' . $lastname;?>" />
                         </div>
                       </div>
                       <div class="form-group resize-form-group" style="width:100%">
                         <div class="inner-addon left-addon">
                           <i class="glyphicon glyphicon-earphone"></i>
-                          <input class="form-control input-lg no-radius" onchange="formChange(this)" name="liaison-cell" id="liaison-cell" style="width:100%" placeholder="Your Phone Number"></input>
+                          <input class="form-control input-lg no-radius" onchange="formChange(this)" name="liaison-cell" id="liaison-cell" style="width:100%" placeholder="Your Phone Number" />
                         </div>
                       </div>
                       <button type="button" style="vertical-align:top;" class="btn btn-default" id="liaison-btn-submit-request" data-toggle='modal' data-target='#read-terms-of-use' disabled="disabled">
@@ -377,6 +377,51 @@
               $('#submit-agree-form').attr('disabled', 'disabled');            
           }
       }
+      function submitPasswordForm() {
+        if (validatePasswordForm()) {
+          document.getElementById("changePasswordForm").submit();
+        }
+      }
+      function validatePasswordForm() {
+        let allValid = true;
+        let password = document.getElementById("newpassword").value;
+        let repeatPW = document.getElementById("confirmnewpassword").value;
+        let errorText = document.getElementById("error-text");
+        if (!password || !repeatPW) {
+          errorText.innerText = "Please complete all of the required fields";
+          allValid = false;
+        } else {
+          if (password != repeatPW) {
+            errorText.innerText = "Your confirmed password does not match your initial password";
+            allValid = false;
+          }
+        }
+        document.getElementById("submit-button").disabled = !allValid;
+        if (allValid) {
+          errorText.style.display = "none";
+        } else {
+          errorText.style.display = "block";
+        }
+        return allValid;
+      }
+      function validateRoleForm() {
+        let allValid = true;
+        let role = document.getElementById("roleChange").value;
+        let event = document.getElementById("addevent").value;
+        if (!role || !event) {
+          allValid = false;
+        }
+        document.getElementById("btn-submit-request").disabled = !allValid;
+        return allValid;
+      }
+      $(document).ready(function() {
+        $(window).keydown(function(event) {
+          if ((event.keyCode == 13) && (validatePasswordForm() == false)) {
+            event.preventDefault();
+            return false;
+          }
+        });
+      });
     </script>
 		</body>	
     </div>
@@ -392,14 +437,17 @@
         <h4 class="modal-title" id="myModalLabel">Change Your Password</h4>
       </div>
       <div class="modal-body">
-        <form action="/peachpits/admin/change_password?event=<?php echo $currentEvent ?>" method="post">
-          <input type="text" name="oldpassword" id="oldpassword" class="form-control" placeholder="Old Password"><br/>
-    			<input type="text" name="newpassword" id="newpassword" class="form-control" placeholder="New Password"><br/>
-    			<input type="text" name="confirmnewpassword" id="confirmnewpassword" class="form-control" placeholder="Confirm New Password"><br/>
+        <form action="/peachpits/admin/change_password?event=<?php echo $currentEvent ?>" method="post" id="changePasswordForm">
+          <input type="password" name="newpassword" id="newpassword" class="form-control" placeholder="New Password" oninput="validatePasswordForm()">
+          <br>
+          <input type="password" name="confirmnewpassword" id="confirmnewpassword" class="form-control" placeholder="Confirm New Password" oninput="validatePasswordForm()">
+          <br>
+          <p style="display:none;color:red;" id="error-text"></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="submit" class="btn btn-default" name="submit">Change Password</button></form>
+        <button class="btn btn-default" id="submit-button" onclick="submitPasswordForm()" disabled>Change Password</button>
+        </form>
       </div>
     </div>
   </div>
@@ -435,7 +483,9 @@
 
 <?php
   //If the user isn't signed in redirect them to the signin page
-	} else { echo '<script>document.location.href="/peachpits/signin"</script>'; }
-	
-	include dirname(__DIR__) . "/footer.php"; 
+  } else {
+    echo '<script>document.location.href="/peachpits/signin"</script>';
+  }
+
+  include dirname(__DIR__) . "/footer.php"; 
 ?>

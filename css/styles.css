@@ -352,3 +352,13 @@ body {
         margin-bottom:3px;
     }
 }
+
+.formbox {
+  width:300px;
+}
+
+@media screen and (max-width:340px) {
+  .formbox {
+    width:calc(100vw - 40px);
+  }
+}
