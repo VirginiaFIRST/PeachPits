@@ -318,7 +318,7 @@
 
         if (isSuperAdmin($role) || isEventAdmin($role) || isPitAdmin($role)) {
             $pendingRequests= 0;
-            $sql = $mysqli->query("SELECT * FROM `requests` WHERE `status` = 'Pending' AND `requestedrole` = 'Communication Liaison' AND `event` = '$eventname'");
+            $sql = $mysqli->query("SELECT * FROM `requests` WHERE `status` = 'Pending' AND `requestedrole` = 'Communication Liaison' AND `event` = '$currentEvent'");
             while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
                 $unreadCounts["Requests"] += 1;
             }

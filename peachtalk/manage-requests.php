@@ -65,8 +65,8 @@
                         echo '<td class="text-center" style="width:19%">'.$row['cell'].'</td>';
                        // echo '<td class="text-center" style="width:19%">'.$row['leadmentor_name'].'</td>';
                        // echo '<td class="text-center" style="width:19%">'.$row['leadmentor_cell'].'</td>';
-                        echo '<td class="text-center" style="width:8%"><a href="/peachpits/admin/approve_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $eventname .'&role=Communication Liaison&refer=manage_requests">Approve</a></td>';
-                        echo '<td class="text-center" style="width:8%"><a href="/peachpits/admin/deny_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $eventname .'&role=Communication Liaison&refer=manage_requests">Deny</a></td>';
+                        echo '<td class="text-center" style="width:8%"><a href="/peachpits/admin/approve_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $currentEvent .'&role=Communication Liaison&refer=manage_requests">Approve</a></td>';
+                        echo '<td class="text-center" style="width:8%"><a href="/peachpits/admin/deny_request?event='.$currentEvent.'&user='. base64_encode($row['email']) .'&eventReq='. $currentEvent .'&role=Communication Liaison&refer=manage_requests">Deny</a></td>';
                     }
                 ?>
             </tbody>

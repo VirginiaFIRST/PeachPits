@@ -14,11 +14,8 @@
 
     $events = $row['events'];
     $eventsArr = explode(';', $events);
-    
-    $sqlEvents = $mysqli->query("SELECT * FROM `events` WHERE `eventid` = '$currentEvent'");
-    $rowEvents = mysqli_fetch_assoc($sqlEvents);
-    $eventName = $rowEvents['eventname'];
-    $liaisonString = 'Communication Liaison@' . $eventName;
+
+    $liaisonString = 'Communication Liaison@' . $currentEvent;
 
     //Need to delete $liaisonString from $events
     //Need to consider if there are multiple instances of $liaisonString in $events

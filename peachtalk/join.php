@@ -55,7 +55,7 @@
 	</div>
 		<?php
 			} else {
-				$sql = $mysqli->query("SELECT * FROM `requests` WHERE `status`='Pending' AND `email`='$sessionEmail' AND `requestedrole`='Communication Liaison' AND `event`='$eventname'");
+				$sql = $mysqli->query("SELECT * FROM `requests` WHERE `status`='Pending' AND `email`='$sessionEmail' AND `requestedrole`='Communication Liaison' AND `event`='$currentEvent'");
 				if (mysqli_fetch_row($sql)) {
 		?>
 		<br>
