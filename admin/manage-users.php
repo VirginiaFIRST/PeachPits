@@ -10,31 +10,28 @@
   if(loggedOn()) {
     include "menu.php";  
 ?>
-<head>
-  <script src="admin/js/manageTeams.js"></script>
-  <script src="js/selectize.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/selectize.css" />
-</head>
+    <div class="col-md-10 container-dashboard-content">
       <div class="dashboard-content">
         <div class="table-responsive">
           <table class="table table-hover" style="border:1px solid #ddd;">
             <thead>
               <td><b>First Name</b></td>
               <td><b>Last Name</b></td>
+              <td><b>Email</b></td>
               <td><b>Role</b></td>
               <td><b>Delete User</b></td>
             </thead>
             <?php
               $eventTeams = $currentEvent . '_teams';
               $enabledX = `
-                <td style="width:10%" class="text-center">
+                <td style="width:20%" class="text-center">
                   <a style="text-decoration:none" href="#" data-toggle="modal" data-target="#delete-user-modal" id="delete-user">
                     <span style="font-size:30px;color:red;line-height:18px;">&times;</span>
                   </a>
                 </td>
               `;
               $disabledX = `
-                <td style="width:10%" class="text-center">
+                <td style="width:20%" class="text-center">
                   <span style="font-size:30px;color:gray;line-height:18px;">&times;</span>
                 </td>
               `;
@@ -43,10 +40,10 @@
                 $rowRole = $row['role'];
                 if (!isEventAdmin($rowRole))
                 echo "<tr>";
-                echo `<td style="display:none;" id="email">`. $row['email'] .`</td>`;
-                echo `<td id="firstname">`. $row['firstname'] .`</td>`;
-                echo `<td id="lastname">`. $row['lastname'] .`</td>`;
-                echo `<td id="role">`. $row['role'] .`</td>`;
+                echo `<td id="firstname" style="width:20%;">`. $row['firstname'] .`</td>`;
+                echo `<td id="lastname" style="width:20%;">`. $row['lastname'] .`</td>`;
+                echo `<td id="email" style="width:20%;">`. $row['email'] .`</td>`;
+                echo `<td id="role" style="width:20%;">`. $row['role'] .`</td>`;
                 if (isSuperAdmin($role)) {
                   echo $enabledX;
                 } else if (isEventAdmin($role)) {
@@ -98,6 +95,9 @@
 
 <script>
   $(document).ready(function() {
+    $(".nav li").removeClass("active");
+    $('#users').addClass('active');
+    
     $(document).on("click", "#delete-user", function() {
       var row = $(this).closest("tr");
       var userEmail = row.find("#email").text();

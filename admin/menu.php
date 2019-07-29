@@ -59,7 +59,7 @@
         <ul class="nav">
           <li id="dashboard" class="active"><a href="/peachpits/admin/dashboard?event=<?php echo $currentEvent; ?>"><i class="glyphicon glyphicon-user"></i> Account Settings </a></li>
           <?php if(isSuperAdmin($role) || isEventAdmin($role)){ echo '<li id="events"><a href="/peachpits/admin/manage-events?event=' . $currentEvent . '"><i class="glyphicon glyphicon-star"></i> Manage Events </a></li>';} ?>
-          <?php if(isSuperAdmin($role) || isEventAdmin($role)  || isLeadInspector($role)){ echo '<li id="users"><a href="/peachpits/admin/manage-users?event=' . $currentEvent . '"><i class="glyphicon glyphicon-user"></i> Manage Users </a></li>';} ?>
+          <?php if(isSuperAdmin($role) || isEventAdmin($role)  || isLeadInspector($role)){ echo '<li id="users"><a href="/peachpits/admin/manage-users?event=' . $currentEvent . '"><i class="glyphicon glyphicon-cog"></i> Manage Users </a></li>';} ?>
           <?php if(isPitAdmin($role) || isEventAdmin($role) || isSuperAdmin($role)){ echo '<li id="teams"><a href="/peachpits/admin/manage-teams?event=' . $currentEvent . '"><i class="glyphicon glyphicon-list-alt"></i> Manage Team List </a></li>';} ?>
           <?php if(isInspector($role) || isLeadInspector($role) || isSuperAdmin($role)){ echo '<li id="inspect"><a href="/peachpits/admin/manage-inspection?event=' . $currentEvent . '"><i class="glyphicon glyphicon-search"></i> Manage Inspections </a></li>';} ?>
           <?php if(isEventAdmin($role) || isSuperAdmin($role)){ echo '<li id="matches"><a href="/peachpits/admin/manage-matches?event=' . $currentEvent . '"><i class="glyphicon glyphicon-calendar"></i> Manage Match Schedule </a></li>';} ?>
@@ -129,7 +129,7 @@
           <ul class="nav">
             <li id="dashboard" class="active"><a href="/peachpits/admin/dashboard?event=<?php echo $currentEvent; ?>"><i class="glyphicon glyphicon-user"></i> Account Settings </a></li>
             <?php if(isSuperAdmin($role) || isEventAdmin($role)){ echo '<li id="events"><a href="/peachpits/admin/manage-events?event=' . $currentEvent . '"><i class="glyphicon glyphicon-star"></i> Manage Events </a></li>';} ?>
-            <?php if(isSuperAdmin($role) || isEventAdmin($role) || isLeadInspector($role)){ echo '<li id="users"><a href="/peachpits/admin/manage-users?event=' . $currentEvent . '"><i class="glyphicon glyphicon-user"></i> Manage Users </a></li>';} ?>
+            <?php if(isSuperAdmin($role) || isEventAdmin($role) || isLeadInspector($role)){ echo '<li id="users"><a href="/peachpits/admin/manage-users?event=' . $currentEvent . '"><i class="glyphicon glyphicon-cog"></i> Manage Users </a></li>';} ?>
             <?php if(isPitAdmin($role) || isEventAdmin($role) || isSuperAdmin($role)){ echo '<li id="teams"><a href="/peachpits/admin/manage-teams?event=' . $currentEvent . '"><i class="glyphicon glyphicon-list-alt"></i> Manage Team List </a></li>';} //Only visible for event admin ?>
             <?php if(isInspector($role) || isLeadInspector($role) || isSuperAdmin($role)){ echo '<li id="inspect"><a href="/peachpits/admin/manage-inspection?event=' . $currentEvent . '"><i class="glyphicon glyphicon-search"></i> Manage Inspection Status </a></li>';} //Only visible for inspector ?>
             <?php if(isEventAdmin($role) || isSuperAdmin($role)){ echo '<li id="matches"><a href="/peachpits/admin/manage-matches?event=' . $currentEvent . '"><i class="glyphicon glyphicon-calendar"></i> Manage Match Schedule </a></li>';} //Only visible for event admin ?>
