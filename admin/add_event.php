@@ -78,6 +78,15 @@
             
             $query = $mysqli->query($sql);
 
+            $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_users (
+            email VARCHAR(70) PRIMARY KEY,
+            firstname VARCHAR(70) NOT NULL,
+            lastname VARCHAR(70) NOT NULL,
+            role VARCHAR(70) NOT NULL
+            )";
+              
+            $query = $mysqli->query($sql);
+
             // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_messages (
             // messageid INT(6) PRIMARY KEY AUTO_INCREMENT,
             // message VARCHAR(1000) NOT NULL,
@@ -174,6 +183,15 @@
         )";
 
         $query = $mysqli->query($sql);
+
+        $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_users (
+          email VARCHAR(70) PRIMARY KEY,
+          firstname VARCHAR(70) NOT NULL,
+          lastname VARCHAR(70) NOT NULL,
+          role VARCHAR(70) NOT NULL
+          )";
+            
+          $query = $mysqli->query($sql);
 
         // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_messages (
         // messageid INT(6) PRIMARY KEY AUTO_INCREMENT,
