@@ -78,50 +78,50 @@
             
             $query = $mysqli->query($sql);
 
-            $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_messages (
-            messageid INT(6) PRIMARY KEY AUTO_INCREMENT,
-            message VARCHAR(1000) NOT NULL,
-            time_sent VARCHAR(25) NOT NULL,
-            sent_by VARCHAR(150) NOT NULL,
-            channel VARCHAR(50) NOT NULL,
-            groupid INT(4) NOT NULL,
-            reply VARCHAR(6) NOT NULL,
-            removed INT(1) NOT NULL
-            )";
+            // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_messages (
+            // messageid INT(6) PRIMARY KEY AUTO_INCREMENT,
+            // message VARCHAR(1000) NOT NULL,
+            // time_sent VARCHAR(25) NOT NULL,
+            // sent_by VARCHAR(150) NOT NULL,
+            // channel VARCHAR(50) NOT NULL,
+            // groupid INT(4) NOT NULL,
+            // reply VARCHAR(6) NOT NULL,
+            // removed INT(1) NOT NULL
+            // )";
             
-            $query = $mysqli->query($sql);
+            // $query = $mysqli->query($sql);
 
-            $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_groups (
-            groupid INT(4) PRIMARY KEY AUTO_INCREMENT,
-            name VARCHAR(150) NOT NULL,
-            private_users VARCHAR(1000) NOT NULL,
-            private_teams VARCHAR(1000) NOT NULL
-            )";
+            // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_groups (
+            // groupid INT(4) PRIMARY KEY AUTO_INCREMENT,
+            // name VARCHAR(150) NOT NULL,
+            // private_users VARCHAR(1000) NOT NULL,
+            // private_teams VARCHAR(1000) NOT NULL
+            // )";
             
-            $query = $mysqli->query($sql);
+            // $query = $mysqli->query($sql);
 
-            $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_activity (
-            user VARCHAR(150) NOT NULL,
-            channel VARCHAR(50) NOT NULL,
-            groupid INT(4) NOT NULL,
-            last_visited VARCHAR(25) NOT NULL
-            )";
+            // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_activity (
+            // user VARCHAR(150) NOT NULL,
+            // channel VARCHAR(50) NOT NULL,
+            // groupid INT(4) NOT NULL,
+            // last_visited VARCHAR(25) NOT NULL
+            // )";
             
-            $query = $mysqli->query($sql);
+            // $query = $mysqli->query($sql);
 
-            $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_liaisons (
-            userid INT(6) PRIMARY KEY AUTO_INCREMENT,
-            teamid INT(6) NOT NULL,
-            user VARCHAR(150) NOT NULL,
-            email VARCHAR(70) NOT NULL,
-            cell VARCHAR(20) NOT NULL,
-            leadmentor_name VARCHAR(150) NOT NULL,
-            leadmentor_cell VARCHAR(20) NOT NULL,
-            status VARCHAR(50) NOT NULL,
-            restrictions VARCHAR(100) NOT NULL
-            )";
+            // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_liaisons (
+            // userid INT(6) PRIMARY KEY AUTO_INCREMENT,
+            // teamid INT(6) NOT NULL,
+            // user VARCHAR(150) NOT NULL,
+            // email VARCHAR(70) NOT NULL,
+            // cell VARCHAR(20) NOT NULL,
+            // leadmentor_name VARCHAR(150) NOT NULL,
+            // leadmentor_cell VARCHAR(20) NOT NULL,
+            // status VARCHAR(50) NOT NULL,
+            // restrictions VARCHAR(100) NOT NULL
+            // )";
             
-            $query = $mysqli->query($sql);
+            // $query = $mysqli->query($sql);
             
             $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_matches (
             matchid VARCHAR(12) PRIMARY KEY, 
@@ -175,50 +175,50 @@
 
         $query = $mysqli->query($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_messages (
-        messageid INT(6) PRIMARY KEY AUTO_INCREMENT,
-        message VARCHAR(1000) NOT NULL,
-        time_sent VARCHAR(25) NOT NULL,
-        sent_by VARCHAR(150) NOT NULL,
-        channel VARCHAR(50) NOT NULL,
-        groupid INT(4) NOT NULL,
-        reply VARCHAR(6) NOT NULL,
-        removed INT(1) NOT NULL
-        )";
+        // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_messages (
+        // messageid INT(6) PRIMARY KEY AUTO_INCREMENT,
+        // message VARCHAR(1000) NOT NULL,
+        // time_sent VARCHAR(25) NOT NULL,
+        // sent_by VARCHAR(150) NOT NULL,
+        // channel VARCHAR(50) NOT NULL,
+        // groupid INT(4) NOT NULL,
+        // reply VARCHAR(6) NOT NULL,
+        // removed INT(1) NOT NULL
+        // )";
         
-        $query = $mysqli->query($sql);
+        // $query = $mysqli->query($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_groups (
-        groupid INT(4) PRIMARY KEY AUTO_INCREMENT,
-        name VARCHAR(150) NOT NULL,
-        private_users VARCHAR(1000) NOT NULL,
-        private_teams VARCHAR(1000) NOT NULL
-        )";
+        // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_groups (
+        // groupid INT(4) PRIMARY KEY AUTO_INCREMENT,
+        // name VARCHAR(150) NOT NULL,
+        // private_users VARCHAR(1000) NOT NULL,
+        // private_teams VARCHAR(1000) NOT NULL
+        // )";
         
-        $query = $mysqli->query($sql);
+        // $query = $mysqli->query($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_activity (
-        user VARCHAR(150) NOT NULL,
-        channel VARCHAR(50) NOT NULL,
-        groupid INT(4) NOT NULL,
-        last_visited VARCHAR(25) NOT NULL
-        )";
+        // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_activity (
+        // user VARCHAR(150) NOT NULL,
+        // channel VARCHAR(50) NOT NULL,
+        // groupid INT(4) NOT NULL,
+        // last_visited VARCHAR(25) NOT NULL
+        // )";
         
-        $query = $mysqli->query($sql);
+        // $query = $mysqli->query($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_liaisons (
-        userid INT(6) PRIMARY KEY AUTO_INCREMENT,
-        teamid INT(6) NOT NULL,
-        user VARCHAR(150) NOT NULL,
-        email VARCHAR(70) NOT NULL,
-        cell VARCHAR(20) NOT NULL,
-        leadmentor_name VARCHAR(150) NOT NULL,
-        leadmentor_cell VARCHAR(20) NOT NULL,
-        status VARCHAR(50) NOT NULL,
-        restrictions VARCHAR(100) NOT NULL
-        )";
+        // $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_liaisons (
+        // userid INT(6) PRIMARY KEY AUTO_INCREMENT,
+        // teamid INT(6) NOT NULL,
+        // user VARCHAR(150) NOT NULL,
+        // email VARCHAR(70) NOT NULL,
+        // cell VARCHAR(20) NOT NULL,
+        // leadmentor_name VARCHAR(150) NOT NULL,
+        // leadmentor_cell VARCHAR(20) NOT NULL,
+        // status VARCHAR(50) NOT NULL,
+        // restrictions VARCHAR(100) NOT NULL
+        // )";
         
-        $query = $mysqli->query($sql);
+        // $query = $mysqli->query($sql);
 
         $sql = "CREATE TABLE IF NOT EXISTS " . $eventid . "_matches (
         matchid VARCHAR(12) PRIMARY KEY, 
