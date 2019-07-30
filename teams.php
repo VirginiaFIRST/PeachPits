@@ -163,7 +163,7 @@
               <?php echo '<div id="teaminspection-'. $row['teamid'] .'" class="tabcontent">'; ?>
                       <h4><b>Inspection Status Changes: </b></h4>
                       <div class="table-responsive">
-                        <table style="border: 1px solid #ddd" class="table table-hover" id="inspections-table-<?php echo $row['teamid']; ?>">
+                        <table style="border: 1px solid #ddd" class="table table-hover table-striped" id="inspections-table-<?php echo $row['teamid']; ?>">
                           <thead style="background-color:white;border-top:none">
                             <th><strong>Inspection Status</strong></th>
                             <th><strong>Inspection Notes</strong></th>
@@ -260,7 +260,7 @@
               <?php echo '<div id="teaminspection2-'. $row['teamid'] .'" class="tabcontent">'; ?>
                       <h4><b>Inspection Status Changes: </b></h4>
                       <div class="table-responsive">
-                        <table style="border: 1px solid #ddd" class="table table-hover" id="inspections-table2-<?php echo $row['teamid']; ?>">
+                        <table style="border: 1px solid #ddd" class="table table-hover table-striped" id="inspections-table2-<?php echo $row['teamid']; ?>">
                           <thead style="background-color:white;border-top:none">
                             <th><strong>Inspection Status</strong></th>
                             <th><strong>Inspection Notes</strong></th>

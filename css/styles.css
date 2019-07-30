@@ -179,6 +179,10 @@ body {
     display: none;
 }
 
+#tables-mobile-with-status, #tables-mobile-without-status {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
     #table-team-matches {
         display: none;
@@ -195,6 +199,14 @@ body {
 
     #team-matches-none-mobile {
         display: block;
+    }
+
+    #tables-with-status, #tables-without-status {
+      display: none;
+    }
+
+    #tables-mobile-with-status, #tables-mobile-without-status {
+      display: block;
     }
 }
 
