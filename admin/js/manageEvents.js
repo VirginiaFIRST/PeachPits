@@ -57,7 +57,11 @@ $(document).ready(function() {
 		$('.event-name').html(eventsArr[index][1]);
 		$('.event-location').html(eventsArr[index][4]);
 		$('.event-address').html(eventsArr[index][5]);
-		if(eventsArr[index][3]){$('.event-district').html(eventsArr[index][3]);}
+		if (eventsArr[index][3]) {
+      $('.event-district').html(eventsArr[index][3]);
+    } else {
+      $('.event-district').html("N/A");
+    }
 		$('.event-start').html(eventsArr[index][6]);
 		$('.event-end').html(eventsArr[index][7]);
 		$('.event-status').html($('#'+id+'.event-info').children('#eventstatus').html());
@@ -213,19 +217,23 @@ $(document).ready(function() {
 					beforeSend: function(xhr){ xhr.setRequestHeader('X-TBA-Auth-Key', '8sMHphq38VPol9skertutXEJLGQFZVFubLIaUhiV0igM4SnPdzr2wvkzwyc64jZz'); },
 					success: function(data) { 
 						length = data.length;
-						document.getElementById('total-events').innerHTML = length;
+            document.getElementById('total-events').innerHTML = length;
 						$('.progress-bar').attr('ariavalue-max', length);
 						console.log('Length: ' + length);
 						for (i=0; i < length; i++){
-							console.log(data[i].key);
+              console.log(data[i].key);
+              var district = "";
+              if (data[i].district && data[i].district.display_name) {
+                district = data[i].district.display_name;
+              }
 							$.post("admin/add_event", {
 								eventid: data[i].key,
 								eventname: data[i].name,
-								eventlocation: data[i].location,
-								eventaddress: data[i].venue_address,
+								eventlocation: data[i].location_name,
+								eventaddress: data[i].address,
 								eventstart: data[i].start_date,
 								eventend: data[i].end_date,
-								eventdistrict: data[i].district.display_name,
+								eventdistrict: district,
 								eventyear: data[i].year,
 								eventtype: data[i].event_type_string,
 								auto: true

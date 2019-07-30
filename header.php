@@ -150,6 +150,20 @@
         $peachtalkUsername = "none";
     }
 
+    $index = 0;
+    $eventsTable;
+    $sql = $mysqli->query("SELECT `eventname`, `eventid`, `eventtype`, `eventdistrict`, `eventstatus`, `eventend` FROM `events` ORDER BY `eventname` ASC");      
+    while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+      $eventsTable[$index][0] = $row['eventid'];
+      $eventsTable[$index][1] = $row['eventname'];
+      $eventsTable[$index][2] = strtolower($row['eventtype']);
+      $eventsTable[$index][3] = $row['eventdistrict'];
+      $eventsTable[$index][4] = $row['eventstatus'];
+      $eventsTable[$index][5] = $row['eventend'];
+      $index++;
+    }
+    $jsEvents = json_encode($eventsTable);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,10 +193,95 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <script>var currentEvent = '<?php echo $currentEvent; ?>';</script>
         <script>
-            var currentPage = document.URL;
-            console.log(currentPage);
+          var currentEvent = '<?php echo $currentEvent; ?>';
+          var eventTable = <?php echo $jsEvents; ?>;
+          var currentPage = document.URL;
+          console.log(currentPage);
+        </script>
+        <script>
+          $(document).ready(function() {
+            $('.select-category').on("click", function(e){
+              e.preventDefault();
+              $('.selected-category').removeClass('selected-category');
+              $(this).addClass('selected-category');
+              $('.dropdown-current-category').text($(this)[0].text);
+              var type = $(this)[0].getAttribute("value");
+              $('.select-event').addClass('hidden');
+              var numEventsShown = 0;
+              if (type == "district") {
+                var districtName = $(this)[0].text;
+                for (var i = 0; i < eventTable.length; i++) {
+                  var eventId = eventTable[i][0];
+                  var eventDistrict = eventTable[i][3];
+                  var eventStatus = eventTable[i][4];
+                  // var eventEnd = eventTable[i][5];
+                  // var eventEndDate = new Date(eventEnd);
+                  // var today = new Date();
+                  // if (eventStatus == "Live" && eventDistrict == districtName &&
+                  //         today - eventEndDate > 86400000) {
+                  if (eventStatus == "Live" && eventDistrict == districtName) {
+                    let eventListItem = document.getElementById(eventId);
+                    if (eventListItem) {
+                      eventListItem.classList.remove('hidden');
+                      numEventsShown++;
+                    }
+                  }
+                }
+              } else if (type == "all") {
+                var districtName = this.innerText;
+                for (var i = 0; i < eventTable.length; i++) {
+                  var eventId = eventTable[i][0];
+                  var eventDistrict = eventTable[i][3];
+                  var eventStatus = eventTable[i][4];
+                  // var eventEnd = eventTable[i][5];
+                  // var eventEndDate = new Date(eventEnd);
+                  // var today = new Date();
+                  // if (eventStatus == "Live" && today - eventEndDate > 86400000) {
+                  if (eventStatus == "Live") {
+                    let eventListItem = document.getElementById(eventId);
+                    if (eventListItem) {
+                      eventListItem.classList.remove('hidden');
+                      numEventsShown++;
+                    }
+                  }
+                }
+              } else {
+                for (var i = 0; i < eventTable.length; i++) {
+                  var eventId = eventTable[i][0];
+                  var eventType = eventTable[i][2];
+                  var eventDistrict = eventTable[i][3];
+                  var eventStatus = eventTable[i][4];
+                  // var eventEnd = eventTable[i][5];
+                  // var eventEndDate = new Date(eventEnd);
+                  // var today = new Date();
+                  // if (eventStatus == "Live" && eventType.includes(type) &&
+                  //         !eventType.includes("district") && today - eventEndDate > 86400000) {
+                  if (eventStatus == "Live" && eventType.includes(type) &&
+                          !eventType.includes("district")) {
+                    let eventListItem = document.getElementById(eventId);
+                    if (eventListItem) {
+                      eventListItem.classList.remove('hidden');
+                      numEventsShown++;
+                    }
+                  }
+                }
+              }
+              if (numEventsShown == 0) {
+                document.getElementById("no-events").classList.remove('hidden');
+              }
+            });
+            $('#event-filter-field').on('keyup', function() {
+              var filter = $("#event-filter-field").val().toUpperCase();
+              $(".select-event").each(function (item) {
+                  if ($(this).text().toUpperCase().indexOf(filter) > -1) {
+                      $(this).css('display', '');
+                  } else {
+                      $(this).css('display', 'none');
+                  }
+              });
+            });
+          });
         </script>
         <style>      
             @media (max-width: 766px) {
@@ -214,22 +313,76 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-1" style="margin-left:0px !important;">
                 <ul class="nav navbar-nav navbar-right cl-effect-4">
-                    <?php if (empty($currentEvent)){ ?>
                     <li class="dropdown">
-                        <button data-toggle="dropdown" class="dropdown-toggle btn-dropdown-nav navbar-btn" id="select-event-dropdown"><span class="dropdown-current-event">Select an Event </span><span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <?php 
-                                $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live'");
+                        <button class="dropdown-toggle btn-dropdown-nav navbar-btn" id="select-category-dropdown" type="button" id="dropdownCategories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <?php
+                            $output = '<span class="dropdown-current-category">';
+                            $typeToCategory = [
+                              "Offseason" => "Offseason Events",
+                              "Preseason" => "Preseason Events",
+                              "Regional" => "Regionals",
+                              "Championship Division" => "World Championships",
+                              "Championship Finals" => "World Championships"
+                            ];
+                            $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventid` LIKE '$currentEvent'");
+                            $row = mysqli_fetch_assoc($sql);
+                            if (strlen($row['eventname']) > 0 && $currentEvent) {
+                              $type = $row['eventtype'];
+                              if (strpos($type, "District") !== false) {
+                                $output .= $row['eventdistrict'];
+                              } else {
+                                $output .= $typeToCategory[$type];
+                              }
+                            } else {
+                              $output .= "Select a Category ";
+                            }
+                            $output .= ' </span>';
+                            echo $output;
+                          ?>
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" style="max-height:55vh;overflow-y:scroll;width:150%;" aria-labelledby="dropdownCategories">
+                            <?php
+                                echo '<li><a class="mobile-header-list select-category" value="all">All Events</li>';
+                                $sql = $mysqli->query("SELECT DISTINCT `eventdistrict` FROM `events` ORDER BY `eventdistrict` ASC");
                                 while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
-                                    echo '<li><a class="mobile-header-list" href="pitmap?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
-                                }	 
+                                  if (strlen($row['eventdistrict']) > 0) {
+                                    echo '<li><a class="mobile-header-list select-category" value="district">' . $row['eventdistrict'] . '</a></li>';
+                                  }
+                                }
+                                echo '<li><a class="mobile-header-list select-category" value="offseason">Offseason Events</a></li>';
+                                echo '<li><a class="mobile-header-list select-category" value="preseason">Preseason Events</a></li>';
+                                echo '<li><a class="mobile-header-list select-category" value="regional">Regionals</a></li>';
+                                echo '<li><a class="mobile-header-list select-category" value="championship">World Championships</a></li>';
                             ?>
-                            <!--<li class="divider"></li>
-				            <li><a href="contact" style="color:red;">Don't see your event? Click Here -REPLACE THIS-</a></li>-->
                         </ul>
                     </li>
-                    <?php } else { ?>
                     <li class="dropdown">
+                      <button class="dropdown-toggle btn-dropdown-nav navbar-btn dropdown-current-event" type="button" id="dropdownEvents" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <?php
+                          $sql = $mysqli->query("SELECT `eventname` FROM `events` WHERE `eventid` LIKE '$currentEvent'");
+                          $row = mysqli_fetch_assoc($sql);
+                          if (strlen($row['eventname']) > 0) {
+                            echo $row['eventname'];
+                          } else {
+                            echo "Select an Event";
+                          }
+                        ?>
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" style="max-height:55vh;overflow-y:scroll;width:150%;" id="dropdown-events" aria-labelledby="dropdownEvents">
+                        <?php
+                          echo '<li><input type="text" id="event-filter-field" class="form-control event-filter-field" placeholder="Search Events"></li>';
+                          echo '<li class="divider"></li>';
+                          $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live' ORDER BY `eventname` ASC");
+                          while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
+                              echo '<li><a class="mobile-header-list select-event" id="' . $row['eventid'] . '" href="pitmap?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
+                          }
+                          echo '<li><a class="mobile-header-list select-event hidden" style="color:red;" id="no-events">No Events Using PeachPits in this Category</a></li>';
+                        ?>
+                      </ul>
+                    </li>
+                    <!-- <li class="dropdown">
                         <button data-toggle="dropdown" class="dropdown-toggle btn-dropdown-nav navbar-btn dropdown-current-event" id='select-event-dropdown'>
                             <?php
                                 $sql = $mysqli->query("SELECT `eventname` FROM `events` WHERE `eventid` LIKE '$currentEvent'");
@@ -241,19 +394,16 @@
                         <ul class="dropdown-menu">
                             <li class="disabled"><a href="#" class="mobile-header-list mobile-current-list"><b>Current: </b><?php echo $row['eventname']; ?></a></li>
                             <li role="separator" class="divider"></li>
-                            <?php 
+                            <?php
                                 $sql = $mysqli->query("SELECT * FROM `events` WHERE `eventstatus` LIKE 'Live'");
                                 while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
                                     if($row['eventid'] != $currentEvent){
                                         echo '<li><a class="mobile-header-list" href="pitmap?event=' . $row['eventid'] . '">' . $row['eventname'] . '</a></li>';
                                     }
-                                }	 
+                                }
                             ?>
-                            <!--<li class="divider"></li>
-				            <li><a href="" style="color:red;">Don't see your event? Click Here -REPLACE THIS-</a></li>-->
                         </ul>
-                    </li>
-                    <?php } ?>
+                    </li> -->
                     <li><a href="teams?event=<?php echo $currentEvent; ?>">Team List</a></li>
                     <li><a href="matches?event=<?php echo $currentEvent; ?>">Match Schedule</a></li>
                     <li><a href="pitmap?event=<?php echo $currentEvent; ?>">Pit Map</a></li>
