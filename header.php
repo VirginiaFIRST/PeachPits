@@ -203,7 +203,7 @@
           $(document).ready(function() {
             $('.select-category').on("click", function(e){
               e.preventDefault();
-              filterEvents(this);
+              filterEventsDropdown(this);
             });
             $('#event-filter-field').on('keyup', function() {
               var filter = $("#event-filter-field").val().toUpperCase();
@@ -221,13 +221,13 @@
               for (let i = 0; i < categories.length; i++) {
                 let category = categories[i];
                 if (category.innerText == currentCategory) {
-                  filterEvents(category);
+                  filterEventsDropdown(category);
                 }
               }
             }
           });
 
-          function filterEvents(selectCategory) {
+          function filterEventsDropdown(selectCategory) {
             $('.selected-category').removeClass('selected-category');
             $(selectCategory).addClass('selected-category');
             $('.dropdown-current-category').text($(selectCategory)[0].text);
