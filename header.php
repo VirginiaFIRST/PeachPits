@@ -203,73 +203,7 @@
           $(document).ready(function() {
             $('.select-category').on("click", function(e){
               e.preventDefault();
-              $('.selected-category').removeClass('selected-category');
-              $(this).addClass('selected-category');
-              $('.dropdown-current-category').text($(this)[0].text);
-              var type = $(this)[0].getAttribute("value");
-              $('.select-event').addClass('hidden');
-              var numEventsShown = 0;
-              if (type == "district") {
-                var districtName = $(this)[0].text;
-                for (var i = 0; i < eventTable.length; i++) {
-                  var eventId = eventTable[i][0];
-                  var eventDistrict = eventTable[i][3];
-                  var eventStatus = eventTable[i][4];
-                  // var eventEnd = eventTable[i][5];
-                  // var eventEndDate = new Date(eventEnd);
-                  // var today = new Date();
-                  // if (eventStatus == "Live" && eventDistrict == districtName &&
-                  //         today - eventEndDate > 86400000) {
-                  if (eventStatus == "Live" && eventDistrict == districtName) {
-                    let eventListItem = document.getElementById(eventId);
-                    if (eventListItem) {
-                      eventListItem.classList.remove('hidden');
-                      numEventsShown++;
-                    }
-                  }
-                }
-              } else if (type == "all") {
-                var districtName = this.innerText;
-                for (var i = 0; i < eventTable.length; i++) {
-                  var eventId = eventTable[i][0];
-                  var eventDistrict = eventTable[i][3];
-                  var eventStatus = eventTable[i][4];
-                  // var eventEnd = eventTable[i][5];
-                  // var eventEndDate = new Date(eventEnd);
-                  // var today = new Date();
-                  // if (eventStatus == "Live" && today - eventEndDate > 86400000) {
-                  if (eventStatus == "Live") {
-                    let eventListItem = document.getElementById(eventId);
-                    if (eventListItem) {
-                      eventListItem.classList.remove('hidden');
-                      numEventsShown++;
-                    }
-                  }
-                }
-              } else {
-                for (var i = 0; i < eventTable.length; i++) {
-                  var eventId = eventTable[i][0];
-                  var eventType = eventTable[i][2];
-                  var eventDistrict = eventTable[i][3];
-                  var eventStatus = eventTable[i][4];
-                  // var eventEnd = eventTable[i][5];
-                  // var eventEndDate = new Date(eventEnd);
-                  // var today = new Date();
-                  // if (eventStatus == "Live" && eventType.includes(type) &&
-                  //         !eventType.includes("district") && today - eventEndDate > 86400000) {
-                  if (eventStatus == "Live" && eventType.includes(type) &&
-                          !eventType.includes("district")) {
-                    let eventListItem = document.getElementById(eventId);
-                    if (eventListItem) {
-                      eventListItem.classList.remove('hidden');
-                      numEventsShown++;
-                    }
-                  }
-                }
-              }
-              if (numEventsShown == 0) {
-                document.getElementById("no-events").classList.remove('hidden');
-              }
+              filterEvents(this);
             });
             $('#event-filter-field').on('keyup', function() {
               var filter = $("#event-filter-field").val().toUpperCase();
@@ -281,7 +215,87 @@
                   }
               });
             });
+            let categories = $('.select-category');
+            let currentCategory = $('.dropdown-current-category').attr("value");
+            if (currentCategory) {
+              for (let i = 0; i < categories.length; i++) {
+                let category = categories[i];
+                if (category.innerText == currentCategory) {
+                  filterEvents(category);
+                }
+              }
+            }
           });
+
+          function filterEvents(selectCategory) {
+            $('.selected-category').removeClass('selected-category');
+            $(selectCategory).addClass('selected-category');
+            $('.dropdown-current-category').text($(selectCategory)[0].text);
+            var type = $(selectCategory)[0].getAttribute("value");
+            $('.select-event').addClass('hidden');
+            var numEventsShown = 0;
+            if (type == "district") {
+              var districtName = $(selectCategory)[0].text;
+              for (var i = 0; i < eventTable.length; i++) {
+                var eventId = eventTable[i][0];
+                var eventDistrict = eventTable[i][3];
+                var eventStatus = eventTable[i][4];
+                // var eventEnd = eventTable[i][5];
+                // var eventEndDate = new Date(eventEnd);
+                // var today = new Date();
+                // if (eventStatus == "Live" && eventDistrict == districtName &&
+                //         today - eventEndDate > 86400000) {
+                if (eventStatus == "Live" && eventDistrict == districtName) {
+                  let eventListItem = document.getElementById(eventId);
+                  if (eventListItem) {
+                    eventListItem.classList.remove('hidden');
+                    numEventsShown++;
+                  }
+                }
+              }
+            } else if (type == "all") {
+              var districtName = selectCategory.innerText;
+              for (var i = 0; i < eventTable.length; i++) {
+                var eventId = eventTable[i][0];
+                var eventDistrict = eventTable[i][3];
+                var eventStatus = eventTable[i][4];
+                // var eventEnd = eventTable[i][5];
+                // var eventEndDate = new Date(eventEnd);
+                // var today = new Date();
+                // if (eventStatus == "Live" && today - eventEndDate > 86400000) {
+                if (eventStatus == "Live") {
+                  let eventListItem = document.getElementById(eventId);
+                  if (eventListItem) {
+                    eventListItem.classList.remove('hidden');
+                    numEventsShown++;
+                  }
+                }
+              }
+            } else {
+              for (var i = 0; i < eventTable.length; i++) {
+                var eventId = eventTable[i][0];
+                var eventType = eventTable[i][2];
+                var eventDistrict = eventTable[i][3];
+                var eventStatus = eventTable[i][4];
+                // var eventEnd = eventTable[i][5];
+                // var eventEndDate = new Date(eventEnd);
+                // var today = new Date();
+                // if (eventStatus == "Live" && eventType.includes(type) &&
+                //         !eventType.includes("district") && today - eventEndDate > 86400000) {
+                if (eventStatus == "Live" && eventType.includes(type) &&
+                        !eventType.includes("district")) {
+                  let eventListItem = document.getElementById(eventId);
+                  if (eventListItem) {
+                    eventListItem.classList.remove('hidden');
+                    numEventsShown++;
+                  }
+                }
+              }
+            }
+            if (numEventsShown == 0) {
+              document.getElementById("no-events").classList.remove('hidden');
+            }
+          }
         </script>
         <style>      
             @media (max-width: 766px) {
@@ -316,7 +330,7 @@
                     <li class="dropdown">
                         <button class="dropdown-toggle btn-dropdown-nav navbar-btn" id="select-category-dropdown" type="button" id="dropdownCategories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                           <?php
-                            $output = '<span class="dropdown-current-category">';
+                            $output = '<span class="dropdown-current-category" value="';
                             $typeToCategory = [
                               "Offseason" => "Offseason Events",
                               "Preseason" => "Preseason Events",
@@ -329,12 +343,12 @@
                             if (strlen($row['eventname']) > 0 && $currentEvent) {
                               $type = $row['eventtype'];
                               if (strpos($type, "District") !== false) {
-                                $output .= $row['eventdistrict'];
+                                $output .= $row['eventdistrict'] . '">' . $row['eventdistrict'];
                               } else {
-                                $output .= $typeToCategory[$type];
+                                $output .= $typeToCategory[$type] . '">' . $typeToCategory[$type];
                               }
                             } else {
-                              $output .= "Select a Category ";
+                              $output .= '">Select a Category ';
                             }
                             $output .= ' </span>';
                             echo $output;
