@@ -31,7 +31,7 @@
 		</div>
 </div>
 <!--The header that sticks to the top of the screen when the user scrolls down-->
-<div id="scrolling-header" style="position:sticky;position: -webkit-sticky;top:0px">
+<div id="scrolling-header">
     <div class="dashboard-toolbar" id="dashboard-hide">
         <div class="container-fluid text-center">
           <button class="btn btn-default btn-inspection-teams-hide">Hide Status</button>
