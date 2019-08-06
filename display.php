@@ -148,8 +148,8 @@
 ?>
 </nav>
 <div class="page-head" style="margin-bottom:30px">
-  <div class="container">
-    <h1><?php echo $currentEvent; ?></h1>
+  <div class="text-center">
+    <h1><?php echo $eventName; ?></h1>
   </div>
 </div>
 <div class="content" style="width:100%;position:relative;">
