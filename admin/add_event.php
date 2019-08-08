@@ -64,6 +64,9 @@
             teamid INT(6) NOT NULL,
             inspectionstatus VARCHAR(72) NOT NULL,
             inspectionnotes VARCHAR(1000) NOT NULL,
+            robotweight VARCHAR(72) NOT NULL,
+            redbumperweight VARCHAR(72) NOT NULL,
+            bluebumperweight VARCHAR(72) NOT NULL,
             initial_inspector VARCHAR(150) NOT NULL,
             modified_by VARCHAR(100) NOT NULL,
             modified_time VARCHAR(100) NOT NULL
@@ -170,6 +173,9 @@
         teamid INT(6) NOT NULL,
         inspectionstatus VARCHAR(72) NOT NULL,
         inspectionnotes VARCHAR(1000) NOT NULL,
+        robotweight VARCHAR(72) NOT NULL,
+        redbumperweight VARCHAR(72) NOT NULL,
+        bluebumperweight VARCHAR(72) NOT NULL,
         initial_inspector VARCHAR(150) NOT NULL,
         modified_by VARCHAR(100) NOT NULL,
         modified_time VARCHAR(100) NOT NULL

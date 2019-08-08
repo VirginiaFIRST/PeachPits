@@ -166,6 +166,9 @@
                         <table style="border: 1px solid #ddd" class="table table-hover table-striped" id="inspections-table-<?php echo $row['teamid']; ?>">
                           <thead style="background-color:white;border-top:none">
                             <th><strong>Inspection Status</strong></th>
+                            <th><strong>Robot Weight</strong></th>
+                            <th><strong>Red Bumper Weight</strong></th>
+                            <th><strong>Blue Bumper Weight</strong></th>
                             <th><strong>Inspection Notes</strong></th>
                             <th><strong>Modified By</strong></th>
                             <th><strong>Modified Time</strong></th>
@@ -263,6 +266,9 @@
                         <table style="border: 1px solid #ddd" class="table table-hover table-striped" id="inspections-table2-<?php echo $row['teamid']; ?>">
                           <thead style="background-color:white;border-top:none">
                             <th><strong>Inspection Status</strong></th>
+                            <th><strong>Robot Weight</strong></th>
+                            <th><strong>Red Bumper Weight</strong></th>
+                            <th><strong>Blue Bumper Weight</strong></th>
                             <th><strong>Inspection Notes</strong></th>
                             <th><strong>Modified By</strong></th>
                             <th><strong>Modified Time</strong></th>
@@ -396,9 +402,12 @@
             var row = '';
             row = '<tr name="' + teamInspections[index][0] + '" class="inspections-row">';
             row = row + '<td>' + teamInspections[index][1] + '</td>';
-            row = row + '<td>' + teamInspections[index][2] + '</td>';
+            row = row + '<td>' + teamInspections[index][3] + '</td>';
             row = row + '<td>' + teamInspections[index][4] + '</td>';
             row = row + '<td>' + teamInspections[index][5] + '</td>';
+            row = row + '<td>' + teamInspections[index][2] + '</td>';
+            row = row + '<td>' + teamInspections[index][7] + '</td>';
+            row = row + '<td>' + teamInspections[index][8] + '</td>';
             row = row + '</tr>';
             $('#inspections-table-' + id).append(row);
             $('#inspections-table2-' + id).append(row);

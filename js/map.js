@@ -352,6 +352,9 @@ $(document).ready(function() {
 		$('.map-initialinspector').html(teamsArr[index][5]);
 		$('.map-inspectmodifiedby').html(teamsArr[index][6]);
 		$('.map-inspectmodifiedtime').html(teamsArr[index][7]);
+		$('#map-robotweight').val(teamsArr[index][9]);
+		$('#map-redbumperweight').val(teamsArr[index][10]);
+		$('#map-bluebumperweight').val(teamsArr[index][11]);
 		mapTeamInspectStatus(index);
 
 		var elementCount = 0;

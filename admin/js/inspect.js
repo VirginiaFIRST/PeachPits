@@ -5,9 +5,19 @@ $(document).ready(function() {
 	$(document).on("click", "#changeStatus", function () {
 		var row = $(this).closest("tr");  
 		var teamid = row.find("#teamid").text();
+		var inspectionstatus = row.find("#inspectionstatus").text();
+		var robotweight = row.find("#robotweight").text();
+		var redbumperweight = row.find("#redbumperweight").text();
+		var bluebumperweight = row.find("#bluebumperweight").text();
+    var notes = row.find("#inspectionnotes").text();
 		console.log(teamid);
 		document.getElementById('getteamid').innerHTML = teamid;
-		document.getElementById('inspectnumbermodal').value = teamid;
+    document.getElementById('inspectnumbermodal').value = teamid;
+    document.getElementById('edit-status').value = inspectionstatus;
+    document.getElementById('edit-robotweight').value = robotweight;
+    document.getElementById('edit-redbumperweight').value = redbumperweight;
+    document.getElementById('edit-bluebumperweight').value = bluebumperweight;
+    document.getElementById('edit-notes').value = notes;
 	});
 	$(document).on("click", "#editNotes", function() {
 		var row = $(this).closest("tr");  

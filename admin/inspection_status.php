@@ -32,27 +32,16 @@
     
     $teamid = protect($_POST['teamid']);
     $inspectionstatus = protect($_POST['inspectionstatus']);
+    $robotweight = protect($_POST['robotweight']);
+    $redbumperweight = protect($_POST['redbumperweight']);
+    $bluebumperweight = protect($_POST['bluebumperweight']);
     $inspectionnotes = protect($_POST['inspectionnotes']);
 
-        //Updates inspectionstatus in the database
-    if ($type == 'changestatus') {
-        $sql = $mysqli->query("UPDATE `".$eventDB."` SET `inspectionstatus` = '$inspectionstatus', `last_modified_by` = '$lastModifiedBy', `last_modified_time` = '$lastModifiedTime' WHERE `teamid` = '$teamid';");
-        
-        // Creates a time stamp for changes in Inspection Status
-        $sql = $mysqli->query("INSERT into `".$eventInspections."` (`teamid`, `inspectionstatus`, `modified_by`, `modified_time`) VALUES ('$teamid', '$inspectionstatus', '$lastModifiedBy', '$lastModifiedTime');");
-        $query = $mysqli->query($sql);
-    }
-        //Updates inspectionnotes in the database
-    elseif ($type == 'addnote') {
-        $sql = $mysqli->query("UPDATE `".$eventDB."` SET `inspectionnotes` = '$inspectionnotes', `last_modified_by` = '$lastModifiedBy', `last_modified_time` = '$lastModifiedTime' WHERE `teamid` = '$teamid';");
-        
-        // Creates a time stamp for changes in Inspection Notes
-        /* if ($inspectionnotes == "") {
-             $inspectionnotes = "*Removed note*";
-            }
-        */
-        $sql = $mysqli->query("INSERT into `".$eventInspections."` (`teamid`, `inspectionnotes`, `modified_by`, `modified_time`) VALUES ('$teamid', '$inspectionnotes', '$lastModifiedBy', '$lastModifiedTime');");
-        $query = $mysqli->query($sql);
+    if ($type == 'changeall') {
+      $sql = $mysqli->query("UPDATE `".$eventDB."` SET `inspectionstatus` = '$inspectionstatus', `robotweight` = '$robotweight', `redbumperweight` = '$redbumperweight', `bluebumperweight` = '$bluebumperweight', `inspectionnotes` = '$inspectionnotes', `last_modified_by` = '$lastModifiedBy', `last_modified_time` = '$lastModifiedTime' WHERE `teamid` = '$teamid';");
+      
+      $sql = $mysqli->query("INSERT into `".$eventInspections."` (`teamid`, `inspectionstatus`, `robotweight`, `redbumperweight`, `bluebumperweight`, `inspectionnotes`, `modified_by`, `modified_time`) VALUES ('$teamid', '$inspectionstatus', '$robotweight', '$redbumperweight', '$bluebumperweight', '$inspectionnotes', '$lastModifiedBy', '$lastModifiedTime');");
+      $query = $mysqli->query($sql);
     }
 
     $sqlInitial = $mysqli->query("SELECT * FROM `".$eventDB."` WHERE `teamid`='$teamid'");

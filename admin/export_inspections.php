@@ -24,6 +24,9 @@
   
   echo "Team Number".$sep;
   echo "Inspection Status".$sep;
+  echo "Robot Weight (lbs)".$sep;
+  echo "Red Bumper Weight (lbs)".$sep;
+  echo "Blue Bumper Weight (lbs)".$sep;
   echo "Inspection Notes".$sep;
   echo "Modified By".$sep;
   echo "Modified Time\n";
@@ -31,6 +34,9 @@
   while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
     echo $row['teamid'].$sep;
     echo $row['inspectionstatus'].$sep;
+    echo $row['robotweight'].$sep;
+    echo $row['redbumperweight'].$sep;
+    echo $row['bluebumperweight'].$sep;
     $inspectionNotes = $row['inspectionnotes'];
     $inspectionNotes = str_replace(array("\r", "\n"), '|', $inspectionNotes);
     echo $inspectionNotes.$sep;

@@ -54,13 +54,26 @@
 		var b2 = "#<?php echo $blue2; ?>";
 		var b3 = "#<?php echo $blue3; ?>";
 		var team = "#<?php echo $team; ?>";		
-		<?php 
+    <?php 
+      $weights;
+      $sqlWeights = $mysqli->query("SELECT * FROM `".$eventInspections."` ORDER BY `modified_time` DESC");
+      while($rowWeights = mysqli_fetch_array($sqlWeights, MYSQLI_BOTH)){
+        $teamid = $rowWeights['teamid'];
+        if (!$weights[$teamid]) {
+          $weights[$teamid] = array(
+            "robotweight" => $rowWeights['robotweight'],
+            "redbumperweight" => $rowWeights['redbumperweight'],
+            "bluebumperweight" => $rowWeights['bluebumperweight']
+          );
+        }
+      }
 			$i = 0;
 			$inspectStatuses;
 			
 			$sqlTeams = $mysqli->query("SELECT t.teamid, t.teamname, t.schoolname, t.location, e.inspectionstatus, e.inspectionnotes, e.initial_inspector, e.last_modified_by, e.last_modified_time FROM `".$eventTeams."` AS e, teams AS t WHERE e.teamid = t.teamid ORDER BY `teamid` ASC");
 			while($rowTeams = mysqli_fetch_array($sqlTeams, MYSQLI_BOTH)){
-				$inspectStatuses[$i][0] = $rowTeams['teamid']; 
+        $teamid = $rowTeams['teamid'];
+				$inspectStatuses[$i][0] =  $teamid;
 				$inspectStatuses[$i][1] = $rowTeams['teamname']; 
 				$inspectStatuses[$i][2] = $rowTeams['location']; 
 				$inspectStatuses[$i][3] = $rowTeams['inspectionstatus']; 
@@ -68,7 +81,12 @@
 				$inspectStatuses[$i][5] = $rowTeams['initial_inspector']; 
 				$inspectStatuses[$i][6] = $rowTeams['last_modified_by']; 
 				$inspectStatuses[$i][7] = $rowTeams['last_modified_time']; 
-                $inspectStatuses[$i][8] = $rowTeams['schoolname'];
+        $inspectStatuses[$i][8] = $rowTeams['schoolname'];
+        if ($weights[$teamid]) {
+          $inspectStatuses[$i][9] = $weights[$teamid]['robotweight']; 
+          $inspectStatuses[$i][10] = $weights[$teamid]['redbumperweight']; 
+          $inspectStatuses[$i][11] = $weights[$teamid]['bluebumperweight']; 
+        }
 				$i = $i + 1;
 			}
 			$jsArr = json_encode($inspectStatuses);
@@ -203,27 +221,56 @@
         </div>
         <div id="teaminspection" class="tabcontent">
             <h4><b>Inspection Status: </b></h4><p class="map-inspectstatus text-center"></p>
-            <?php if(isInspector($role) || isLeadInspector($role) || isEventAdmin($role) || isSuperAdmin($role)){ ?>
-                <form action="admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=pitmap&type=changestatus" method="post">
-				<input type="hidden" name="teamid" id="inspectNumInline">
-                <select name="inspectionstatus" id="inspectionstatus" class="form-control pull-left">
-                    <option value="Complete">Complete</option>
-                    <option value="Minor Issue">Minor Issue</option>
-                    <option value="Major Issue">Major Issue</option>
-                    <option value="Not Started">Not Started</option>
-                </select>
-                <button type="submit" class="btn btn-default pull-right" name="submit">Change Status</button></form>
-
-                <div class="clearfix"></div>
-                <h4><b>Inspection Notes: </b></h4>
-                <textarea class="form-control map-inspectnotes" name="inspectionnotes"></textarea>
-                <button type="submit" class="btn btn-default pull-right save-note" name="submit">Save Note</button>
+              <?php if(isInspector($role) || isLeadInspector($role) || isEventAdmin($role) || isSuperAdmin($role)){ ?>
+                <form action="admin/inspection_status?event=<?php echo $currentEvent; ?>&refer=pitmap&type=changeall" method="post">
+                  <input type="hidden" name="teamid" id="inspectNumInline">
+                  <select name="inspectionstatus" id="inspectionstatus" class="form-control pull-left">
+                      <option value="Complete">Complete</option>
+                      <option value="Minor Issue">Minor Issue</option>
+                      <option value="Major Issue">Major Issue</option>
+                      <option value="Not Started">Not Started</option>
+                  </select>
+                  <div class="clearfix"></div>
+                  <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                      <h4><b>Robot Weight:</b></h4>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="robotweight" id="map-robotweight">
+                        <div class="input-group-addon">lbs</div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <h4><b>Red Bumper Weight:</b></h4>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="redbumperweight" id="map-redbumperweight">
+                        <div class="input-group-addon">lbs</div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                      <h4><b>Blue Bumper Weight:</b></h4>
+                      <div class="input-group">
+                        <input type="text" class="form-control" name="bluebumperweight" id="map-bluebumperweight">
+                        <div class="input-group-addon">lbs</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="clearfix"></div>
+                  <h4><b>Inspection Notes: </b></h4>
+                  <textarea class="form-control map-inspectnotes" name="inspectionnotes"></textarea>
+                  <br>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-default btn-lg save-changes" name="submit">Save Changes</button>
+                  </div>
+                </form>
                 <div class="clearfix"></div>
                 <h4><b>Inspection Status Changes: </b></h4>
 				<div class="table-responsive">
 				<table style="border: 1px solid #ddd" class="table table-hover" id="inspections-table">
 					<thead style="background-color:white;border-top:none">
 						<th><strong>Inspection Status</strong></th>
+						<th><strong>Robot Weight</strong></th>
+						<th><strong>Red Bumper Weight</strong></th>
+						<th><strong>Blue Bumper Weight</strong></th>
 						<th><strong>Inspection Notes</strong></th>
 						<th><strong>Modified By</strong></th>
 						<th><strong>Modified Time</strong></th>
@@ -235,6 +282,9 @@
 							while($row = mysqli_fetch_array($sql, MYSQLI_BOTH)){
 								echo "<tr name='".$row['teamid']."' class='inspections-row'>";
 								echo "<td id='inspectionstatus'>". $row['inspectionstatus'] ."</td>";
+								echo "<td>". $row['robotweight'] ."</td>";
+								echo "<td>". $row['redbumperweight'] ."</td>";
+								echo "<td>". $row['bluebumperweight'] ."</td>";
 								echo "<td id='inspectionnotes'>". $row['inspectionnotes'] ."</td>";
 								echo "<td>". $row['modified_by'] ."</td>";
 								echo "<td>". $row['modified_time'] ."</td>";
@@ -284,7 +334,7 @@
 <script>
 	//Adds counts to the inspection legend
     var i = 0;
-    while (i < 4) {
+    while (i < 3) {
       document.getElementsByClassName('key-text count-complete')[i].innerHTML = <?php echo $statusCount['Complete']; ?>;
       document.getElementsByClassName('key-text count-minor')[i].innerHTML = <?php echo $statusCount['Minor Issue']; ?>;
       document.getElementsByClassName('key-text count-major')[i].innerHTML = <?php echo $statusCount['Major Issue']; ?>;
