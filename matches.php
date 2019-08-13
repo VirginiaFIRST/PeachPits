@@ -289,15 +289,15 @@
     while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
       $qualifiers[] = $row;
     }
-    $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qf' ORDER BY matchid ASC");
+    $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qf' ORDER BY `start` ASC");
     while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
       $quarters[] = $row;
     }
-    $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'sf' ORDER BY matchid ASC");
+    $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'sf' ORDER BY `start` ASC");
     while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
       $semis[] = $row;
     }
-    $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'f' ORDER BY matchid ASC");
+    $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'f' ORDER BY `start` ASC");
     while ($row = mysqli_fetch_array($sql, MYSQLI_BOTH)) {
       $finals[] = $row;
     }

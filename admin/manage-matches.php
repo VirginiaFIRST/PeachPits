@@ -91,7 +91,7 @@
 			</div>
 			<div class="dashboard-content">
         <?php
-          $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'f' ORDER BY matchid ASC");
+          $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'f' ORDER BY `start` ASC");
           $data = array();
           if (mysqli_num_rows($sql) > 0) {
             echo '<h2 class="text-center">Final Matches</h2>';
@@ -132,7 +132,7 @@
             echo '</table></div>';
           }
 
-          $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'sf' ORDER BY matchid ASC");
+          $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'sf' ORDER BY `start` ASC");
           $data = array();
           if (mysqli_num_rows($sql) > 0) {
             echo '<h2 class="text-center">Semifinal Matches</h2>';
@@ -175,7 +175,7 @@
             echo '</table></div>';
           }
           
-          $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qf' ORDER BY matchid ASC");
+          $sql = $mysqli->query("SELECT * FROM `".$event."` WHERE `matchtype` LIKE 'qf' ORDER BY `start` ASC");
           $data = array();
           if (mysqli_num_rows($sql) > 0) {
             echo '<h2 class="text-center">Quarterfinal Matches</h2>';

@@ -54,7 +54,7 @@
     }
     else if ($auto == 'true') {
         $startTime = date("D @ g:i a", $start);
-        $sql = "INSERT into `".$event."` (`matchid`,`matchnumber`,`setnumber`,`start`, `red1`, `red2`, `red3`, `blue1`, `blue2`, `blue3`, `matchtype`) VALUES ('$matchid','$matchnumber','$setnumber','$startTime', '$red1', '$red2', '$red3', '$blue1', '$blue2', '$blue3', '$matchtype') ON DUPLICATE KEY UPDATE `matchnumber`='$matchnumber', `setnumber`='$setnumber', `start`='$start', `red1`='$red1', `red2`='$red2', `red3`='$red3', `blue1`='$blue1', `blue2`='$blue2', `blue3`='$blue3', `matchtype`='$matchtype'";
+        $sql = "INSERT into `".$event."` (`matchid`,`matchnumber`,`setnumber`,`start`, `red1`, `red2`, `red3`, `blue1`, `blue2`, `blue3`, `matchtype`) VALUES ('$matchid','$matchnumber','$setnumber','$startTime', '$red1', '$red2', '$red3', '$blue1', '$blue2', '$blue3', '$matchtype') ON DUPLICATE KEY UPDATE `matchnumber`='$matchnumber', `setnumber`='$setnumber', `start`='$startTime', `red1`='$red1', `red2`='$red2', `red3`='$red3', `blue1`='$blue1', `blue2`='$blue2', `blue3`='$blue3', `matchtype`='$matchtype'";
         $query = $mysqli->query($sql);
     }
 
