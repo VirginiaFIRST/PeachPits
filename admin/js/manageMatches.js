@@ -77,7 +77,7 @@ $(document).ready(function() {
 						matchid: key,
 						matchnumber: data[i].match_number,
 						setnumber: data[i].set_number,
-						starttime: data[i].time_string,
+						starttime: data[i].time,
 						red1: data[i].alliances.red.team_keys[0].substring(3),
 						red2: data[i].alliances.red.team_keys[1].substring(3),
 						red3: data[i].alliances.red.team_keys[2].substring(3),
